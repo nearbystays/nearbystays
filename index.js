@@ -9,12 +9,14 @@ function initMap() {
     center: { lat: 39.74284767105804, lng: -121.82080463306573 },
     zoom: 6,
   });
+
   infoWindow = new google.maps.InfoWindow();
   const locationButton = document.createElement("button");
   locationButton.textContent = "Pan to Current Location";
   locationButton.classList.add("custom-map-control-button");
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  locationButton.addEventListener("click", () => {
+
+  locationButton.addEventListener("load", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
