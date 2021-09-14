@@ -13,6 +13,7 @@
       "sizes": "512x512"
     }
   ],
+  "orientation": "portrait-primary",
   "start_url": "/?source=pwa",
   "background_color": "#ffffff",
   "display": "standalone",
