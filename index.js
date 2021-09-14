@@ -18,6 +18,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 39.742, lng: -121.820 },
     zoom: 14,
+  
   });
 
   infoWindow = new google.maps.InfoWindow();
@@ -42,8 +43,7 @@ function initMap() {
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
-        }
-      );
+        });
     } else {
       // Browser doesn't support Geolocation
       handleLocationError(false, infoWindow, map.getCenter());
