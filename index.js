@@ -1,14 +1,28 @@
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser
-// to locate you.
 let map, infoWindow;
 
-function initMap() {
+// Create the script tag, set the appropriate attributes
+var script = document.createElement('script');
+script.src = 'https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap';
+script.async = true;
+
+// Attach your callback function to the `window` object
+window.initMap = function() {
+  // JS API is loaded and available
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 39.742, lng: -121.820 },
     zoom: 14,
-  });
+  })
+};
+
+// Append the 'script' element to 'head'
+document.head.appendChild(script);
+      
+
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     center: { lat: 39.742, lng: -121.820 },
+//     zoom: 14,
+//   });
 
   infoWindow = new google.maps.InfoWindow();
   const locationButton = document.createElement("button");
