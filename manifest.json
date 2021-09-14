@@ -5,14 +5,12 @@
     {
       "src": "/images/icons-192.png",
       "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "maskable"
+      "sizes": "192x192"
     },
     {
       "src": "/images/icons-512.png",
       "type": "image/png",
-      "sizes": "48x48 72x72 96x96 128x128 256x256 512x512",
-      "purpose": "maskable"
+      "sizes": "48x48 72x72 96x96 128x128 256x256 512x512"
     }
   ],
   "orientation": "portrait-primary",
