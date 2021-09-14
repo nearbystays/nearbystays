@@ -15,11 +15,22 @@ let map, infoWindow;
       
 
 function initMap() {
+
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 39.742, lng: -121.820 },
     zoom: 14,
-  
   });
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        infoWindow.setPosition(pos);
+        infoWindow.setContent("Location found.");
+        infoWindow.open(map);
+        map.setCenter(pos);
 
   infoWindow = new google.maps.InfoWindow();
   const locationButton = document.createElement("button");
@@ -30,8 +41,7 @@ function initMap() {
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
+      navigator.geolocation.getCurrentPosition((position) => {
           const pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
