@@ -17,7 +17,7 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
-  "description": "Your Stay is always Nearby!"
+  "description": "Your Stay is always Nearby!",
   "prefer_related_applications": true,
   "related_applications": [
     {
