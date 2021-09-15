@@ -81,7 +81,7 @@ function initMap() {
       // componentRestrictions: countryRestrict,
     }
   );
-  places = new google.maps.places.PlacesService(map);
+  places = new google.maps.places.PlaceService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
   // Add a DOM event listener to react when the user selects a country.
   document
