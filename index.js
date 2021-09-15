@@ -1,6 +1,8 @@
-let map, places,infoWindow, autocomplete;
-
+let map;
+let places;
+let infoWindow;
 let markers = [];
+let autocomplete;
 const countryRestrict = { country: "us" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
@@ -81,7 +83,7 @@ function initMap() {
       componentRestrictions: countryRestrict,
     }
   );
-  places = new google.maps.places.PlaceService(map);
+  places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
   // Add a DOM event listener to react when the user selects a country.
   document
@@ -96,7 +98,7 @@ function onPlaceChanged() {
 
   if (place.geometry && place.geometry.location) {
     map.panTo(place.geometry.location);
-    map.setZoom(14);
+    map.setZoom(15);
     search();
   } else {
     document.getElementById("autocomplete").placeholder = "Enter a city";
