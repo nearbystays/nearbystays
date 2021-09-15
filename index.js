@@ -78,7 +78,7 @@ function initMap() {
     document.getElementById("autocomplete"),
     {
       types: ["(cities)"],
-      componentRestrictions: countryRestrict,
+      // componentRestrictions: countryRestrict,
     }
   );
   places = new google.maps.places.PlacesService(map);
