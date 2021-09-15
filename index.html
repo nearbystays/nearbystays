@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Perfect Stays are always Nearby!">
+    <meta name="keywords" content="Travel, Entertainment, Leisure, Hotels, Bookings, Vacation, Retreat, Stays">
+    <meta name="author" content="Jeremy Scott">
     <title>Nearby Stays</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
@@ -8,10 +12,11 @@
     <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
     <script src="./index.js"></script>
     <link rel="icon" type="image/png" href="/images/icons-192.png">
+
   </head>
   <body>
     <div class="hotel-search">
-      <div id="findhotels">Find hotels in:</div>
+      <div id="findhotels">Nearby Stays:</div>
 
       <div id="locationField">
         <input id="autocomplete" placeholder="Enter a city" type="text" />
@@ -77,5 +82,7 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAdMnbeugzorXUqv735wPfnaSTt4qFWvs&callback=initMap&libraries=places&v=weekly"
       async
     ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <!-- React Load. -->
   </body>
 </html>

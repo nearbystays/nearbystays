@@ -14,12 +14,12 @@
     }
   ],
   "orientation": "portrait-primary",
-  "categories": ["entertainment", "finance", "travel", "navigation"],
+  "categories": ["travel", "entertainment", "finance", "navigation"],
   "start_url": "/?source=pwa",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
-  "description": "Your Stay is always Nearby!",
+  "description": "Find cool places to Stay always Nearby!",
   "prefer_related_applications": true,
   "related_applications": [
     {
