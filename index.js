@@ -34,71 +34,74 @@ const hostnameRegexp = new RegExp("^https?://.+?/");
 //   }
 // }
 
+const z = 5;
+let context = []
 	
 const countries = {
   au: {
     center: { lat: -25.3, lng: 133.8 },
-    zoom: 4,
+    zoom: z,
   },
   br: {
     center: { lat: -14.2, lng: -51.9 },
-    zoom: 3,
+    zoom: z,
   },
   ca: {
     center: { lat: 62, lng: -110.0 },
-    zoom: 3,
+    zoom: z,
   },
   fr: {
     center: { lat: 46.2, lng: 2.2 },
-    zoom: 5,
+    zoom: z,
   },
   de: {
     center: { lat: 51.2, lng: 10.4 },
-    zoom: 5,
+    zoom: z,
   },
   mx: {
     center: { lat: 23.6, lng: -102.5 },
-    zoom: 4,
+    zoom: z,
   },
   nz: {
     center: { lat: -40.9, lng: 174.9 },
-    zoom: 5,
+    zoom: z,
   },
   it: {
     center: { lat: 41.9, lng: 12.6 },
-    zoom: 5,
+    zoom: z,
   },
   za: {
     center: { lat: -30.6, lng: 22.9 },
-    zoom: 5,
+    zoom: z,
   },
   es: {
     center: { lat: 40.5, lng: -3.7 },
-    zoom: 5,
+    zoom: z,
   },
   pt: {
     center: { lat: 39.4, lng: -8.2 },
-    zoom: 6,
+    zoom: z,
   },
   us: {
     center: { lat: 37.1, lng: -95.7 },
-    zoom: 3,
+    zoom: z,
   },
   uk: {
     center: { lat: 54.8, lng: -4.6 },
-    zoom: 5,
+    zoom: z,
   },
 };
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
+  let data = {
     zoom: countries["us"].zoom,
     center: countries["us"].center,
     mapTypeControl: false,
     panControl: false,
     zoomControl: false,
     streetViewControl: false,
-  });
+  }
+  map = new google.maps.Map(document.getElementById("map"), data);
 
   infoWindow = new google.maps.InfoWindow({
     content: document.getElementById("info-content"),
@@ -190,7 +193,7 @@ function setAutocompleteCountry() {
   if (country == "all") {
     autocomplete.setComponentRestrictions({ country: [] });
     map.setCenter({ lat: 15, lng: 0 });
-    map.setZoom(2);
+    map.setZoom(9);
   } else {
     autocomplete.setComponentRestrictions({ country: country });
     map.setCenter(countries[country].center);
