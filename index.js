@@ -97,15 +97,24 @@ const countries = {
 };
 
 function initMap() {
-  let data = {
+  const mapElement = document.getElementById("map");
+  const autocompleteElement = document.getElementById("autocomplete");
+
+  let mapOpts = {
     zoom: countries["us"].zoom,
     center: countries["us"].center,
     mapTypeControl: false,
     panControl: false,
-    zoomControl: false,
+    zoomControl: true,
     streetViewControl: false,
-  }
-  map = new google.maps.Map(document.getElementById("map"), data);
+  };
+
+  let autocompleteOpts = {
+    types: ["address"],
+    // types: ["administrative_area_level_1"]
+  };
+
+  map = new google.maps.Map(mapElement, mapOpts);
 
   infoWindow = new google.maps.InfoWindow({
     content: document.getElementById("info-content"),
@@ -113,11 +122,8 @@ function initMap() {
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
   autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById("autocomplete"),
-    {
-      types: ["(cities)"],
-      componentRestrictions: countryRestrict,
-    }
+    autocompleteElement,
+    autocompleteOpts
   );
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
