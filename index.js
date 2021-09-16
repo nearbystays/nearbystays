@@ -7,6 +7,34 @@ const countryRestrict = { country: "us" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
+const majorStates = {
+  ca: {
+    center: {lat: 0, lng: 0},
+    zoom: 10,
+  }
+  ny: {
+    center: {lat: 0, lng: 0},
+    zoom: 10,
+  }
+  fl: {
+    center: {lat: 0, lng: 0},
+    zoom: 10,
+  }
+  al: {
+    center: {lat: 0, lng: 0},
+    zoom: 10,
+  }
+  nv: {
+    center: {lat: 0, lng: 0},
+    zoom: 10,
+  }
+  fl: {
+    center: {lat: 0, lng: 0},
+    zoom: 10,
+  }
+
+	
+}
 const countries = {
   au: {
     center: { lat: -25.3, lng: 133.8 },
@@ -177,6 +205,7 @@ function dropMarker(i) {
 }
 
 function addResult(result, i) {
+  console.log(result)
   const results = document.getElementById("results");
   const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
   const markerIcon = MARKER_PATH + markerLetter + ".png";
@@ -234,6 +263,7 @@ function showInfoWindow() {
 function buildIWContent(place) {
   document.getElementById("iw-icon").innerHTML =
     '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';
+  console.log(place.name)
   document.getElementById("iw-url").innerHTML =
     '<b><a href="' + place.url + '">' + place.name + "</a></b>";
   document.getElementById("iw-address").textContent = place.vicinity;
