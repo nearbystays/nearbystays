@@ -110,7 +110,7 @@ function initMap() {
   };
 
   let autocompleteOpts = {
-    types: ["address"],
+    // types: ["address", ""],
     // types: ["administrative_area_level_1"]
   };
 
