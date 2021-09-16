@@ -156,8 +156,8 @@ function search() {
         markers[i] = new google.maps.Marker({
 	  // position: event.latlng,
           position: results[i].geometry.location,
-          collisionBehavior:
-            google.maps.CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY,
+          // collisionBehavior:
+            // google.maps.CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY,
           animation: google.maps.Animation.DROP,
           icon: markerIcon,
         });
