@@ -127,7 +127,7 @@ function onPlaceChanged() {
 
   if (place.geometry && place.geometry.location) {
     map.panTo(place.geometry.location);
-    map.setZoom(15);
+    map.setZoom(20);
     search();
   } else {
     document.getElementById("autocomplete").placeholder = "Enter a city";
