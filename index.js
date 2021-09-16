@@ -178,7 +178,7 @@ function search() {
         // in an info window.
         markers[i].placeResult = results[i];
         google.maps.event.addListener(markers[i], "click", showInfoWindow);
-        setTimeout(dropMarker(i), i * 100);
+        setTimeout(dropMarker(i), i * 1);
         addResult(results[i], i);
       }
     }
