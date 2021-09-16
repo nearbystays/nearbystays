@@ -1,6 +1,7 @@
 let map;
 
 function initMap() {
+  const center = (() => { lat: 37.4219998, lng: -122.0840572 });
   const center = { lat: 37.4219998, lng: -122.0840572 };
   const bigBounds = {
     north: 37.432,
@@ -10,7 +11,7 @@ function initMap() {
   };
   const localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
-    placeTypePreferences: [{ type: "restaurant" }],
+    placeTypePreferences: [{ type: "lodging" }],
     maxPlaceCount: 12,
     locationRestriction: bigBounds,
     directionsOptions: { origin: center },
