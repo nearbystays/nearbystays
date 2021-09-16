@@ -34,9 +34,13 @@ const hostnameRegexp = new RegExp("^https?://.+?/");
 //   }
 // }
 
+function zoomProportional() {
+  let numerator;
+  const divisor = 3*4*5*6;
+  let context = [];
+}
+
 const z = 5;
-let context = []
-	
 const countries = {
   au: {
     center: { lat: -25.3, lng: 133.8 },
@@ -193,7 +197,7 @@ function setAutocompleteCountry() {
   if (country == "all") {
     autocomplete.setComponentRestrictions({ country: [] });
     map.setCenter({ lat: 15, lng: 0 });
-    map.setZoom(9);
+    map.setZoom(2);
   } else {
     autocomplete.setComponentRestrictions({ country: country });
     map.setCenter(countries[country].center);
