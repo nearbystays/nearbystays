@@ -15,42 +15,66 @@
     <link rel="shortcut icon" type="image/png" href="/images/icons-512.png">
     <link rel="apple-touch-icon" href="/images/icons-512.png">
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+
   </head>
   <body>
-    <div class="hotel-search">
-      <div id="findhotels">Nearby Stays:</div>
-
-      <div id="locationField">
-        <input id="autocomplete" placeholder="Enter a city" type="text" />
+    <div class="container">
+      <div class="row">
+        <div class="col-8">col-8</div>
+        <div class="col-4">col-4</div>
       </div>
-
-      <div id="controls">
-        <select id="country">
-          <option value="all">All</option>
-          <option value="au">Australia</option>
-          <option value="br">Brazil</option>
-          <option value="ca">Canada</option>
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="mx">Mexico</option>
-          <option value="nz">New Zealand</option>
-          <option value="it">Italy</option>
-          <option value="za">South Africa</option>
-          <option value="es">Spain</option>
-          <option value="pt">Portugal</option>
-          <option value="us" selected>U.S.A.</option>
-          <option value="uk">United Kingdom</option>
-        </select>
+        <div class="hotel-search">
+          <div id="findhotels">Nearby Stays:</div>
+    
+          <div id="locationField">
+            <input id="autocomplete" placeholder="Enter a city" type="text" />
+          </div>
+    
+          <div id="controls">
+            <select id="country">
+              <option value="all">All</option>
+              <option value="au">Australia</option>
+              <option value="br">Brazil</option>
+              <option value="ca">Canada</option>
+              <option value="fr">France</option>
+              <option value="de">Germany</option>
+              <option value="mx">Mexico</option>
+              <option value="nz">New Zealand</option>
+              <option value="it">Italy</option>
+              <option value="za">South Africa</option>
+              <option value="es">Spain</option>
+              <option value="pt">Portugal</option>
+              <option value="us" selected>U.S.A.</option>
+              <option value="uk">United Kingdom</option>
+            </select>
+          </div>
+        </div>
+    
+        <div id="map"></div>
+    
+        <div id="listing">
+          <table id="resultsTable">
+            <tbody id="results"></tbody>
+          </table>
+        </div>
+      <div class="row">
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
       </div>
     </div>
 
-    <div id="map"></div>
 
-    <div id="listing">
-      <table id="resultsTable">
-        <tbody id="results"></tbody>
-      </table>
-    </div>
+
+
+
+
+
+
 
     <div style="display: none">
       <div id="info-content">
