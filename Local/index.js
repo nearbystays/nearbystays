@@ -12,7 +12,7 @@ function initMap() {
   const localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
     placeTypePreferences: [{ type: "lodging" }],
-    maxPlaceCount: 12,
+    maxPlaceCount: 50,
     locationRestriction: bigBounds,
     directionsOptions: { origin: center },
   });
