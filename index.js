@@ -7,34 +7,34 @@ const countryRestrict = { country: "us" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
-const majorStates = {
-  ca: {
-    center: {lat: 0, lng: 0},
-    zoom: 10,
-  }
-  ny: {
-    center: {lat: 0, lng: 0},
-    zoom: 10,
-  }
-  fl: {
-    center: {lat: 0, lng: 0},
-    zoom: 10,
-  }
-  al: {
-    center: {lat: 0, lng: 0},
-    zoom: 10,
-  }
-  nv: {
-    center: {lat: 0, lng: 0},
-    zoom: 10,
-  }
-  fl: {
-    center: {lat: 0, lng: 0},
-    zoom: 10,
-  }
+// const majorStates = {
+//   ca: {
+//     center: {lat: 0, lng: 0},
+//     zoom: 10,
+//   }
+//   ny: {
+//     center: {lat: 0, lng: 0},
+//     zoom: 10,
+//   }
+//   fl: {
+//     center: {lat: 0, lng: 0},
+//     zoom: 10,
+//   }
+//   al: {
+//     center: {lat: 0, lng: 0},
+//     zoom: 10,
+//   }
+//   nv: {
+//     center: {lat: 0, lng: 0},
+//     zoom: 10,
+//   }
+//   fl: {
+//     center: {lat: 0, lng: 0},
+//     zoom: 10,
+//   }
+// }
 
 	
-}
 const countries = {
   au: {
     center: { lat: -25.3, lng: 133.8 },
