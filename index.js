@@ -121,10 +121,7 @@ function initMap() {
   });
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
-  autocomplete = new google.maps.places.Autocomplete(
-    autocompleteElement,
-    autocompleteOpts
-  );
+  autocomplete = new google.maps.places.Autocomplete(autocompleteElement, autocompleteOpts);
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
   // Add a DOM event listener to react when the user selects a country.
@@ -163,6 +160,8 @@ function search() {
       // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
         const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
+        console.log(markerLetter);
+        // const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
         // Use marker animation to drop the icons incrementally on the map.
