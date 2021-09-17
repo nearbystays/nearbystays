@@ -164,7 +164,7 @@ function search() {
       for (let i = 0; i < results.length; i++) {
         // const markerLetter = String.fromCharCode("A".charCodeAt(161));
         // const markerLetter = ""; //String.fromCharCode("A".charCodeAt(0) + i);
-        const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
+        const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 52));
         console.log(markerLetter);
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
@@ -282,7 +282,7 @@ function showInfoWindow() {
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
   const icon = document.getElementById("iw-icon")
-  icon.innerHTML = '<img class="hotelIcon nearbystays" ' + 'src="' + place.photo + '"/>';
+  icon.innerHTML = '<img class="hotelIcon nearbystays" ' + 'src="' + place.icon + '"/>';
   document.getElementById("iw-url").innerHTML = '<b><a class="nearbystays" href="' + place.url + '">' + place.name + "</a></b>";
   document.getElementById("iw-address").textContent = place.vicinity;
   if (place.formatted_phone_number) {
