@@ -135,12 +135,15 @@ function initMap() {
 function onPlaceChanged() {
   const place = autocomplete.getPlace();
 
+  if (! place.geometry || ! place.geometry.location) {
+    document.getElementById("autocomplete").placeholder = "Nearby Stays";
+  }
   if (place.geometry && place.geometry.location) {
     map.panTo(place.geometry.location);
-    map.setZoom(10);
+    map.setZoom(9);
     search();
   } else {
-    document.getElementById("autocomplete").placeholder = "Enter a city";
+    //etc...
   }
 }
 
@@ -159,8 +162,8 @@ function search() {
       // Create a marker for each hotel found, and
       // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
-        const markerLetter = String.fromCharCode("A".charCodeAt(161));
-        // const markerLetter = ""; //String.fromCharCode("A".charCodeAt(0) + i);
+        // const markerLetter = String.fromCharCode("A".charCodeAt(161));
+        const markerLetter = ""; //String.fromCharCode("A".charCodeAt(0) + i);
         console.log(markerLetter);
         // const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
@@ -278,16 +281,13 @@ function showInfoWindow() {
 
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
-  document.getElementById("iw-icon").innerHTML =
-    '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';
-  console.log(place.name)
-  document.getElementById("iw-url").innerHTML =
-    '<b><a href="' + place.url + '">' + place.name + "</a></b>";
+  const icon = document.getElementById("iw-icon")
+  icon.innerHTML = '<img class="hotelIcon nearbystays" ' + 'src="' + place.photo + '"/>';
+  document.getElementById("iw-url").innerHTML = '<b><a class="nearbystays" href="' + place.url + '">' + place.name + "</a></b>";
   document.getElementById("iw-address").textContent = place.vicinity;
   if (place.formatted_phone_number) {
     document.getElementById("iw-phone-row").style.display = "";
-    document.getElementById("iw-phone").textContent =
-      place.formatted_phone_number;
+    document.getElementById("iw-phone").textContent = place.formatted_phone_number;
   } else {
     document.getElementById("iw-phone-row").style.display = "none";
   }
