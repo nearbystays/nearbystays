@@ -260,9 +260,12 @@ function showInfoWindow() {
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
   const icon = document.getElementById("iw-icon")
-  icon.innerHTML = '<img class="hotelIcon nearbystays" ' + 'src="' + place.icon + '"/>';
-  document.getElementById("iw-url").innerHTML = '<b><a class="nearbystays" href="' + place.url + '">' + place.name + "</a></b>";
-  document.getElementById("iw-address").textContent = place.vicinity;
+  const iwurl = document.getElementById("iw-url")
+  const iwaddr = document.getElementById("iw-address")
+
+  icon.innerHTML = '<img class="hotelIcon nearbystays" ' + 'src=/images/icons-512.png"/>';
+  iwurl.innerHTML = '<b><a class="nearbystays" href="' + place.url + '">' + place.name + "</a></b>";
+  iwaddr.textContent = place.vicinity;
   if (place.formatted_phone_number) {
     document.getElementById("iw-phone-row").style.display = "";
     document.getElementById("iw-phone").textContent = place.formatted_phone_number;
@@ -335,11 +338,3 @@ btnAdd.addEventListener('click', (e) => {
       deferredPrompt = null;
     });
 });
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
