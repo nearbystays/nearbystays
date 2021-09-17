@@ -63,9 +63,24 @@ function initMap() {
   const mapElement = document.getElementById("map");
   const autocompleteElement = document.getElementById("autocomplete");
 
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        center: {lat: position.coords.latitude, lng: position.coords.longitude}
+      });
+    } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+
+  function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+  }
+
   let mapOpts = {
     zoom: countries["us"].zoom,
-    center: countries["us"].center,
+    center: getLocation(),// latlang, // countries["us"].center,
     mapTypeControl: false,
     panControl: false,
     zoomControl: true,
@@ -320,3 +335,11 @@ btnAdd.addEventListener('click', (e) => {
       deferredPrompt = null;
     });
 });
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
