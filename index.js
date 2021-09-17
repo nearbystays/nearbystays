@@ -159,7 +159,7 @@ function search() {
       // Create a marker for each hotel found, and
       // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
-        const markerLetter = String.fromCharCode("A".charCodeAt(160));
+        const markerLetter = String.fromCharCode("A".charCodeAt(161));
         // const markerLetter = ""; //String.fromCharCode("A".charCodeAt(0) + i);
         console.log(markerLetter);
         // const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
