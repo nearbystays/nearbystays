@@ -135,15 +135,15 @@ function initMap() {
 function onPlaceChanged() {
   const place = autocomplete.getPlace();
 
-  if (! place.geometry || ! place.geometry.location) {
-    document.getElementById("autocomplete").placeholder = "Nearby Stays";
-  }
+//   //etc...
+//   if (! place.geometry || ! place.geometry.location) {
+//   }
   if (place.geometry && place.geometry.location) {
     map.panTo(place.geometry.location);
     map.setZoom(9);
     search();
   } else {
-    //etc...
+    document.getElementById("autocomplete").placeholder = "Nearby Stays";
   }
 }
 
@@ -163,9 +163,9 @@ function search() {
       // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
         // const markerLetter = String.fromCharCode("A".charCodeAt(161));
-        const markerLetter = ""; //String.fromCharCode("A".charCodeAt(0) + i);
+        // const markerLetter = ""; //String.fromCharCode("A".charCodeAt(0) + i);
+        const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         console.log(markerLetter);
-        // const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
         // Use marker animation to drop the icons incrementally on the map.
