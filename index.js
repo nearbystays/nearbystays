@@ -145,7 +145,7 @@ function search() {
         markers[i].placeResult = results[i];
         google.maps.event.addListener(markers[i], "click", showInfoWindow);
         setTimeout(dropMarker(i), i * 1);
-        addResult(results[i], i);
+        addResult(results[i/2], i/2);
       }
     }
   });
@@ -190,7 +190,7 @@ function dropMarker(i) {
 function addResult(result, i) {
   console.log(result)
   const results = document.getElementById("results");
-  const markerLetter = String.fromCharCode("A".charCodeAt(0) + ((i / 2) % 26));
+  const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i / 2) % 26));
   const markerIcon = MARKER_PATH + markerLetter + ".png";
   const tr = document.createElement("tr");
 
