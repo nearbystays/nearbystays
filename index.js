@@ -7,92 +7,55 @@ const countryRestrict = { country: "us" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
-// const majorStates = {
-//   ca: {
-//     center: {lat: 0, lng: 0},
-//     zoom: 10,
-//   }
-//   ny: {
-//     center: {lat: 0, lng: 0},
-//     zoom: 10,
-//   }
-//   fl: {
-//     center: {lat: 0, lng: 0},
-//     zoom: 10,
-//   }
-//   al: {
-//     center: {lat: 0, lng: 0},
-//     zoom: 10,
-//   }
-//   nv: {
-//     center: {lat: 0, lng: 0},
-//     zoom: 10,
-//   }
-//   fl: {
-//     center: {lat: 0, lng: 0},
-//     zoom: 10,
-//   }
-// }
 
 function zoomProportional() {
   let numerator;
   const divisor = 3*4*5*6;
   let context = [];
+  const z = 5;
 }
 
-const z = 5;
+const zoom_=[5, 4, 3, 4, 4, 4, 4, 4, 4, 4];
 const countries = {
   au: {
     center: { lat: -25.3, lng: 133.8 },
-    zoom: z,
+    zoom: zoom_[1],
   },
   br: {
     center: { lat: -14.2, lng: -51.9 },
-    zoom: z,
+    zoom: zoom_[2],
   },
   ca: {
     center: { lat: 62, lng: -110.0 },
-    zoom: z,
+    zoom: zoom_[3],
   },
   fr: {
     center: { lat: 46.2, lng: 2.2 },
-    zoom: z,
+    zoom: zoom_[4],
   },
   de: {
     center: { lat: 51.2, lng: 10.4 },
-    zoom: z,
+    zoom: zoom_[5],
   },
   mx: {
     center: { lat: 23.6, lng: -102.5 },
-    zoom: z,
+    zoom: zoom_[6],
   },
   nz: {
     center: { lat: -40.9, lng: 174.9 },
-    zoom: z,
+    zoom: zoom_[7],
   },
   it: {
     center: { lat: 41.9, lng: 12.6 },
-    zoom: z,
-  },
-  za: {
-    center: { lat: -30.6, lng: 22.9 },
-    zoom: z,
-  },
-  es: {
-    center: { lat: 40.5, lng: -3.7 },
-    zoom: z,
-  },
-  pt: {
-    center: { lat: 39.4, lng: -8.2 },
-    zoom: z,
+    zoom: zoom_[8],
   },
   us: {
     center: { lat: 37.1, lng: -95.7 },
-    zoom: z,
+    zoom: zoom_[9],
   },
   uk: {
     center: { lat: 54.8, lng: -4.6 },
-    zoom: z,
+    zoom: zoom_[10],
   },
 };
 
@@ -227,7 +190,7 @@ function dropMarker(i) {
 function addResult(result, i) {
   console.log(result)
   const results = document.getElementById("results");
-  const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
+  const markerLetter = String.fromCharCode("A".charCodeAt(0) + ((i / 2) % 26));
   const markerIcon = MARKER_PATH + markerLetter + ".png";
   const tr = document.createElement("tr");
 
