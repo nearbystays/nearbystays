@@ -1,101 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Perfect Stays are always Nearby!">
-    <meta name="keywords" content="Travel, Entertainment, Leisure, Hotels, Bookings, Vacation, Retreat, Stays">
-    <meta name="author" content="Jeremy Scott">
-    <title>Nearby Stays</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
-    <script src="./index.js"></script>
-    <link rel="icon" type="image/png" href="/images/icons-512.png">
-    <link rel="shortcut icon" type="image/png" href="/images/icons-512.png">
-    <link rel="apple-touch-icon" href="/images/icons-512.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Nearby Stays</title>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='description' content='Nearby Stays are around every corner!'>
+<link rel='canonical' href='https://nearbystays.com/'>
+<link rel='manifest' href='manifest.json'>
+<meta name='mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='application-name' content='Nearby Stays'>
+<meta name='apple-mobile-web-app-status-bar-style' content='black'>
+<meta name='apple-mobile-web-app-title' content='Nearby Stays'>
+<link rel='icon' sizes='192x192' href='/icons.png'>
+<link rel='apple-touch-icon'  href='/icons.png'>
+<meta name='msapplication-TileImage' content='/icons.png'>
+<meta name='msapplication-TileColor' content='#ffffff'>
+<meta name='theme-color' content='#ffffff'>
+<meta property='og:title' content='Nearby Stays'>
+<meta property='og:type' content='website'>
+<meta property='og:image' content='https://nearbystays.com/icons.png'>
+<meta property='og:url' content='https://nearbystays.com/'>
+<meta property='og:description' content='The best and easiest Nearby Stays web app there is. No install just use it right away in your browser!'>
+<meta name='twitter:card' content='summary'>
+<meta name='twitter:url' content='https://nearbystays.com/'>
+<meta name='twitter:title' content='Nearby Stays'>
+<meta name='twitter:description' content='The best and easiest Nearby Stays web app there is. No install just use it right away in your browser!'>
+<meta name='twitter:image' content='https://nearbystays.com/icons.png'>
+<meta name='twitter:creator' content='@jd_sfsu'>
+<meta http-equiv='origin-trial' content='AoSmmU3xCcjOI6/9ixevLMwZJ6JQf+SEY0pIJPkw720gFR8VtDejaYmdkg9JX/sow51jBNeuoxzPlFg35jaMyQcAAABQeyJvcmlnaW4iOiJodHRwczovL2Fpcmhvcm5lci5jb206NDQzIiwiZmVhdHVyZSI6IkJhZGdpbmdWMiIsImV4cGlyeSI6MTYwMDIxNDM5OX0='>
+<!--link rel='stylesheet' href='styles/main.css'-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- jQuery Ajax CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Optional -->
+<script src="index.js"></script>
+<script src="./script.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
 
-  </head>
-  <body>
-    <div id="container-fluid">
-    </div>
-      <div class="hotel-search">
-        <div id="findhotels">Nearby Stays:</div>
-  
-        <div id="locationField">
-          <input id="autocomplete" placeholder="Enter a city" type="text" />
-        </div>
-  
-        <div id="controls">
-          <select id="country">
-            <option value="all">All</option>
-            <option value="au">Australia</option>
-            <option value="br">Brazil</option>
-            <option value="ca">Canada</option>
-            <option value="fr">France</option>
-            <option value="de">Germany</option>
-            <option value="mx">Mexico</option>
-            <option value="nz">New Zealand</option>
-            <option value="it">Italy</option>
-            <option value="za">South Africa</option>
-            <option value="es">Spain</option>
-            <option value="pt">Portugal</option>
-            <option value="us" selected>U.S.A.</option>
-            <option value="uk">United Kingdom</option>
-          </select>
-        </div>
-      </div>
-  
-      <div id="map"></div>
-  
-      <div id="listing">
-        <table id="resultsTable">
-          <tbody id="results"></tbody>
-        </table>
-      </div>
-  
-      <div style="display: none">
-        <div id="info-content">
-          <table>
-            <tr id="iw-url-row" class="iw_table_row">
-              <td id="iw-icon" class="iw_table_icon"></td>
-              <td id="iw-url"></td>
-            </tr>
-            <tr id="iw-nearbystays-row" class="iw_table_row">
-              <td class="iw_attribute_name">Nearby Stays:</td>
-              <td id="iw-nearbystays"></td>
-            </tr>
-            <tr id="iw-address-row" class="iw_table_row">
-              <td class="iw_attribute_name">Address:</td>
-              <td id="iw-address"></td>
-            </tr>
-            <tr id="iw-phone-row" class="iw_table_row">
-              <td class="iw_attribute_name">Telephone:</td>
-              <td id="iw-phone"></td>
-            </tr>
-            <tr id="iw-rating-row" class="iw_table_row">
-              <td class="iw_attribute_name">Rating:</td>
-              <td id="iw-rating"></td>
-            </tr>
-            <tr id="iw-website-row" class="iw_table_row">
-              <td class="iw_attribute_name">Website:</td>
-              <td id="iw-website"></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-  
+  <button class="custom-map-control-button material-icons-outlined" id="button" onclick="mylog('hello, World!')">&#E87C; near_me</button>
+<div id='map'></div>
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAdMnbeugzorXUqv735wPfnaSTt4qFWvs&callback=initMap&libraries=places&v=weekly"
-      async
-    ></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-    <!-- React Load. -->
-  </body>
+</body>
 </html>
