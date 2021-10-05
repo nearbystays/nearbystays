@@ -86,7 +86,7 @@ function initMap() {
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById("autocomplete"),
     {
-      types: ["(cities)"],
+      // types: ["(cities)"],
       componentRestrictions: countryRestrict,
     }
   );
