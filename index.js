@@ -275,7 +275,7 @@ function buildIWContent(place) {
   // to give a short URL for displaying in the info window.
   if (place.website) {
     let fullUrl = place.website;
-    let website = String(hostnameRegexp.exec(place.website));
+    let website = String(hostnameRegexp.matchAll(place.website));
 
     if (!website) {
       website = "http://" + place.website + "/";
