@@ -109,7 +109,8 @@ function search() {
 }
 
 function clearMarkers() {
-  for (let i = 0; i < markers.length; i++) {
+  const markerLength = markers.length
+  for (let i = 0; i < markerLength; i++) {
     if (markers[i]) {
       markers[i].setMap(null);
     }
