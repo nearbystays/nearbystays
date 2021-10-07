@@ -148,16 +148,16 @@ function addResult(result, i) {
   const results = $("#results");
   const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
   const markerIcon = MARKER_PATH + markerLetter + ".png";
-  const tr = $("document").add("tr");
+  const tr = $("body").add("tr");
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
   tr.onclick = function () {
     google.maps.event.trigger(markers[i], "click");
   };
 
-  const iconTd = $("document").add("td");
-  const nameTd = $("document").add("td");
-  const icon = $("document").add("img");
+  const iconTd = $("body").add("td");
+  const nameTd = $("body").add("td");
+  const icon = $("body").add("img");
 
   icon.src = markerIcon;
   icon.setAttribute("class", "placeIcon");
