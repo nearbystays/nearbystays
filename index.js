@@ -86,7 +86,7 @@ function search() {
       // assign a letter of the alphabetic to each marker icon.
       const markerLength = results.length;
       for (let i = 0; i < markerLength; i++) {
-        const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
+        const markerLetter = String.fromCharCode(65 + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
         // Use marker animation to drop the icons incrementally on the map.
@@ -146,7 +146,7 @@ function addResult(result, i) {
   const results = $("#results");
   const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
   const markerIcon = MARKER_PATH + markerLetter + ".png";
-  const tr = $("body").append("tr");
+  const tr = $(document).append("tr");
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
   tr.onclick = function () {
