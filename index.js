@@ -54,9 +54,7 @@ function initMap() {
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
   // Add a DOM event listener to react when the user selects a country.
-  document
-    .getElementById("country")
-    .addEventListener("change", setAutocompleteCountry);
+  $("#country").change(setAutocompleteCountry);
 }
 
 // When the user selects a city, get the place details for the city and
@@ -136,26 +134,21 @@ function setAutocompleteCountry() {
   clearMarkers();
 }
 
-function dropMarker(i) {
-  return function () {
-    markers[i].setMap(map);
-  };
-}
+function dropMarker(i) { return function () { markers[i].setMap(map); }; }
 
 function addResult(result, i) {
   const results = $("#results");
   const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
   const markerIcon = MARKER_PATH + markerLetter + ".png";
-  const tr = $(document).append("tr");
+  const tr = document.createElement("tr");
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
-  tr.onclick = function () {
-    google.maps.event.trigger(markers[i], "click");
-  };
+  //reduce(fn callback_fn(A(t-1),At,Ai,A[]){...F},A*)
+  tr.onclick = function () { google.maps.event.trigger(markers[i], "click"); };
 
-  const iconTd = $(document).append("td");
-  const nameTd = $(document).append("td");
-  const icon = $(document).append("img");
+  const iconTd = document.createElement("td");
+  const nameTd = document.createElement("td");
+  const icon = document.createElement("img");
 
   icon.src = markerIcon;
   icon.setAttribute("class", "placeIcon");
