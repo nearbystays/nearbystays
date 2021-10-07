@@ -53,7 +53,6 @@ function onPlaceChanged() {
   }
 }
 
-// Search for hotels in the selected city, within the viewport of the map.
 function search() {
   const search = { bounds: map.getBounds(), types: ["lodging"], };
 
@@ -62,8 +61,6 @@ function search() {
       clearResults();
       clearMarkers();
 
-      // Create a marker for each hotel found, and
-      // assign a letter of the alphabetic to each marker icon.
       const resultsLength = results.length;
       for (let i = 0; i < resultsLength; i++) {
         const markerLetter = String.fromCharCode(65 + (i % 26));
@@ -75,8 +72,6 @@ function search() {
           animation: google.maps.Animation.DROP,
           icon: markerIcon,
         });
-        // If the user clicks a hotel marker, show the details of that hotel
-        // in an info window.
         markers[i].placeResult = results[i];
         google.maps.event.addListener(markers[i], "click", showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
