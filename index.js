@@ -69,16 +69,13 @@ function onPlaceChanged() {
     map.setZoom(15);
     search();
   } else {
-    $("#autocomplete").placeholder = "Enter a city";
+    $("#autocomplete").placeholder = "Nearby Stays";
   }
 }
 
 // Search for hotels in the selected city, within the viewport of the map.
 function search() {
-  const search = {
-    bounds: map.getBounds(),
-    types: ["lodging"],
-  };
+  const search = { bounds: map.getBounds(), types: ["lodging"], };
 
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
@@ -87,7 +84,8 @@ function search() {
 
       // Create a marker for each hotel found, and
       // assign a letter of the alphabetic to each marker icon.
-      for (let i = 0; i < results.length; i++) {
+      const markerLength = results.length;
+      for (let i = 0; i < markerLength; i++) {
         const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
@@ -148,16 +146,16 @@ function addResult(result, i) {
   const results = $("#results");
   const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
   const markerIcon = MARKER_PATH + markerLetter + ".png";
-  const tr = $("body").add("tr");
+  const tr = $("body").append("tr");
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
   tr.onclick = function () {
     google.maps.event.trigger(markers[i], "click");
   };
 
-  const iconTd = $("body").add("td");
-  const nameTd = $("body").add("td");
-  const icon = $("body").add("img");
+  const iconTd = $(document).append("td");
+  const nameTd = $(document).append("td");
+  const icon = $(document).append("img");
 
   icon.src = markerIcon;
   icon.setAttribute("class", "placeIcon");
