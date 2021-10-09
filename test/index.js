@@ -1,3 +1,4 @@
+let map;
 let places;
 let infoWindow;
 let markers = [];
