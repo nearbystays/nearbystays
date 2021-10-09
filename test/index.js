@@ -8,58 +8,19 @@ const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
 const countries = {
-  au: {
-    center: { lat: -25.3, lng: 133.8 },
-    zoom: 4,
-  },
-  br: {
-    center: { lat: -14.2, lng: -51.9 },
-    zoom: 3,
-  },
-  ca: {
-    center: { lat: 62, lng: -110.0 },
-    zoom: 3,
-  },
-  fr: {
-    center: { lat: 46.2, lng: 2.2 },
-    zoom: 5,
-  },
-  de: {
-    center: { lat: 51.2, lng: 10.4 },
-    zoom: 5,
-  },
-  mx: {
-    center: { lat: 23.6, lng: -102.5 },
-    zoom: 4,
-  },
-  nz: {
-    center: { lat: -40.9, lng: 174.9 },
-    zoom: 5,
-  },
-  it: {
-    center: { lat: 41.9, lng: 12.6 },
-    zoom: 5,
-  },
-  za: {
-    center: { lat: -30.6, lng: 22.9 },
-    zoom: 5,
-  },
-  es: {
-    center: { lat: 40.5, lng: -3.7 },
-    zoom: 5,
-  },
-  pt: {
-    center: { lat: 39.4, lng: -8.2 },
-    zoom: 6,
-  },
-  us: {
-    center: { lat: 37.1, lng: -95.7 },
-    zoom: 3,
-  },
-  uk: {
-    center: { lat: 54.8, lng: -4.6 },
-    zoom: 5,
-  },
+  au: { center: { lat: -25.3, lng: 133.8 }, zoom: 4, },
+  br: { center: { lat: -14.2, lng: -51.9 }, zoom: 3, },
+  ca: { center: { lat: 62, lng: -110.0 }, zoom: 3, },
+  fr: { center: { lat: 46.2, lng: 2.2 }, zoom: 5, },
+  de: { center: { lat: 51.2, lng: 10.4 }, zoom: 5, },
+  mx: { center: { lat: 23.6, lng: -102.5 }, zoom: 4, },
+  nz: { center: { lat: -40.9, lng: 174.9 }, zoom: 5, },
+  it: { center: { lat: 41.9, lng: 12.6 }, zoom: 5, },
+  za: { center: { lat: -30.6, lng: 22.9 }, zoom: 5, },
+  es: { center: { lat: 40.5, lng: -3.7 }, zoom: 5, },
+  pt: { center: { lat: 39.4, lng: -8.2 }, zoom: 6, },
+  us: { center: { lat: 37.1, lng: -95.7 }, zoom: 3, },
+  uk: { center: { lat: 54.8, lng: -4.6 }, zoom: 5, },
 };
 
 function initMap() {
@@ -71,17 +32,11 @@ function initMap() {
     zoomControl: false,
     streetViewControl: false,
   });
-  infoWindow = new google.maps.InfoWindow({
-    content: $("#info-content"),
-  });
+  infoWindow = new google.maps.InfoWindow({ content: $("#info-content"), });
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
   autocomplete = new google.maps.places.Autocomplete(
-    $("#autocomplete"),
-    {
-      types: ["(cities)"],
-      componentRestrictions: countryRestrict,
-    }
+    $("#autocomplete"), { componentRestrictions: countryRestrict, }
   );
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
@@ -107,10 +62,7 @@ function onPlaceChanged() {
 
 // Search for hotels in the selected city, within the viewport of the map.
 function search() {
-  const search = {
-    bounds: map.getBounds(),
-    types: ["lodging"],
-  };
+  const search = { bounds: map.getBounds(), types: ["lodging"], };
 
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
@@ -155,15 +107,9 @@ function clearMarkers() {
 function setAutocompleteCountry() {
   const country = $("#country").value;
 
-  if (country == "all") {
-    autocomplete.setComponentRestrictions({ country: [] });
-    map.setCenter({ lat: 15, lng: 0 });
-    map.setZoom(2);
-  } else {
-    autocomplete.setComponentRestrictions({ country: country });
-    map.setCenter(countries[country].center);
-    map.setZoom(countries[country].zoom);
-  }
+  autocomplete.setComponentRestrictions({ country: country });
+  map.setCenter(countries[country].center);
+  map.setZoom(countries[country].zoom);
 
   clearResults();
   clearMarkers();
@@ -182,9 +128,7 @@ function addResult(result, i) {
   const tr = document.createElement("tr");
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
-  tr.onclick = function () {
-    google.maps.event.trigger(markers[i], "click");
-  };
+  tr.onclick = function () { google.maps.event.trigger(markers[i], "click"); };
 
   const iconTd = document.createElement("td");
   const nameTd = document.createElement("td");
