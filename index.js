@@ -24,6 +24,7 @@ const countries = {
 };
 
 function initMap() {
+  console.log("map initializing");
   map = new google.maps.Map($("#map"), {
     zoom: countries["us"].zoom,
     center: countries["us"].center,
@@ -32,6 +33,7 @@ function initMap() {
     zoomControl: false,
     streetViewControl: false,
   });
+  console.log("initialized");
   infoWindow = new google.maps.InfoWindow({
     content: $("#info-content"),
   });
