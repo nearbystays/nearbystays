@@ -1,23 +1,65 @@
-let map, places, infoWindow, autocomplete, markers = [];
-
+let map;
+let places;
+let infoWindow;
+let markers = [];
+let autocomplete;
 const countryRestrict = { country: "us" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
 const countries = {
-  au: { center: { lat: -25.3, lng: 133.8 }, zoom: 4, },
-  br: { center: { lat: -14.2, lng: -51.9 }, zoom: 3, },
-  ca: { center: { lat: 62, lng: -110.0 }, zoom: 3, },
-  fr: { center: { lat: 46.2, lng: 2.2 }, zoom: 5, },
-  de: { center: { lat: 51.2, lng: 10.4 }, zoom: 5, },
-  mx: { center: { lat: 23.6, lng: -102.5 }, zoom: 4, },
-  nz: { center: { lat: -40.9, lng: 174.9 }, zoom: 5, },
-  it: { center: { lat: 41.9, lng: 12.6 }, zoom: 5, },
-  za: { center: { lat: -30.6, lng: 22.9 }, zoom: 5, },
-  es: { center: { lat: 40.5, lng: -3.7 }, zoom: 5, },
-  pt: { center: { lat: 39.4, lng: -8.2 }, zoom: 6, },
-  us: { center: { lat: 37.1, lng: -95.7 }, zoom: 3, },
-  uk: { center: { lat: 54.8, lng: -4.6 }, zoom: 5, },
+  au: {
+    center: { lat: -25.3, lng: 133.8 },
+    zoom: 4,
+  },
+  br: {
+    center: { lat: -14.2, lng: -51.9 },
+    zoom: 3,
+  },
+  ca: {
+    center: { lat: 62, lng: -110.0 },
+    zoom: 3,
+  },
+  fr: {
+    center: { lat: 46.2, lng: 2.2 },
+    zoom: 5,
+  },
+  de: {
+    center: { lat: 51.2, lng: 10.4 },
+    zoom: 5,
+  },
+  mx: {
+    center: { lat: 23.6, lng: -102.5 },
+    zoom: 4,
+  },
+  nz: {
+    center: { lat: -40.9, lng: 174.9 },
+    zoom: 5,
+  },
+  it: {
+    center: { lat: 41.9, lng: 12.6 },
+    zoom: 5,
+  },
+  za: {
+    center: { lat: -30.6, lng: 22.9 },
+    zoom: 5,
+  },
+  es: {
+    center: { lat: 40.5, lng: -3.7 },
+    zoom: 5,
+  },
+  pt: {
+    center: { lat: 39.4, lng: -8.2 },
+    zoom: 6,
+  },
+  us: {
+    center: { lat: 37.1, lng: -95.7 },
+    zoom: 3,
+  },
+  uk: {
+    center: { lat: 54.8, lng: -4.6 },
+    zoom: 5,
+  },
 };
 
 function initMap() {
@@ -29,14 +71,24 @@ function initMap() {
     zoomControl: false,
     streetViewControl: false,
   });
-  infoWindow = new google.maps.InfoWindow({ content: $("#info-content"), });
+  infoWindow = new google.maps.InfoWindow({
+    content: $("#info-content"),
+  });
+  // Create the autocomplete object and associate it with the UI input control.
+  // Restrict the search to the default country, and to place type "cities".
   autocomplete = new google.maps.places.Autocomplete(
-    $("#autocomplete"), { componentRestrictions: countryRestrict, }
+    $("#autocomplete"),
+    {
+      types: ["(cities)"],
+      componentRestrictions: countryRestrict,
+    }
   );
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
   // Add a DOM event listener to react when the user selects a country.
-  $("#country").change(setAutocompleteCountry);
+  document
+    .getElementById("country")
+    .addEventListener("change", setAutocompleteCountry);
 }
 
 // When the user selects a city, get the place details for the city and
@@ -49,21 +101,26 @@ function onPlaceChanged() {
     map.setZoom(15);
     search();
   } else {
-    $("#autocomplete").placeholder = "Nearby Stays";
+    $("#autocomplete").placeholder = "Enter a city";
   }
 }
 
+// Search for hotels in the selected city, within the viewport of the map.
 function search() {
-  const search = { bounds: map.getBounds(), types: ["lodging"], };
+  const search = {
+    bounds: map.getBounds(),
+    types: ["lodging"],
+  };
 
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       clearResults();
       clearMarkers();
 
-      const resultsLength = results.length;
-      for (let i = 0; i < resultsLength; i++) {
-        const markerLetter = String.fromCharCode(65 + (i % 26));
+      // Create a marker for each hotel found, and
+      // assign a letter of the alphabetic to each marker icon.
+      for (let i = 0; i < results.length; i++) {
+        const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
         // Use marker animation to drop the icons incrementally on the map.
@@ -72,6 +129,8 @@ function search() {
           animation: google.maps.Animation.DROP,
           icon: markerIcon,
         });
+        // If the user clicks a hotel marker, show the details of that hotel
+        // in an info window.
         markers[i].placeResult = results[i];
         google.maps.event.addListener(markers[i], "click", showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
@@ -82,8 +141,7 @@ function search() {
 }
 
 function clearMarkers() {
-  const markerLength = markers.length
-  for (let i = 0; i < markerLength; i++) {
+  for (let i = 0; i < markers.length; i++) {
     if (markers[i]) {
       markers[i].setMap(null);
     }
@@ -111,7 +169,11 @@ function setAutocompleteCountry() {
   clearMarkers();
 }
 
-function dropMarker(i) { return function () { markers[i].setMap(map); }; }
+function dropMarker(i) {
+  return function () {
+    markers[i].setMap(map);
+  };
+}
 
 function addResult(result, i) {
   const results = $("#results");
@@ -120,8 +182,9 @@ function addResult(result, i) {
   const tr = document.createElement("tr");
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
-  //reduce(fn callback_fn(A(t-1),At,Ai,A[]){...F},A*)
-  tr.onclick = function () { google.maps.event.trigger(markers[i], "click"); };
+  tr.onclick = function () {
+    google.maps.event.trigger(markers[i], "click");
+  };
 
   const iconTd = document.createElement("td");
   const nameTd = document.createElement("td");
