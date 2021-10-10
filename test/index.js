@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-debugger;
-let map, places, infoWindow, autocomplete;
-let markers = [];
-
-=======
 let map;
 let places;
 let infoWindow;
 let markers = [];
 let autocomplete;
->>>>>>> 398f5f001b5976f702975f082adbc4df1c482fa5
 const countryRestrict = { country: "us" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
@@ -31,7 +24,6 @@ const countries = {
 };
 
 function initMap() {
-  console.log("map initializing");
   map = new google.maps.Map($("#map"), {
     zoom: countries["us"].zoom,
     center: countries["us"].center,
@@ -40,17 +32,11 @@ function initMap() {
     zoomControl: false,
     streetViewControl: false,
   });
-  console.log("initialized");
-  infoWindow = new google.maps.InfoWindow({
-    content: $("#info-content"),
-  });
+  infoWindow = new google.maps.InfoWindow({ content: $("#info-content"), });
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
   autocomplete = new google.maps.places.Autocomplete(
-    $("#autocomplete"),
-    {
-      componentRestrictions: countryRestrict,
-    }
+    $("#autocomplete"), { componentRestrictions: countryRestrict, }
   );
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
@@ -60,6 +46,8 @@ function initMap() {
     .addEventListener("change", setAutocompleteCountry);
 }
 
+// When the user selects a city, get the place details for the city and
+// zoom the map in on the city.
 function onPlaceChanged() {
   const place = autocomplete.getPlace();
 
@@ -74,26 +62,17 @@ function onPlaceChanged() {
 
 // Search for hotels in the selected city, within the viewport of the map.
 function search() {
-  const search = {
-    bounds: map.getBounds(),
-    types: ["lodging"],
-  };
+  const search = { bounds: map.getBounds(), types: ["lodging"], };
 
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       clearResults();
       clearMarkers();
 
-<<<<<<< HEAD
-      let resultsLength = results.length;
-      for (let i = 0; i < resultsLength; i++) {
-        const markerLetter = String.fromCharCode(65 + (i % 26));
-=======
       // Create a marker for each hotel found, and
       // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
         const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
->>>>>>> 398f5f001b5976f702975f082adbc4df1c482fa5
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
         // Use marker animation to drop the icons incrementally on the map.
@@ -114,16 +93,10 @@ function search() {
 }
 
 function clearMarkers() {
-<<<<<<< HEAD
-  let markerLength = markers.length;
-  for (let i = 0; i < markerLength; i++) {
-    if (markers[i]) { markers[i].setMap(null); }
-=======
   for (let i = 0; i < markers.length; i++) {
     if (markers[i]) {
       markers[i].setMap(null);
     }
->>>>>>> 398f5f001b5976f702975f082adbc4df1c482fa5
   }
 
   markers = [];
@@ -134,15 +107,9 @@ function clearMarkers() {
 function setAutocompleteCountry() {
   const country = $("#country").value;
 
-  if (country == "all") {
-    autocomplete.setComponentRestrictions({ country: [] });
-    map.setCenter({ lat: 15, lng: 0 });
-    map.setZoom(2);
-  } else {
-    autocomplete.setComponentRestrictions({ country: country });
-    map.setCenter(countries[country].center);
-    map.setZoom(countries[country].zoom);
-  }
+  autocomplete.setComponentRestrictions({ country: country });
+  map.setCenter(countries[country].center);
+  map.setZoom(countries[country].zoom);
 
   clearResults();
   clearMarkers();
@@ -161,9 +128,7 @@ function addResult(result, i) {
   const tr = document.createElement("tr");
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
-  tr.onclick = function () {
-    google.maps.event.trigger(markers[i], "click");
-  };
+  tr.onclick = function () { google.maps.event.trigger(markers[i], "click"); };
 
   const iconTd = document.createElement("td");
   const nameTd = document.createElement("td");
@@ -198,7 +163,10 @@ function showInfoWindow() {
   places.getDetails(
     { placeId: marker.placeResult.place_id },
     (place, status) => {
-      if (status !== google.maps.places.PlacesServiceStatus.OK) { return; }
+      if (status !== google.maps.places.PlacesServiceStatus.OK) {
+        return;
+      }
+
       infoWindow.open(map, marker);
       buildIWContent(place);
     }
@@ -244,7 +212,7 @@ function buildIWContent(place) {
   // to give a short URL for displaying in the info window.
   if (place.website) {
     let fullUrl = place.website;
-    let website = String(hostnameRegexp.matchAll(place.website));
+    let website = String(hostnameRegexp.exec(place.website));
 
     if (!website) {
       website = "http://" + place.website + "/";
@@ -257,4 +225,3 @@ function buildIWContent(place) {
     $("#iw-website-row").style.display = "none";
   }
 }
-
