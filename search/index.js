@@ -25,7 +25,7 @@ const countries = {
 
 function initMap() {
   console.log("Nearby Stays: Wonderful!");
-  map = new google.maps.Map($("#map"), {
+  map = new google.maps.Map(document.getElementById("map"), {
     zoom: countries["us"].zoom,
     center: countries["us"].center,
     mapTypeControl: false,
@@ -35,12 +35,12 @@ function initMap() {
   });
   // console.log(map);
   infoWindow = new google.maps.InfoWindow({
-    content: $("#info-content"),
+    content: document.getElementById("info-content"),
   });
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
   autocomplete = new google.maps.places.Autocomplete(
-    $("#autocomplete"),
+    document.getElementById("autocomplete"),
     {
       types: ["(cities)"],
       componentRestrictions: countryRestrict,
@@ -64,7 +64,7 @@ function onPlaceChanged() {
     map.setZoom(15);
     search();
   } else {
-    $("#autocomplete").placeholder = "Enter a city";
+    document.getElementById("autocomplete").placeholder = "Enter a city";
   }
 }
 
@@ -116,7 +116,7 @@ function clearMarkers() {
 // Set the country restriction based on user input.
 // Also center and zoom the map on the given country.
 function setAutocompleteCountry() {
-  const country = $("#country").value;
+  const country = document.getElementById("country").value;
 
   if (country == "all") {
     autocomplete.setComponentRestrictions({ country: [] });
@@ -139,7 +139,7 @@ function dropMarker(i) {
 }
 
 function addResult(result, i) {
-  const results = $("#results");
+  const results = document.getElementById("results");
   const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
   const markerIcon = MARKER_PATH + markerLetter + ".png";
   const tr = document.createElement("tr");
@@ -167,7 +167,7 @@ function addResult(result, i) {
 }
 
 function clearResults() {
-  const results = $("#results");
+  const results = document.getElementById("results");
 
   while (results.childNodes[0]) {
     results.removeChild(results.childNodes[0]);
@@ -194,17 +194,17 @@ function showInfoWindow() {
 
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
-  $("#iw-icon").innerHTML =
+  document.getElementById("iw-icon").innerHTML =
     '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';
-  $("#iw-url").innerHTML =
+  document.getElementById("iw-url").innerHTML =
     '<b><a href="' + place.url + '">' + place.name + "</a></b>";
-  $("#iw-address").textContent = place.vicinity;
+  document.getElementById("iw-address").textContent = place.vicinity;
   if (place.formatted_phone_number) {
-    $("#iw-phone-row").style.display = "";
-    $("#iw-phone").textContent =
+    document.getElementById("iw-phone-row").style.display = "";
+    document.getElementById("iw-phone").textContent =
       place.formatted_phone_number;
   } else {
-    $("#iw-phone-row").style.display = "none";
+    document.getElementById("iw-phone-row").style.display = "none";
   }
 
   // Assign a five-star rating to the hotel, using a black star ('&#10029;')
@@ -220,11 +220,11 @@ function buildIWContent(place) {
         ratingHtml += "&#10029;";
       }
 
-      $("#iw-rating-row").style.display = "";
-      $("#iw-rating").innerHTML = ratingHtml;
+      document.getElementById("iw-rating-row").style.display = "";
+      document.getElementById("iw-rating").innerHTML = ratingHtml;
     }
   } else {
-    $("#iw-rating-row").style.display = "none";
+    document.getElementById("iw-rating-row").style.display = "none";
   }
 
   // The regexp isolates the first part of the URL (domain plus subdomain)
@@ -238,9 +238,9 @@ function buildIWContent(place) {
       fullUrl = website;
     }
 
-    $("#iw-website-row").style.display = "";
-    $("#iw-website").textContent = website;
+    document.getElementById("iw-website-row").style.display = "";
+    document.getElementById("iw-website").textContent = website;
   } else {
-    $("#iw-website-row").style.display = "none";
+    document.getElementById("iw-website-row").style.display = "none";
   }
 }
