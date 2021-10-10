@@ -1,4 +1,6 @@
-let map, places, infoWindow, autocomplete, markers = [];
+debugger;
+let map, places, infoWindow, autocomplete;
+let markers = [];
 
 const countryRestrict = { country: "us" };
 const MARKER_PATH =
@@ -39,8 +41,6 @@ function initMap() {
   $("#country").change(setAutocompleteCountry);
 }
 
-// When the user selects a city, get the place details for the city and
-// zoom the map in on the city.
 function onPlaceChanged() {
   const place = autocomplete.getPlace();
 
@@ -61,7 +61,7 @@ function search() {
       clearResults();
       clearMarkers();
 
-      const resultsLength = results.length;
+      let resultsLength = results.length;
       for (let i = 0; i < resultsLength; i++) {
         const markerLetter = String.fromCharCode(65 + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
@@ -82,11 +82,9 @@ function search() {
 }
 
 function clearMarkers() {
-  const markerLength = markers.length
+  let markerLength = markers.length;
   for (let i = 0; i < markerLength; i++) {
-    if (markers[i]) {
-      markers[i].setMap(null);
-    }
+    if (markers[i]) { markers[i].setMap(null); }
   }
 
   markers = [];
@@ -156,10 +154,7 @@ function showInfoWindow() {
   places.getDetails(
     { placeId: marker.placeResult.place_id },
     (place, status) => {
-      if (status !== google.maps.places.PlacesServiceStatus.OK) {
-        return;
-      }
-
+      if (status !== google.maps.places.PlacesServiceStatus.OK) { return; }
       infoWindow.open(map, marker);
       buildIWContent(place);
     }
