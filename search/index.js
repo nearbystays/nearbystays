@@ -24,7 +24,7 @@ const countries = {
 };
 
 function initMap() {
-  console.log("Nearby Stays: Wonderful!");
+  console.log("Nearby Stays: Luxury Stays Anywhere!");
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: countries["us"].zoom,
     center: countries["us"].center,
