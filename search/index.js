@@ -32,6 +32,7 @@ function initMap() {
     zoomControl: false,
     streetViewControl: false,
   });
+  console.log("Nearby Stays Everywhere You Want To Be");
   console.log(map);
   infoWindow = new google.maps.InfoWindow({
     content: document.getElementById("info-content"),
