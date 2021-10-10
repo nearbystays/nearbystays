@@ -13,6 +13,7 @@ header.php
 mapForm/*
 script.js
 x/*
+search/*
 
 
 # Xcode
@@ -105,4 +106,3 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
-search/*
