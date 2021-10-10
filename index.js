@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-debugger;
-let map, places, infoWindow, autocomplete;
-let markers = [];
-
-=======
 let map;
 let places;
 let infoWindow;
 let markers = [];
 let autocomplete;
->>>>>>> 398f5f001b5976f702975f082adbc4df1c482fa5
 const countryRestrict = { country: "us" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
@@ -47,10 +40,7 @@ function initMap() {
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
   autocomplete = new google.maps.places.Autocomplete(
-    $("#autocomplete"),
-    {
-      componentRestrictions: countryRestrict,
-    }
+    $("#autocomplete"), { componentRestrictions: countryRestrict, }
   );
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
@@ -84,16 +74,10 @@ function search() {
       clearResults();
       clearMarkers();
 
-<<<<<<< HEAD
-      let resultsLength = results.length;
-      for (let i = 0; i < resultsLength; i++) {
-        const markerLetter = String.fromCharCode(65 + (i % 26));
-=======
       // Create a marker for each hotel found, and
       // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
         const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
->>>>>>> 398f5f001b5976f702975f082adbc4df1c482fa5
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
         // Use marker animation to drop the icons incrementally on the map.
@@ -114,16 +98,10 @@ function search() {
 }
 
 function clearMarkers() {
-<<<<<<< HEAD
-  let markerLength = markers.length;
-  for (let i = 0; i < markerLength; i++) {
-    if (markers[i]) { markers[i].setMap(null); }
-=======
   for (let i = 0; i < markers.length; i++) {
     if (markers[i]) {
       markers[i].setMap(null);
     }
->>>>>>> 398f5f001b5976f702975f082adbc4df1c482fa5
   }
 
   markers = [];
