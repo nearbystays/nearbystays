@@ -41,7 +41,8 @@ function addElement () {
 
 function router(view) {
   const views = ["list", "map", "stays", "messages", "login"];
-  views.forEach(function(x) {document.getElementById(x).style.display = "none"} );
+  let log = views.forEach(function(x) {document.getElementById(x).style.display = "none"} );
+  console.log(log);
   // views.forEach(x => document.getElementById(x).style.display = "none" );
 
   switch(view) {
