@@ -43,7 +43,7 @@
         <a href="#"><!--Login--></a>
       </div>
     </div>
-    <form method="post" id="stay" autocomplete="on">
+    <form method="post" id="stay" onsubmit="submitRes()" autocomplete="on">
       <label for="search"></label>
       <input type="text" name="search" value="Nearby Stays" size="50" id="search"></input><br>
       <label for="checkin">Check In</label>
@@ -54,17 +54,19 @@
     </form>
   </header>
   <div id="main">
-    <div id="map">
-      <img src="/images/map.png">
-    </div>
+    <div id="list"> </div>
+    <div id="map"> <img src="/images/map.png"> </div>
+    <div id="vacation"> </div>
+    <div id="messages"> </div>
+    <div id="login"> </div>
   </div>
   <footer>
     <div id="navigation">
-      <input type="image" onclick="mainView('List')" class="navItem" alt="List" src="/images/list.png">
-      <input type="image" onclick="mainView('Map')" class="navItem" alt="Map" src="/images/map.png">
-      <input type="image" onclick="mainView('Vacations')" class="navItem" alt="Nearby Stays" src="/images/stays.png">
-      <input type="image" onclick="mainView('Messages')" class="navItem" alt="Messages" src="/images/messages.png">
-      <input type="image" onclick="mainView('Login')" class="navItem" alt="Login" src="/images/login.png">
+      <input type="image" onclick="router(1)" class="navItem" alt="List" src="/images/list.png">
+      <input type="image" onclick="router(2)" class="navItem" alt="Map" src="/images/map.png">
+      <input type="image" onclick="router(3)" class="navItem" alt="Nearby Stays" src="/images/stays.png">
+      <input type="image" onclick="router(4)" class="navItem" src="/images/messages.png">
+      <input type="image" onclick="router(5)" class="navItem" alt="Login" src="/images/login.png">
     </div>
   </footer>
 </body>

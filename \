@@ -12,11 +12,12 @@ function getLocation() {
   })
 }
 
-function submitRes() {
+function submitResp() {
   let searchResp = document.getElementById("search");
   let checkInResp = document.getElementById("checkin");
   let checkOutResp = document.getElementById("checkout");
 
+  location.replace("/");
   submitView(searchResp, checkInResp, checkOutResp)
 }
 
@@ -24,11 +25,43 @@ function submitView(search, checkIn, checkOut) {
   let mainDiv = document.getElementById("main");
   mainDiv.style.textAlign = "center";
 
+  var mainDivSearch = '<br>City: ' + search.value;
   var mdSearch = '<br>City: ' + search.value;
-  var mdVacation = '<br>Your vacation is '+ checkIn.value + ' to ' + checkOut.value;
-
-  mainDiv.innerHTML = mdSearch + mdVacation;
+  var mdCheckIn = '<br>Check In: ' + checkIn.value;
+  var mdCheckOut = '<br>Check Out: ' + checkOut.value;
+  mainDiv.innerHTML = mainDivSearch;
   
+}  
+
+function vacation(id) {
+  let date = document.getElementById(id).value;
+  if (typeof date === 'undefined') {
+    var d = new Date();
+    date = d.toDateString();
+  }
+
+  mainDiv.innerHTML = mainView;
+} 
+
+function mainView(view) {
+
+  let mainDiv = document.getElementById("main");
+  mainDiv.style.textAlign = "center";
+  let mainView = "Welcome to the " + view + " View of Nearby Stays";
+  let searchIn = document.getElementById("search").value;
+  
+  let checkIn = document.getElementById("checkin").value;
+  if (typeof checkIn === 'undefined') {
+    var d = new Date();
+    checkIn = d.toDateString();
+  }
+
+  var mainDivHtml = "<br>Nearby City: " + searchIn;
+  checkIn = "<br>Check In Date: " + checkIn;
+
+  mainDiv.innerHTML = mainView;
+  mainDiv.innerHTML += mainDivHtml;
+  mainDiv.innerHTML += checkIn;
 }
 
 function addElement () {
@@ -38,23 +71,3 @@ function addElement () {
   const currentDiv = document.getElementById("div1");
   document.body.insertBefore(newDiv, currentDiv);
 }
-
-function router(view) {
-  const views = ["list", "map", "stays", "messages", "login"];
-  views.forEach(function(x) {document.getElementById(x).style.display = "none"} );
-  // views.forEach(x => document.getElementById(x).style.display = "none" );
-
-  switch(view) {
-    case 1: document.getElementById("list").style.display = "block"; break;
-    case 2: document.getElementById("map").style.display = "block"; break;
-    case 3: document.getElementById("stays").style.display = "block"; break;
-    case 4: document.getElementById("messages").style.display = "block"; break;
-    case 5: document.getElementById("login").style.display = "block"; break;
-  }
-}
-
-function loginView() { }
-function mapView() { }
-function stayView() { }
-function messagesView() { }
-function loginView() { }
