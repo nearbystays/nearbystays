@@ -8,7 +8,7 @@ function getLocation() {
           lng: parseFloat(position.coords.longitude)
         };
         mapInit(pos);
-        console.log(pos);
+        console.table(pos);
       })
     } else { alert("Not Available"); }
   })
@@ -39,7 +39,7 @@ function submitView(search, checkIn, checkOut) {
 
 function router(view) {
   const views = ["list", "map", "stays", "messages", "login"];
-  views.forEach(function(v) { document.getElementById(v).style.display = "none"} );
+  views?.forEach(function(v) { document.getElementById(v).style.display = "none"} );
   document.getElementById(views[view]).style.display = block;
 }
 
