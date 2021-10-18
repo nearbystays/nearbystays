@@ -44,7 +44,7 @@ body {
 }
 
 #map {
-  display: inline;
+  /* display: inline;*/
   margin: 0px;
   width: 100%;
   height: 100%;
