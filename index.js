@@ -7,10 +7,9 @@ function getLocation() {
           lat: parseFloat(position.coords.latitude),
           lng: parseFloat(position.coords.longitude)
         };
-        initMap(pos);
-        console.log("Lat: " + position.coords.latitude + 
-        "<br>Lon: " + position.coords.longitude 
-      )})
+        mapInit(pos);
+        console.log(pos)
+      })
     } else {
       alert("Geolocation is not supported by this browser.");
     }
