@@ -3,6 +3,9 @@ function getLocation() {
     alert("Welcome to Nearby Stays by Jeremy Scott");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        initMap(latitude, longitude);
         console.log("Lat: " + position.coords.latitude + 
         "<br>Lon: " + position.coords.longitude 
       )})
@@ -10,6 +13,13 @@ function getLocation() {
       alert("Geolocation is not supported by this browser.");
     }
   })
+}
+
+function mapInit(latitude, longitude) {
+  let map = new google.maps.Map(document.getElementById("map"), {
+    center: {lat: latitude, lng: longitude },
+    zoom: 14,
+  });
 }
 
 function submitRes() {
