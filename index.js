@@ -17,8 +17,8 @@ function getLocation() {
 function mapInit(pos) {
   console.log
   let map = new google.maps.Map(document.getElementById("map"), {
-    center: {lat: 39, lng: -120},
-    // center: pos,
+    // center: {lat: 39, lng: -120},
+    center: pos,
     zoom: 14,
   });
 }
