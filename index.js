@@ -20,7 +20,7 @@ function getLocation() {
 function mapInit(pos) {
   console.log
   let map = new google.maps.Map(document.getElementById("map"), {
-    center: {lat: latitude, lng: longitude },
+    center: pos,
     zoom: 14,
   });
 }
