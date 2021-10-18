@@ -17,7 +17,8 @@ function getLocation() {
 function mapInit(pos) {
   console.log
   let map = new google.maps.Map(document.getElementById("map"), {
-    center: pos,
+    center: {lat: 39, lng: -120},
+    // center: pos,
     zoom: 14,
   });
 }
@@ -39,7 +40,7 @@ function submitView(search, checkIn, checkOut) {
 
 function router(view) {
   const views = ["list", "map", "stays", "messages", "login"];
-  views?.forEach(function(v) { document.getElementById(v).style.display = "none"} );
+  views?.forEach(function (v) { document.getElementById(v).style.display = "none"} );
   document.getElementById(views[view]).style.display = block;
 }
 
