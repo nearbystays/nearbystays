@@ -4,8 +4,8 @@ function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         const pos = {
-          lat: position.coords.latitude;
-          lng: position.coords.longitude;
+          lat: parseFloat(position.coords.latitude);
+          lng: parseFloat(position.coords.longitude);
         };
         initMap(pos);
         console.log("Lat: " + position.coords.latitude + 
