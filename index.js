@@ -8,11 +8,9 @@ function getLocation() {
           lng: parseFloat(position.coords.longitude)
         };
         mapInit(pos);
-        console.log(pos)
+        console.log(pos);
       })
-    } else {
-      alert("Geolocation is not supported by this browser.");
-    }
+    } else { alert("Not Available"); }
   })
 }
 
@@ -28,33 +26,21 @@ function submitRes() {
   let searchResp = document.getElementById("search");
   let checkInResp = document.getElementById("checkin");
   let checkOutResp = document.getElementById("checkout");
-
   submitView(searchResp, checkInResp, checkOutResp)
 }
 
 function submitView(search, checkIn, checkOut) {
   let mainDiv = document.getElementById("main");
   mainDiv.style.textAlign = "center";
-
   var mdSearch = '<br>City: ' + search.value;
   var mdVacation = '<br>Your vacation is '+ checkIn.value + ' to ' + checkOut.value;
-
   mainDiv.innerHTML = mdSearch + mdVacation;
-  
 }
 
 function router(view) {
   const views = ["list", "map", "stays", "messages", "login"];
-  views.forEach(function(x) {document.getElementById(x).style.display = "none"} );
-  // views.forEach(x => document.getElementById(x).style.display = "none" );
-
-  switch(view) {
-    case 1: document.getElementById("list").style.display = "block"; break;
-    case 2: document.getElementById("map").style.display = "block"; break;
-    case 3: document.getElementById("stays").style.display = "block"; break;
-    case 4: document.getElementById("messages").style.display = "block"; break;
-    case 5: document.getElementById("login").style.display = "block"; break;
-  }
+  views.forEach(function(v) { document.getElementById(v).style.display = "none"} );
+  document.getElementById(views[view])style.display = block;
 }
 
 function loginView() { }
