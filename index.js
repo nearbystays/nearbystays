@@ -40,7 +40,7 @@ function submitView(search, checkIn, checkOut) {
 function router(view) {
   const views = ["list", "map", "stays", "messages", "login"];
   views.forEach(function(v) { document.getElementById(v).style.display = "none"} );
-  document.getElementById(views[view])style.display = block;
+  document.getElementById(views[view]).style.display = block;
 }
 
 function loginView() { }
