@@ -3,9 +3,11 @@ function getLocation() {
     alert("Welcome to Nearby Stays by Jeremy Scott");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-        let latitude = position.coords.latitude;
-        let longitude = position.coords.longitude;
-        initMap(latitude, longitude);
+        const pos = {
+          lat: position.coords.latitude;
+          lng: position.coords.longitude;
+        };
+        initMap(pos);
         console.log("Lat: " + position.coords.latitude + 
         "<br>Lon: " + position.coords.longitude 
       )})
@@ -15,7 +17,8 @@ function getLocation() {
   })
 }
 
-function mapInit(latitude, longitude) {
+function mapInit(pos) {
+  console.log
   let map = new google.maps.Map(document.getElementById("map"), {
     center: {lat: latitude, lng: longitude },
     zoom: 14,
@@ -51,8 +54,7 @@ function addElement () {
 
 function router(view) {
   const views = ["list", "map", "stays", "messages", "login"];
-  let log = views.forEach(function(x) {document.getElementById(x).style.display = "none"} );
-  console.log(log);
+  views.forEach(function(x) {document.getElementById(x).style.display = "none"} );
   // views.forEach(x => document.getElementById(x).style.display = "none" );
 
   switch(view) {
