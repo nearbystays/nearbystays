@@ -2,7 +2,7 @@ function getLocation() {
   document.addEventListener('DOMContentLoaded', function(event) {
     alert("Welcome to Nearby Stays by Jeremy Scott");
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
+      navigator.geolocation.getCurrentPosition((position) => {
         const pos = {
           lat: parseFloat(position.coords.latitude),
           lng: parseFloat(position.coords.longitude)
@@ -41,14 +41,6 @@ function submitView(search, checkIn, checkOut) {
 
   mainDiv.innerHTML = mdSearch + mdVacation;
   
-}
-
-function addElement () {
-  const newDiv = document.createElement("div");
-  const newContent = document.createTextNode("Hi there and greetings!");
-  newDiv.appendChild(newContent);
-  const currentDiv = document.getElementById("div1");
-  document.body.insertBefore(newDiv, currentDiv);
 }
 
 function router(view) {
