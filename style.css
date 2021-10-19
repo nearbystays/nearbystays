@@ -39,8 +39,8 @@ body {
 
 #navigation {
   display: block;
-  position: fixed;
-  bottom: 15px;
+  /* position: fixed;
+  bottom: 15px;*/
   margin: auto;
   width: 372px;
 }
