@@ -17,7 +17,7 @@ body {
   display: block;
   margin: 10px;
   width: 370px;
-  height: 525px;
+  height: 575px;
 }
 
 @media only screen and (max-height: 725px) {
