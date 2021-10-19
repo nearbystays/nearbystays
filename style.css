@@ -13,16 +13,17 @@ body {
   float: right;
   padding-right: 10px;
 }
+
 #main {
   display: block;
   margin: 10px;
   width: 370px;
-  height: 575px;
+  height: 485px;
 }
 
-@media only screen and (max-height: 737px) {
+@media only screen and (max-height: 735px) {
   #main {
-    height: 475px;
+    height: 575px;
   }
 }
 
@@ -38,6 +39,8 @@ body {
 
 #navigation {
   display: block;
+  position: fixed;
+  bottom: 0;
   margin: auto;
   width: 372px;
 }
