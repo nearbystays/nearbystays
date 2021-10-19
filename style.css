@@ -47,5 +47,5 @@ body {
   /* display: inline;*/
   margin: 0px;
   width: inherit;
-  height: 100%;
+  height: inherit !important;
 }
