@@ -38,13 +38,7 @@ function submitView(search, checkIn, checkOut) {
 }
 
 function router(view) {
-  /*const viewObj = {
-    "list": listView(),
-    "map": mapView(),
-    "stays": staysView(),
-    "messages": messagesView(),
-    "login": loginView()
-  }*/
+  /*const viewObj = { "list": listView(), "map": mapView(), "stays": staysView(), "messages": messagesView(), "login": loginView() }*/
   const views = ["list", "map", "stays", "messages", "login"];
   views?.forEach( v => { document.getElementById(v).style.display = "none" } );
   document.getElementById(views[view]).style.display = "block";
