@@ -1,19 +1,17 @@
-function getLocation() {
-  document.addEventListener('DOMContentLoaded', function(event) {
-    alert("Welcome to Nearby Stays by Jeremy Scott");
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        mapInit(pos);
-        console.log("Position Log: " + pos);
-        console.table("Position Table: " + pos);
-      })
-    } else { alert("Not Available"); }
-  })
-}
+document.addEventListener('DOMContentLoaded', function(event) {
+  alert("Welcome to Nearby Stays by Jeremy Scott");
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      mapInit(pos);
+      console.log("Position Log: " + pos);
+      console.table("Position Table: " + pos);
+    })
+  } else { alert("Not Available"); }
+})
 
 function mapInit(pos) {
   console.log("Position Object: " + pos)
