@@ -8,8 +8,8 @@ function getLocation() {
           lng: position.coords.longitude
         };
         mapInit(pos);
-        console.log(pos);
-        console.table(pos);
+        console.log("Position Log: " + pos);
+        console.table("Position Table: " + pos);
       })
     } else { alert("Not Available"); }
   })
