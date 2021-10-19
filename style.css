@@ -18,7 +18,7 @@ body {
   margin: 10px;
   width: 370px;
   height: 475px;
-  border: 2px double #000001;
+  /*border: 2px double #000001;*/
 }
 
 #stay > search {
@@ -46,6 +46,6 @@ body {
 #map {
   /* display: inline;*/
   margin: 0px;
-  width: 100%;
+  width: inherit;
   height: 100%;
 }
