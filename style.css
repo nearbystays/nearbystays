@@ -20,7 +20,7 @@ body {
   height: 575px;
 }
 
-@media only screen and (max-height: 725px) {
+@media only screen and (max-height: 737px) {
   #main {
     height: 475px;
   }
