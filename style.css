@@ -14,11 +14,13 @@ body {
 }
 
 #menu {
+  position: fixed;
   float: right;
   padding-right: 10px;
 }
 
 #main {
+  position: fixed;
   display: block;
   margin: 10px;
   width: 370px;
@@ -32,6 +34,7 @@ body {
 }
 
 #stay > search {
+  position: fixed;
   display: block;
   margin: auto;
   width: 1000px;
