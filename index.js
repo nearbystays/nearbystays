@@ -8,6 +8,7 @@ function getLocation() {
           lng: position.coords.longitude
         };
         mapInit(pos);
+        console.log(pos);
         console.table(pos);
       })
     } else { alert("Not Available"); }
@@ -15,7 +16,7 @@ function getLocation() {
 }
 
 function mapInit(pos) {
-  console.log
+  console.log("Position Object: " + pos)
   let map = new google.maps.Map(document.getElementById("map"), {
     center: pos,
     zoom: 14,
