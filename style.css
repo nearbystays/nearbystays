@@ -9,6 +9,10 @@ body {
   height: 50px;
 }
 
+#logo {
+  position: fixed;
+}
+
 #menu {
   float: right;
   padding-right: 10px;
