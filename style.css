@@ -17,8 +17,13 @@ body {
   display: block;
   margin: 10px;
   width: 370px;
-  height: 475px;
-  /*border: 2px double #000001;*/
+  height: 525px;
+}
+
+@media only screen and (max-height: 725px) {
+  #main {
+    height: 475px;
+  }
 }
 
 #stay > search {
@@ -46,6 +51,6 @@ body {
 #map {
   /* display: inline;*/
   margin: 0px;
-  width: inherit;
+  width: inherit !important;
   height: inherit !important;
 }
