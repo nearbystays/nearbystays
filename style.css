@@ -9,13 +9,9 @@ body {
   height: 50px;
 }
 
-#logo, .menu, #menu, #main, #stay {
-  /*position: fixed;*/
-}
+#logo, .menu, #menu, #main, #stay { /*position: fixed;*/ }
 
-#logo {
-  /*position: fixed;*/
-}
+#logo { /*position: fixed;*/ }
 
 #menu {
   float: right;
@@ -24,8 +20,8 @@ body {
 
 #main {
   display: block;
-  margin: 10px;
-  width: 370px;
+  margin: auto;
+  width: 90%;
   height: 485px;
 }
 
@@ -43,6 +39,14 @@ input[type="text"] {
 
 input[type="date"], input[type="submit"] {
   display: inline;
+  width: 30%;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px double #000001;
+}
+
+input[type="text"]:focus {
+  border: 2px solid #000001;
 }
 
 #navigation {
