@@ -35,13 +35,13 @@ body {
   }
 }
 
-#search {
+input[type="text"] {
   display: block;
-  margin: auto 25px;
-  /* width: 1000px;*/
+  margin: auto;
+  width: 90%;
 }
 
-#stay > checkin, checkout, submit {
+input[type="date"], input[type="submit"] {
   display: inline;
 }
 
