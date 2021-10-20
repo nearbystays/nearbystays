@@ -13,14 +13,40 @@ body {
 
 #logo { /*position: fixed;*/ }
 
-form {
-  width: 90%;
-  margin: auto;
-}
-
 #menu {
   float: right;
-  padding-right: 10px;
+  /*padding-right: 10px;*/
+}
+
+header {
+  width: 90%;
+
+}
+
+form { }
+
+input[type="text"] {
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+
+input[type="text"]:focus {
+  border: 2px solid #000001;
+}
+
+input[type="date"], input[type="submit"] {
+  display: inline;
+  margin: auto;
+  width: 32%;
+}
+
+input[type="text"], input[type="date"], input[type="submit"] {
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px double #000001;
+  border-radius: 4pt;
+  height: 24px;
 }
 
 #main {
@@ -34,31 +60,6 @@ form {
   #main {
     height: 575px;
   }
-}
-
-input[type="text"] {
-  display: block;
-  margin: auto;
-  width: 100%;
-  border-bottom: 2px double #000001;
-}
-
-input[type="text"]:focus {
-  border: 2px solid #000001;
-}
-
-input[type="date"], input[type="submit"] {
-  display: inline;
-  margin: auto;
-  width: 32%;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 2px double #000001;
-}
-
-input[type="text"], input[type="date"], input[type="submit"] {
-  border-radius: 4pt;
-  height: 24px;
 }
 
 #navigation {
