@@ -35,6 +35,11 @@ input[type="text"] {
   display: block;
   margin: auto;
   width: 90%;
+  border-bottom: 2px double #000001;
+}
+
+input[type="text"]:focus {
+  border: 2px solid #000001;
 }
 
 input[type="date"], input[type="submit"] {
@@ -43,10 +48,6 @@ input[type="date"], input[type="submit"] {
   box-sizing: border-box;
   border: none;
   border-bottom: 2px double #000001;
-}
-
-input[type="text"]:focus {
-  border: 2px solid #000001;
 }
 
 #navigation {
