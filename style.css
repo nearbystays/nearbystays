@@ -35,10 +35,10 @@ body {
   }
 }
 
-#stay > search {
+#search {
   display: block;
-  margin: auto;
-  width: 1000px;
+  margin: auto 25px;
+  /* width: 1000px;*/
 }
 
 #stay > checkin, checkout, submit {
