@@ -59,7 +59,7 @@ input[type="text"], input[type="date"], input[type="submit"] {
   /* position: fixed;
   bottom: 15px;*/
   margin: auto;
-  width: 372px;
+  width: 90%;
 }
 
 .navItem {
@@ -71,6 +71,6 @@ input[type="text"], input[type="date"], input[type="submit"] {
 #map {
   /* display: inline;*/
   margin: 0px;
-  width: inherit !important;
+  width: 100%;
   height: inherit !important;
 }
