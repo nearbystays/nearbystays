@@ -38,7 +38,7 @@ input[type="text"]:focus {
 input[type="date"], input[type="submit"] {
   display: inline;
   margin: auto;
-  width: 32%;
+  width: 33%;
 }
 
 input[type="text"], input[type="date"], input[type="submit"] {
