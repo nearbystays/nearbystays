@@ -36,7 +36,12 @@
   <header>
     <a href="/"><img id="logo" src="/images/logo.png"></img></a>
     <div id="menu">
-      <input type="image" onclick="menu()" class="menu" alt="menu" src="/images/menu.png">
+      <svg width="50" height="50" onclick="menu()">
+        <line x1="0" y1="0" x2="50" y2="0">
+        <line x1="0" y1="25" x2="50" y2="25">
+        <line x1="0" y1="50" x2="50" y2="50">
+      </svg>
+      <!--input type="image" onclick="menu()" class="menu" alt="menu" src="/images/menu.png"-->
       <div id="menuDrop" class="menuContentDrop">
         <a href="#"><!--Home--></a>
         <a href="#"><!--Vacations--></a>
