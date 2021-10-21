@@ -27,6 +27,7 @@ svg {
   fill: none;
   stroke: #000001;
   stroke-width: 8px;
+  d: L50 0 m0 25 l-50 0 m0 25 l50 0;
 }
 
 form { }
