@@ -18,6 +18,10 @@ function mapInit(pos) {
   let map = new google.maps.Map(document.getElementById("map"), {
     center: pos,
     zoom: 14,
+    mapTypeControl: false,
+    panControl: false,
+    zoomControl: false,
+    streetViewControl: false,
   });
 
   const svgIcon = {
@@ -61,7 +65,7 @@ function router(view) {
   document.getElementById(views[view]).style.display = "block";
 }
 
-function loginView() { }
+function listView(search, checkIn, checkOut) { }
 function mapView() { }
 function stayView() { }
 function messagesView() { }
