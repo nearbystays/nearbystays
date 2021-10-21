@@ -59,7 +59,7 @@ input[type="text"], input[type="date"], input[type="submit"] {
   display: block;
   margin: auto;
   width: 90%;
-  height: -webkit-fill-available;
+  height: auto;
 }
 
 @media only screen and (max-height: 735px) {
