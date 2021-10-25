@@ -54,7 +54,9 @@ function mapInit(pos) {
   autocomplete = new google.maps.places.Autocomplete(input, options);
   autocomplete.bindTo("bounds", map);
   const geo = new google.maps.Geocoder();
-  document.getElementById("submit").addEventListener('click', () => LatLng(geo));
+  window.onload=function() {
+    document.getElementById("submit").addEventListener('click', () => LatLng(geo));
+  }
 
   autocomplete.addListener( 'place_changed', function () {
     const pl = autocomplete.getPlace();
