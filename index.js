@@ -182,6 +182,26 @@ function router(view) {
   document.getElementById(views[view]).style.display = "block";
 }
 
+function initService() {
+  const displaySuggestions = function (predictions, status) {
+    if (status != google.maps.places.PlacesServiceStatus.OK || !predictions) {
+      alert(status);
+      return;
+    }
+
+    predictions.forEach((prediction) => {
+      const li = document.createElement("li");
+
+      li.appendChild(document.createTextNode(prediction.description));
+      document.getElementById("results").appendChild(li);
+    });
+  };
+
+  const service = new google.maps.places.AutocompleteService();
+  let search = document.getElementById("search");
+  service.getQueryPredictions({ input: search }, displaySuggestions);
+}
+
 function listView(search, checkIn, checkOut) { }
 function mapView() { }
 function staysView() {
