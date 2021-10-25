@@ -48,7 +48,6 @@ function mapInit(pos) {
     east: center.lng + 0.1,
     west: center.lng - 0.1,
   };
-  const autocomplete = new google.maps.places.Autocomplete(input, options);
   const input = document.getElementById("search");
   const options = {
     bounds: defaultBounds, // map.getBounds(),
@@ -58,6 +57,7 @@ function mapInit(pos) {
     // componentRestrictions: countryRestrict,
   };
 
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
   const geo = new google.maps.Geocoder();
   document.getElementById("submit").addEventListener('click', () => LatLng(geo));
 
