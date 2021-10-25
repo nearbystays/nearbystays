@@ -162,7 +162,7 @@ function constructIWContext(pl) {
 function submitView(search, checkIn, checkOut) {
   // debugger;
   try {
-    let stayIds = document.querySelectorAll("#search, #checkin, #checkout");
+    let stayId = document.querySelectorAll("#search, #checkin, #checkout");
     alert("City: " + stayId[0] + " Check In: " + stayId[1] + " Check Out:  " + stayId[2]);
   }
   catch (e) {
