@@ -1,3 +1,5 @@
+Nearby Stays is a Hotel and Travel Reservation Website for anywhere in the world!
+
 ### Hi there 👋
 
 <!--
