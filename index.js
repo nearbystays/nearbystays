@@ -42,15 +42,9 @@ function mapInit(pos) {
     streetViewControl: false,
   });
 
-  const defaultBounds = {
-    north: pos.lat + 0.1,
-    south: pos.lat - 0.1,
-    east: pos.lng + 0.1,
-    west: pos.lng - 0.1,
-  };
   const input = document.getElementById("search");
   const options = {
-    bounds: defaultBounds, // map.getBounds(),
+    bounds: map.getBounds(),
     fields: [ 'name', 'photos'],
     types: ["lodging"],
     strictBounds: false,
