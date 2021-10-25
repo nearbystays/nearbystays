@@ -34,9 +34,23 @@
 </head>
 <body>
   <header>
-    <a href="/"><img id="logo" src="/images/logo.png"></img></a>
+    <!--a href="/"><img id="logo" src="/images/logo.png"></img></a-->
+    <svg id="logo-svg" onclick="menu()">
+      <path id="logo-svg-suitcase" d="
+        M6 9 L12 9 L12 36 L6 36 A45 45, 0, 0, 0, 2 32 L2 13 A45 45, 0, 0, 0, 6 9
+        M14 9 L22 9 L22 36 L14 36 L14 9
+        M24 9 L30 9 A45 45, 0, 0, 0, 34 13 L34 32 A45 45, 0, 0, 0, 30 36 L24 36 L24 9
+        M12 7 L12 5 A45 45, 0, 0, 0, 14 3 L22 3
+        A45 45, 0, 0, 0, 24 5 L24 7 L22 7 A45 45, 0, 0, 0, 21 5 L15 5 A45 45, 0, 0, 0, 14 7 L12 7
+      "/>
+      <path id="logo-svg-shine" d="
+        M23 15 L24 15 L24 16 L23 16 L23 15
+        M27 15 L28 15 L28 16 L27 16 L27 15
+        M27 19 L28 19 L28 20 L27 20 L27 19
+      "/>
+    </svg>
     <div id="menu">
-      <svg onclick="menu()">
+      <svg id="menu-svg" onclick="menu()">
         <path d="M5 18 L45 18 M45 25 L5 25 M5 32 L45 32" />
       </svg>
       <div id="menuDrop" class="menuContentDrop">
@@ -46,7 +60,7 @@
         <a href="#"><!--Login--></a>
       </div>
     </div>
-    <form method="get" id="stay" onsubmit="submitRes()" autocomplete="on">
+    <form method="get" id="stay" onsubmit="submitView()" autocomplete="on">
       <label for="search"></label>
       <input type="text" name="search" placeholder="Nearby Stays" id="search"></input><br>
       <label for="checkin"></label>
@@ -57,7 +71,40 @@
     </form>
   </header>
   <div id="main">
-    <div id="list"> </div>
+    <div id="list">
+      <div id="listing">
+        <table id="resultsTable">
+          <tbody id="results"></tbody>
+        </table>
+      </div>
+
+      <div style="display: none">
+        <div id="info-content">
+          <table>
+            <tr id="iw-url-row" class="iw_table_row">
+              <td id="iw-icon" class="iw_table_icon"></td>
+              <td id="iw-url"></td>
+            </tr>
+            <tr id="iw-address-row" class="iw_table_row">
+              <td class="iw_attribute_name">Address:</td>
+              <td id="iw-address"></td>
+            </tr>
+            <tr id="iw-phone-row" class="iw_table_row">
+              <td class="iw_attribute_name">Telephone:</td>
+              <td id="iw-phone"></td>
+            </tr>
+            <tr id="iw-rating-row" class="iw_table_row">
+              <td class="iw_attribute_name">Rating:</td>
+              <td id="iw-rating"></td>
+            </tr>
+            <tr id="iw-website-row" class="iw_table_row">
+              <td class="iw_attribute_name">Website:</td>
+              <td id="iw-website"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
     <div id="map"></div>
     <div id="stays"> </div>
     <div id="messages"> </div>
@@ -65,13 +112,14 @@
   </div>
   <footer>
     <div id="navigation">
-      <input type="image" onclick="router(0)" class="navItem" alt="List" src="/images/list.png">
-      <input type="image" onclick="router(1)" class="navItem" alt="Map" src="/images/map.png">
-      <input type="image" onclick="router(2)" class="navItem" alt="Nearby Stays" src="/images/stays.png">
-      <input type="image" onclick="router(3)" class="navItem" alt="Messages" src="/images/messages.png">
-      <input type="image" onclick="router(4)" class="navItem" alt="Login" src="/images/login.png">
+      <input type="image" onclick="router(0);listView()" class="navItem" alt="List" src="/images/list.png">
+      <input type="image" onclick="router(1);mapView()" class="navItem" alt="Map" src="/images/map.png">
+      <input type="image" onclick="router(2);staysView()" class="navItem" alt="Nearby Stays" src="/images/stays.png">
+      <input type="image" onclick="router(3);messagesView()" class="navItem" alt="Messages" src="/images/messages.png">
+      <input type="image" onclick="router(4);loginView()" class="navItem" alt="Login" src="/images/login.png">
     </div>
   </footer>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&callback=mapInit"></script>
 </body>
 </html>
+

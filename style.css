@@ -2,6 +2,8 @@ body {
   width: 100%/*1170px*/;
   height: 100%/*2532px*/;
   margin: auto;
+  padding: 0 !important;
+  background: lightgray;
 }
 
 header {
@@ -15,14 +17,32 @@ header {
   height: 50px;
 }
 
-#logo, .menu, #menu, #main, #stay { /*position: fixed;*/ }
+#logo-svg {
+  width: 50px;
+  height: 50px;
+}
+
+#logo-svg-suitcase {
+  width: inherit !important;
+  height: inherit !important;
+  fill: #000001;
+  stroke: none;
+}
+
+#logo-svg-shine {
+  width: inherit !important;
+  height: inherit !important;
+  fill: #fffffe;
+  /*stroke: #000001;
+  stroke-width: 1px;*/
+}
 
 #menu {
   float: right;
   /*padding-right: 10px;*/
 }
 
-svg {
+#menu-svg {
   width: 50px;
   height: 50px;
   fill: none;
@@ -56,38 +76,25 @@ input[type="text"], input[type="date"], input[type="submit"] {
   height: 24px;
 }
 
+input["submit"] {
+  background: transparent;
+}
+
 #main {
   display: block;
   margin: auto;
   width: 90%;
-  min-height: 370px;
-  height: 100%;
+  min-height: 470px;
+  height: auto;
   max-height: 570px;
+  background: teal;
 }
 
 @media only screen and (max-height: 735px) {
   #main {
     height: 575px;
+    background: yellow;
   }
-}
-
-footer {
-  width: 90%;
-  margin: auto;
-}
-
-#navigation {
-  display: block;
-  position: fixed;
-  bottom: 15px;
-  margin: auto;
-  width: 100%;
-}
-
-.navItem {
-  width: 65px;
-  height: 65px;
-  /*border: 2px double #0000e7;*/
 }
 
 #map {
@@ -95,4 +102,30 @@ footer {
   margin: 0px;
   width: 100%;
   height: inherit !important;
+  background: red;
+}
+
+footer {
+  width: 90%;
+  margin: auto;
+  background: green;
+}
+
+#navigation {
+  display: block;
+  margin: auto;
+  position: fixed;
+  bottom: 15px;
+  padding: 0px !important;
+  width: calc(50px * 5);
+  width: 90%;
+  z-index: 1;
+  background: green;
+}
+
+.navItem {
+  width: 50px;
+  height: 50px;
+  background: blue;
+  /*border: 2px double #0000e7;*/
 }
