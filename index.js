@@ -31,7 +31,7 @@ function set_Date(check) {
 }
 
 function mapInit(pos) {
-  debugger;
+  // debugger;
   console.log("Position Object: " + pos)
   let map = new google.maps.Map(document.getElementById("map"), {
     center: pos,
