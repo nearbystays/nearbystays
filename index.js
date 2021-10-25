@@ -51,7 +51,8 @@ function mapInit(pos) {
     // componentRestrictions: countryRestrict,
   };
 
-  const autocomplete = new google.maps.places.Autocomplete(input, options);
+  autocomplete = new google.maps.places.Autocomplete(input, options);
+  autocomplete.bindTo("bounds", map);
   const geo = new google.maps.Geocoder();
   document.getElementById("submit").addEventListener('click', () => LatLng(geo));
 
