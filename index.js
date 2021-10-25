@@ -42,10 +42,16 @@ function mapInit(pos) {
     streetViewControl: false,
   });
 
+  const defaultBounds = {
+    north: center.lat + 0.1,
+    south: center.lat - 0.1,
+    east: center.lng + 0.1,
+    west: center.lng - 0.1,
+  };
   const autocomplete = new google.maps.places.Autocomplete(input, options);
   const input = document.getElementById("search");
   const options = {
-    bounds: map.getBounds(),
+    bounds: defaultBounds, // map.getBounds(),
     fields: [ 'name', 'photos'],
     types: ["lodging"],
     strictBounds: false,
