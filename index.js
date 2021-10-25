@@ -31,7 +31,7 @@ function set_Date(check) {
 }
 
 function mapInit(pos) {
-  // debugger;
+  debugger;
   console.log("Position Object: " + pos)
   let map = new google.maps.Map(document.getElementById("map"), {
     center: pos,
@@ -42,16 +42,16 @@ function mapInit(pos) {
     streetViewControl: false,
   });
 
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
   const input = document.getElementById("search");
   const options = {
     bounds: map.getBounds(),
-    fields: [ 'name', 'photos'], //, 'formatted_address', 'formatted_phone_number', 'geometry', 'place_id', 'url', 'vicinity', 'website', 'price_level'],
+    fields: [ 'name', 'photos'],
     types: ["lodging"],
     strictBounds: false,
     // componentRestrictions: countryRestrict,
   };
 
-  const autocomplete = new google.maps.places.Autocomplete(input, options);
   const geo = new google.maps.Geocoder();
   document.getElementById("submit").addEventListener('click', () => LatLng(geo));
 
