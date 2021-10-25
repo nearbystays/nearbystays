@@ -122,7 +122,9 @@ function clearMarkers() {
 }
 
 function dropMarker(i) {
-  return function() markers[i].setMap(map);
+  return function() {
+    markers[i].setMap(map);
+  }
 }
 
 function addResult(result, i) { }
