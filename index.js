@@ -2,17 +2,17 @@ let map;
 let places;
 let autocomplete;
 let markers = new Array();
-// let infoWindow;
+let infoWindow;
 const host = new RegExp("^https?://.+?/");
 
 document.addEventListener('DOMContentLoaded', function(event) {
-  debugger;
+  // debugger;
   alert("Welcome to Nearby Stays by Jeremy Scott");
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       const pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
+        lat: parseFloat(position.coords.latitude),
+        lng: parseFloat(position.coords.longitude)
       };
       mapInit(pos);
     })
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 })
 
 function set_Date(check) {
-  debugger;
+  // debugger;
   let D = new Date();
   let date = (check == "checkin") ?
     D.setDate(D.getDate() + 3) :
@@ -31,7 +31,7 @@ function set_Date(check) {
 }
 
 function mapInit(pos) {
-  debugger;
+  // debugger;
   console.log("Position Object: " + pos)
   let map = new google.maps.Map(document.getElementById("map"), {
     center: pos,
@@ -48,7 +48,7 @@ function mapInit(pos) {
     fields: [ 'name', 'photos'], //, 'formatted_address', 'formatted_phone_number', 'geometry', 'place_id', 'url', 'vicinity', 'website', 'price_level'],
     types: ["lodging"],
     strictBounds: false,
-    componentRestrictions: countryRestrict,
+    // componentRestrictions: countryRestrict,
   };
 
   const autocomplete = new google.maps.places.Autocomplete(input, options);
@@ -160,7 +160,7 @@ function constructIWContext(pl) {
 }
 
 function submitView(search, checkIn, checkOut) {
-  debugger;
+  // debugger;
   try {
     let stayIds = document.querySelectorAll("#search, #checkin, #checkout");
     alert("City: " + stayId[0] + " Check In: " + stayId[1] + " Check Out:  " + stayId[2]);
@@ -185,7 +185,7 @@ function router(view) {
 function listView(search, checkIn, checkOut) { }
 function mapView() { }
 function staysView() {
-  debugger;
+  // debugger;
   console.log("Width " + window.innerWidth + " Height " + window.innerHeight);
   // document.getElementById("stays").innerHTML = "Width " + x + " Height " + y;
 }
