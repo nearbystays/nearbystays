@@ -43,10 +43,10 @@ function mapInit(pos) {
   });
 
   const defaultBounds = {
-    north: center.lat + 0.1,
-    south: center.lat - 0.1,
-    east: center.lng + 0.1,
-    west: center.lng - 0.1,
+    north: pos.lat + 0.1,
+    south: pos.lat - 0.1,
+    east: pos.lng + 0.1,
+    west: pos.lng - 0.1,
   };
   const input = document.getElementById("search");
   const options = {
