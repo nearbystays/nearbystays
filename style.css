@@ -3,7 +3,7 @@ body {
   height: 100%/*2532px*/;
   margin: auto;
   padding: 0 !important;
-  background: lightgray;
+  /*background: lightgray;*/
 }
 
 header {
@@ -87,13 +87,13 @@ input["submit"] {
   min-height: 470px;
   height: auto;
   max-height: 570px;
-  background: teal;
+  /*background: teal;*/
 }
 
 @media only screen and (max-height: 735px) {
   #main {
     height: 575px;
-    background: yellow;
+    /*background: yellow;*/
   }
 }
 
@@ -102,13 +102,13 @@ input["submit"] {
   margin: 0px;
   width: 100%;
   height: inherit !important;
-  background: red;
+  /*background: red;*/
 }
 
 footer {
   width: 90%;
   margin: auto;
-  background: green;
+  /*background: green;*/
 }
 
 #navigation {
@@ -120,12 +120,12 @@ footer {
   width: calc(50px * 5);
   width: 90%;
   z-index: 1;
-  background: green;
+  /*background: green;*/
 }
 
 .navItem {
   width: 50px;
   height: 50px;
-  background: blue;
+  /*background: blue;*/
   /*border: 2px double #0000e7;*/
 }

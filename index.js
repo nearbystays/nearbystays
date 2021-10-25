@@ -153,7 +153,7 @@ function iWindow() {
 
 function constructIWContext(pl) {
   document.getElementById("iw-name").innerHTML = '<h3 id="hotelName" href="' + pl.url + '">' + pl.name + "</h3>";
-  document.getElementById("").innerHTML = '<img class="hotelPhoto" src="' + place.photo + '"/>';
+  document.getElementById("iw-photo").innerHTML = '<img class="hotelPhoto" src="' + pl.photo + '"/>';
 
 }
 
