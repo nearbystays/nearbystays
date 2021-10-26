@@ -1,5 +1,5 @@
 let map;
-let places;
+let pl;
 let autocomplete;
 let markers = new Array();
 let infoWindow;
@@ -30,48 +30,59 @@ function set_Date(check) {
   cosole.log(date);
 }
 
-function mapInit(pos) {
-  // debugger;
-  console.log("Position Object: " + pos)
-  let map = new google.maps.Map(document.getElementById("map"), {
-    center: pos,
-    zoom: 14,
-    mapTypeControl: false,
-    panControl: false,
-    zoomControl: false,
-    streetViewControl: false,
-  });
+// Create the script tag, set the appropriate attributes
+var script = document.createElement('script');
+script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&callback=initMap';
+script.async = true;
 
-  const input = document.getElementById("search");
-  const options = {
-    bounds: map.getBounds(),
-    fields: [ 'name', 'photos'],
-    types: ["lodging"],
-    strictBounds: false,
-    // componentRestrictions: countryRestrict,
-  };
 
-  autocomplete = new google.maps.places.Autocomplete(input, options);
-  autocomplete.bindTo("bounds", map);
-  const geo = new google.maps.Geocoder();
-  window.onload=function() {
-    document.getElementById("submit").addEventListener('click', () => LatLng(geo));
-  }
+// Append the 'script' element to 'head'
+document.head.appendChild(script);
 
-  autocomplete.addListener( 'place_changed', function () {
-    const pl = autocomplete.getPlace();
+window.initMap = function() {
+  function mapInit(pos) {
+    // debugger;
+    console.log("Position Object: " + pos)
+    let map = new google.maps.Map(document.getElementById("map"), {
+      center: pos,
+      zoom: 14,
+      mapTypeControl: false,
+      panControl: false,
+      zoomControl: false,
+      streetViewControl: false,
+    });
 
-    if (pl.geometry && pl.geometry.location) {
-      map.panTo(pl.geometry.location);
-      search();
-    } else {
-      function LatLng(geo) { geo.geocode({ location: pos })
-        .then((re) => { input.placeholder = re.results[0] ?  re.results[0].formatted_address[2]["long_name"] : window.alert("No Nearby Stays Avaliable"); })
-        .catch(e => { window.alert("Location Not found"); console.log("Error: " + e); });
-      }
+    const input = document.getElementById("search");
+    const options = {
+      bounds: map.getBounds(),
+      fields: [ 'name', 'photos'],
+      types: ["lodging"],
+      strictBounds: false,
+      // componentRestrictions: countryRestrict,
+    };
+
+    autocomplete = new google.maps.places.Autocomplete(input, options);
+    autocomplete.bindTo("bounds", map);
+    const geo = new google.maps.Geocoder();
+    window.onload=function() {
+      document.getElementById("submit").addEventListener('click', () => LatLng(geo));
     }
-  });
-}
+
+    autocomplete.addListener( 'place_changed', function () {
+      const pl = autocomplete.getPlace();
+
+      if (pl.geometry && pl.geometry.location) {
+        map.panTo(pl.geometry.location);
+        search();
+      } else {
+        function LatLng(geo) { geo.geocode({ location: pos })
+          .then((re) => { input.placeholder = re.results[0] ?  re.results[0].formatted_address[2]["long_name"] : window.alert("No Nearby Stays Avaliable"); })
+          .catch(e => { window.alert("Location Not found"); console.log("Error: " + e); });
+        }
+      }
+    });
+  }
+};
 
 function search() {
   const search = {
@@ -79,7 +90,7 @@ function search() {
     types: ["lodging"],
   };
 
-  places.nearbySearch(search, (results, status, pagination) => {
+  pl.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       clearResults();
       clearMarkers();
@@ -214,4 +225,81 @@ function staysView() {
 }
 function messagesView() { }
 function loginView() { }
+
+
+// This example adds a search box to a map, using the Google Place Autocomplete
+// feature. People can enter geographical searches. The search box will return a
+// pick list containing a mix of places and predicted search terms.
+// This example requires the Places library. Include the libraries=places
+// parameter when you first load the API. For example:
+// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+function initAutocomplete() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -33.8688, lng: 151.2195 },
+    zoom: 13,
+    mapTypeId: "roadmap",
+  });
+  // Create the search box and link it to the UI element.
+  const input = document.getElementById("pac-input");
+  const searchBox = new google.maps.places.SearchBox(input);
+
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener("bounds_changed", () => {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  let markers = [];
+
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener("places_changed", () => {
+    const places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach((marker) => {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get the icon, name and location.
+    const bounds = new google.maps.LatLngBounds();
+
+    places.forEach((place) => {
+      if (!place.geometry || !place.geometry.location) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+
+      const icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25),
+      };
+
+      // Create a marker for each place.
+      markers.push(
+        new google.maps.Marker({
+          map,
+          icon,
+          title: place.name,
+          position: place.geometry.location,
+        })
+      );
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+}
 

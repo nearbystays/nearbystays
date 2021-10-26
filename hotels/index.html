@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1 user-scalable=no">
+    <title>Nearby Stays</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <meta name="description" content="Book your next stay at Nearby Stays!">
+    <link rel="canonical" href="https://nearbystays.com/">
+    <link rel="manifest" href="manifest.json">
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <meta name='application-name' content='Nearby Stays'>
+    <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+    <meta name='apple-mobile-web-app-title' content='Nearby Stays'>
+    <link rel='icon' sizes='192x192' href='/images/icon.png'>
+    <link rel='apple-touch-icon'  href='/images/icon.png'>
+    <meta name='msapplication-TileImage' content='/images/icon.png'>
+    <meta name='msapplication-TileColor' content='#ffffff'>
+    <meta name='theme-color' content='#ffffff'>
+    <meta property='og:title' content='Nearby Stays'>
+    <meta property='og:type' content='website'>
+    <meta property='og:image' content='https://nearbystays.com/images/icon.png'>
+    <meta property='og:url' content='https://nearbystays.com/'>
+    <meta property='og:description' content='Nearby Stays are around every corner!'>
+    <meta name='twitter:url' content='https://nearbystays.com/'>
+    <meta name='twitter:card' content='summary'>
+    <meta name='twitter:title' content='Nearby Stays'>
+    <meta name='twitter:description' content='Nearby Stays are around every corner!'>
+    <meta name='twitter:image' content='https://nearbystays.com/images/icon.png'>
+    <meta name='twitter:creator' content='@jd_sfsu'>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+  </head>
+<body>
+  <header>
+    <!--a href="/"><img id="logo" src="/images/logo.png"></img></a-->
+    <svg id="logo-svg" onclick="menu()">
+      <path id="logo-svg-suitcase" d="
+        M6 9 L12 9 L12 36 L6 36 A45 45, 0, 0, 0, 2 32 L2 13 A45 45, 0, 0, 0, 6 9
+        M14 9 L22 9 L22 36 L14 36 L14 9
+        M24 9 L30 9 A45 45, 0, 0, 0, 34 13 L34 32 A45 45, 0, 0, 0, 30 36 L24 36 L24 9
+        M12 7 L12 5 A45 45, 0, 0, 0, 14 3 L22 3
+        A45 45, 0, 0, 0, 24 5 L24 7 L22 7 A45 45, 0, 0, 0, 21 5 L15 5 A45 45, 0, 0, 0, 14 7 L12 7
+      "/>
+      <path id="logo-svg-shine" d="
+        M23 15 L24 15 L24 16 L23 16 L23 15
+        M27 15 L28 15 L28 16 L27 16 L27 15
+        M27 19 L28 19 L28 20 L27 20 L27 19
+      "/>
+    </svg>
+    <div id="menu">
+      <svg id="menu-svg" onclick="menu()">
+        <path d="M5 18 L45 18 M45 25 L5 25 M5 32 L45 32" />
+      </svg>
+      <div id="menuDrop" class="menuContentDrop">
+        <a href="#"><!--Home--></a>
+        <a href="#"><!--Vacations--></a>
+        <a href="#"><!--Messages--></a>
+        <a href="#"><!--Login--></a>
+      </div>
+    </div>
+    <form method="get" id="stay" onsubmit="submitView()" autocomplete="on">
+      <label for="search"></label>
+      <input type="text" name="search" placeholder="Nearby Stays" id="search"></input><br>
+      <label for="checkin"></label>
+      <input type="date" name="checkin" placeholder="checkin" id="checkin"></input>
+      <label for="checkout"></label>
+      <input type="date" name="checkout" placeholder="checkout" id="checkout"></input>
+      <input type="submit" value="Submit"></input>
+    </form>
+  </header>
+<div id="main">
+  <div id="list"></div>
+  <div id="map"></div>
+  <div id="stays"></div>
+  <div id="messages"></div>
+  <div id="login"></div>
+</div>
+  <footer>
+    <div id="navigation">
+      <input type="image" onclick="router(0);listView()" class="navItem" alt="List" src="/images/list.png">
+      <input type="image" onclick="router(1);mapView()" class="navItem" alt="Map" src="/images/map.png">
+      <input type="image" onclick="router(2);staysView()" class="navItem" alt="Nearby Stays" src="/images/stays.png">
+      <input type="image" onclick="router(3);messagesView()" class="navItem" alt="Messages" src="/images/messages.png">
+      <input type="image" onclick="router(4);loginView()" class="navItem" alt="Login" src="/images/login.png">
+    </div>
+  </footer>
+</body>
+</html>
