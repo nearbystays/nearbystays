@@ -2,8 +2,7 @@ window.addEventListener('DOMContentLoaded', function(event){
   navigator.geolocation ?
     navigator.geolocation.getCurrentPosition(showPosition) :
     alert("Geolocation is not supported by current browser");
-  }
-});
+  });
 
 function showPosition(position) {
   var userPosition = {
