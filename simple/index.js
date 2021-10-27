@@ -13,7 +13,7 @@ function locator() {
         lat: p.coords.latitude,
         lng: p.coords.longitude,
       };
-    initMap(user-location);
+    initMap(location);
     });
 }
 
