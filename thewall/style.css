@@ -1,0 +1,111 @@
+body {
+  width: 100%/*1170px*/;
+  height: 100%/*2532px*/;
+  margin: auto;
+  padding: 0 !important;
+  /*background: lightgray;*/
+}
+
+header {
+  width: 90%;
+  margin: auto;
+}
+
+#logo-svg {
+  width: 50px;
+  height: 50px;
+}
+
+#logo-svg-suitcase {
+  width: inherit !important;
+  height: inherit !important;
+  fill: #000001;
+  stroke: none;
+}
+
+#logo-svg-shine {
+  width: inherit !important;
+  height: inherit !important;
+  fill: #fffffe;
+  /*stroke: #000001;
+  stroke-width: 1px;*/
+}
+
+#menu {
+  float: right;
+  /*padding-right: 10px;*/
+}
+
+#menu-svg {
+  width: 50px;
+  height: 50px;
+  fill: none;
+  stroke: #000001;
+  stroke-width: 2px;
+}
+
+input[type="text"] {
+  display: block;
+  margin: auto;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+input[type="text"]:focus {
+  border: 2px solid #000001;
+}
+
+input[type="date"], input[type="submit"] {
+  display: inline;
+  margin: auto;
+  width: 33%;
+}
+
+input[type="text"], input[type="date"], input[type="submit"] {
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px double #000001;
+  border-radius: 4pt;
+  height: 24px;
+}
+
+input["submit"] {
+  background: transparent;
+}
+
+#main {
+  display: block;
+  margin: auto;
+  width: 90%;
+  min-height: 470px;
+  height: auto;
+  max-height: 570px;
+  /*background: teal;*/
+}
+
+@media only screen and (max-height: 735px) {
+  #main {
+    height: 575px;
+    /*background: yellow;*/
+  }
+}
+
+#navigation {
+  display: block;
+  margin: auto;
+  position: fixed;
+  bottom: 15px;
+  padding: 0px !important;
+  width: calc(50px * 5);
+  width: 90%;
+  z-index: 1;
+  /*background: green;*/
+}
+
+.navItem {
+  width: 50px;
+  height: 50px;
+  /*background: blue;*/
+  /*border: 2px double #0000e7;*/
+}
+
