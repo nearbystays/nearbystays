@@ -1,5 +1,5 @@
 let map;
-let user-location;
+let location;
 
 window.addEventListener('DOMContentLoaded', () => {
   initMap();
@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
 function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((p) => {
-      user-location = {
+      location = {
         lat: p.coords.latitude,
         lng: p.coords.longitude,
       };
