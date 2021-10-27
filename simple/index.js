@@ -1,4 +1,5 @@
 let map;
+let user-location;
 
 window.addEventListener('DOMContentLoaded', () => {
   initMap();
