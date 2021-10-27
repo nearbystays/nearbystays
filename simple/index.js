@@ -1,20 +1,30 @@
 let map;
 
+window.addEventListener('DOMContentLoaded', () => {
+  initMap();
+  locator();
+});
 
+function locator() {
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((p) => {
+      user-location = {
+        lat: p.coords.latitude,
+        lng: p.coords.longitude,
+      };
+    initMap(user-location);
+    });
+}
 
-function initMap() {
+function initMap(usr) {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
+    center: usr,
+    zoom: 14,
   });
 }
 
 var script = document.createElement('script');
 script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAAdMnbeugzorXUqv735wPfnaSTt4qFWvs&callback=initMap';
 script.async = true;
-
-window.addEventListener('DOMContentLoaded', () => {
-  initMap();
-});
 
 document.head.appendChild(script)
