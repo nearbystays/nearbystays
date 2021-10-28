@@ -13,12 +13,22 @@ function locator() {
         lat: p.coords.latitude,
         lng: p.coords.longitude,
       };
-    initMap(local);
+    // initMap(local);
+    return local
     });
   }
 }
 
 function initMap(usr) {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: usr,
+    zoom: 14,
+  });
+}
+
+
+window.initMap = function(usr) {
+  locator()
   map = new google.maps.Map(document.getElementById("map"), {
     center: usr,
     zoom: 14,
