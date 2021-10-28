@@ -2,7 +2,6 @@ let map;
 let local;
 
 window.addEventListener('DOMContentLoaded', () => {
-  initMap();
   locator();
 });
 
@@ -13,15 +12,14 @@ function locator() {
         lat: p.coords.latitude,
         lng: p.coords.longitude,
       };
-    initMap(local);
     });
   }
 }
 
-function initMap(usr) {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: usr,
-    zoom: 14,
+    center: local,
+    zoom: 8,
   });
 }
 
