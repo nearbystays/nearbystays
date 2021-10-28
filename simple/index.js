@@ -2,6 +2,7 @@ let map;
 let local;
 
 window.addEventListener('DOMContentLoaded', () => {
+  debugger;
   addScript();
   initMap(local);
 });
