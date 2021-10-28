@@ -2,8 +2,8 @@ let map;
 let local;
 
 window.addEventListener('DOMContentLoaded', () => {
-  // initMap();
-  locator();
+  initMap();
+  // locator();
 });
 
 function locator() {
@@ -19,6 +19,8 @@ function locator() {
   }
 }
 
+document.
+
 // function initMap(usr) {
 //   map = new google.maps.Map(document.getElementById("map"), {
 //     center: usr,
@@ -29,8 +31,6 @@ function locator() {
 
 window['initMap'] = function(usr) {
   console.log(locator());
-  console.log(local.lat);
-  console.log(local.lng);
   map = new google.maps.Map(document.getElementById("map"), {
     center: locator(),
     zoom: 14,
