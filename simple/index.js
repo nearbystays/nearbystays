@@ -19,12 +19,12 @@ function locator() {
   }
 }
 
-function initMap(usr) {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: usr,
-    zoom: 14,
-  });
-}
+// function initMap(usr) {
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     center: usr,
+//     zoom: 14,
+//   });
+// }
 
 
 window.initMap = function(usr) {
