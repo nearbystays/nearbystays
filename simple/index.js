@@ -3,7 +3,6 @@ let local;
 
 window.addEventListener('DOMContentLoaded', () => {
   initMap();
-  locator();
 });
 
 function locator() {
@@ -13,6 +12,7 @@ function locator() {
         lat: p.coords.latitude,
         lng: p.coords.longitude,
       };
+      return local;
     });
   }
 }
@@ -24,7 +24,7 @@ script.async = true;
 function initMap() {
   debugger;
   map = new google.maps.Map(document.getElementById("map"), {
-    center: local,
+    center: locator(),
     zoom: 14,
   });
 }
