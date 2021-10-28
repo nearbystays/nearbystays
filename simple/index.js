@@ -6,10 +6,10 @@ window.addEventListener('DOMContentLoaded', () => {
   locator();
 });
 
-function locator() {
+async function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((p) => {
-      location = {
+      location = await {
         lat: p.coords.latitude,
         lng: p.coords.longitude,
       };
