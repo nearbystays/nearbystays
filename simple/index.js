@@ -1,5 +1,6 @@
 let map;
 let local;
+let script;
 
 window.addEventListener('DOMContentLoaded', () => {
   addScript();
@@ -19,7 +20,7 @@ function locator() {
 }
 
 function addScript() {
-  var script = document.createElement('script');
+  script = document.createElement('script');
   script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&callback=initMap';
   script.async = true;
   document.head.appendChild(script)
