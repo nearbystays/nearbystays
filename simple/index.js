@@ -2,8 +2,8 @@ let map;
 let local;
 
 window.addEventListener('DOMContentLoaded', () => {
-  locator();
   initMap();
+  locator();
 });
 
 function locator() {
