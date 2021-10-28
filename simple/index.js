@@ -29,6 +29,7 @@ function locator() {
 
 window.initMap = function(usr) {
   console.log(locator());
+  console.log(local);
   map = new google.maps.Map(document.getElementById("map"), {
     center: locator(),
     zoom: 14,
