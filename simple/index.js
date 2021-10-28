@@ -30,7 +30,7 @@ function initMap(usr) {
 window.initMap = function(usr) {
   locator()
   map = new google.maps.Map(document.getElementById("map"), {
-    center: usr,
+    center: local,
     zoom: 14,
   });
 }
