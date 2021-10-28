@@ -3,6 +3,7 @@ let local;
 let script;
 
 window.addEventListener('DOMContentLoaded', () => {
+  debugger;
   addScript();
   locator()
 });
