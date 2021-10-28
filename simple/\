@@ -2,6 +2,7 @@ let map;
 let local;
 
 window.addEventListener('DOMContentLoaded', () => {
+  debugger;
   addScript();
   locator()
 });
@@ -26,8 +27,24 @@ function addScript() {
 }
 
 function initMap(posit) {
+  debugger;
   map = new google.maps.Map(document.getElementById("map"), {
     center: posit,
     zoom: 14,
   });
+}
+
+function setHeightWidth() {
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+
+  var header = document.createElement('header');
+  header.style.display = block;
+  header.style.height = w / 3;
+  var main = document.createElement('main');
+  main.style.height = 9 * w / 15;
+  main.style.display = block;
+  var footer = document.createElement('footer');
+  footer.style.height = w / 5;
+  footer.style.display = block;
 }
