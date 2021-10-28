@@ -1,5 +1,5 @@
 let map;
-let location;
+let local;
 
 window.addEventListener('DOMContentLoaded', () => {
   initMap();
@@ -9,11 +9,11 @@ window.addEventListener('DOMContentLoaded', () => {
 function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((p) => {
-      location = {
+      local = {
         lat: p.coords.latitude,
         lng: p.coords.longitude,
       };
-    initMap(location);
+    initMap(local);
     });
   }
 }
