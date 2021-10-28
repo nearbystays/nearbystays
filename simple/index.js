@@ -1,9 +1,9 @@
 let map;
 let local;
 
-window.addEventListener('DOMContentLoaded', async () => {
-  await addScript();
-  await initMap();
+window.addEventListener('DOMContentLoaded', () => {
+  addScript();
+  initMap(local);
 });
 
 function locator() {
