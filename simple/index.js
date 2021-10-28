@@ -1,9 +1,9 @@
 let map;
 let local;
 
-window.addEventListener('DOMContentLoaded', () => {
-  addScript();
-  initMap();
+window.addEventListener('DOMContentLoaded', async () => {
+  await addScript();
+  await initMap();
 });
 
 function locator() {
@@ -28,7 +28,7 @@ function addScript() {
 function initMap(posit) {
   debugger;
   map = new google.maps.Map(document.getElementById("map"), {
-    center: local,
+    center: posit,
     zoom: 14,
   });
 }
