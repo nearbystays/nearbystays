@@ -15,6 +15,7 @@ function locator() {
       };
     initMap(location);
     });
+  }
 }
 
 function initMap(usr) {
