@@ -12,7 +12,7 @@ function locator() {
         lat: p.coords.latitude,
         lng: p.coords.longitude,
       };
-      return local;
+      initMap(local);
     });
   }
 }
@@ -23,10 +23,10 @@ script.async = true;
 
 document.head.appendChild(script)
 
-function initMap() {
+function initMap(local) {
   debugger;
   map = new google.maps.Map(document.getElementById("map"), {
-    center: locator(),
+    center: local,
     zoom: 14,
   });
 }
