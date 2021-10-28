@@ -3,7 +3,7 @@ let local;
 
 window.addEventListener('DOMContentLoaded', () => {
   addScript();
-  initMap(local);
+  locator()
 });
 
 function locator() {
