@@ -28,9 +28,9 @@ function initMap(usr) {
 
 
 window.initMap = function(usr) {
-  locator()
+  console.log(locator());
   map = new google.maps.Map(document.getElementById("map"), {
-    center: local,
+    center: locator(),
     zoom: 14,
   });
 }
