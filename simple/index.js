@@ -17,9 +17,10 @@ function locator() {
 }
 
 function initMap() {
+  debugger;
   map = new google.maps.Map(document.getElementById("map"), {
     center: local,
-    zoom: 8,
+    zoom: 14,
   });
 }
 
