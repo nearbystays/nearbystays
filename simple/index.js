@@ -27,7 +27,6 @@ function addScript() {
 }
 
 function initMap(posit) {
-  debugger;
   map = new google.maps.Map(document.getElementById("map"), {
     center: posit,
     zoom: 14,
