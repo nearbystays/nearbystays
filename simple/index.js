@@ -7,14 +7,14 @@ window.addEventListener('DOMContentLoaded', () => {
   locator()
 });
 
-function locator() {
+async function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((p) => {
       local = {
         lat: p.coords.latitude,
         lng: p.coords.longitude,
       };
-      initMap(local);
+      await initMap(local);
     });
   }
 }
@@ -33,3 +33,4 @@ function initMap(posit) {
     zoom: 14,
   });
 }
+
