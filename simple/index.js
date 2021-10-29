@@ -7,14 +7,14 @@ window.addEventListener('DOMContentLoaded', () => {
   locator()
 });
 
-async function locator() {
+function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((p) => {
       local = {
         lat: p.coords.latitude,
         lng: p.coords.longitude,
       };
-      await initMap(local);
+      initMap(local);
     });
   }
 }
