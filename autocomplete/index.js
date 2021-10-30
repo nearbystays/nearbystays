@@ -41,6 +41,7 @@ function initMap(posit) {
   };
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
+  debugger;
   const autocomplete = new google.maps.places.Autocomplete(input, opts);
   autocomplete.bindTo('bounds', map);
 
@@ -70,7 +71,7 @@ function initMap(posit) {
     marker.setPosition(geometry.location);
     marker.setVisible(true);
     infowindowContent.children['place-name'].textContent = place.name;
-    infowindowContent.children['place-address'].textContent = place['formatted_address'];
+    infowindowContent.children['place-address'].textContent = place.formatted_address;
     infowindowContent.children['place-photos'].textContent = photos[0].getUrl({maxWidth: 35, maxHeight: 35});
     infowindow.open(map, marker);
   });
