@@ -42,12 +42,7 @@ function initMap(posit) {
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
   debugger;
-  try {
-    const autocomplete = new google.maps.places.Autocomplete(input, opts);
-  }
-  catch (e) {
-    console.log(e);
-  }
+  const autocomplete = new google.maps.places.Autocomplete(input, opts);
   autocomplete.bindTo('bounds', map);
 
   const infowindow = new google.maps.InfoWindow();
@@ -64,7 +59,7 @@ function initMap(posit) {
     marker.setVisible(false);
     const place = autocomplete.getPlace();
     const geometry = place.geometry;
-      
+
     if (!geometry || !geometry.location) {
       window.alert("No Deets: '" + place.name + "'");
       return;
