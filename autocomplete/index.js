@@ -27,7 +27,7 @@ function addScript() {
 function initMap() {
   const mapId = document.getElementById("map");
   const mapOptions = {
-    center = posit,
+    center: posit,
     zoom: 14,
     mapTypeControl: false,
   };
