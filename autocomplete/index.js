@@ -59,6 +59,7 @@ function initMap(posit) {
     marker.setVisible(false);
     const place = autocomplete.getPlace();
     const geometry = place.geometry;
+    console.log(geometry);
 
     if (!geometry || !geometry.location) {
       window.alert("No Deets: '" + place.name + "'");
@@ -72,7 +73,7 @@ function initMap(posit) {
     marker.setVisible(true);
     infowindowContent.children['place-name'].textContent = place.name;
     infowindowContent.children['place-address'].textContent = place.formatted_address;
-    infowindowContent.children['place-photos'].textContent = photos[0].getUrl({maxWidth: 35, maxHeight: 35});
+    infowindowContent.children['place-photos'].textContent = place.photos[0].getUrl({maxWidth: 35, maxHeight: 35});
     infowindow.open(map, marker);
   });
 }
