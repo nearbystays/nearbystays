@@ -47,7 +47,7 @@ function initMap() {
   autocomplete.bindTo('bounds', map);
 
   const infowindow = new google.maps.InfoWindow();
-  const infowindowContent = document.getElementById('infowindow-content);
+  const infowindowContent = document.getElementById('infowindow-content');
   infowindow.setContent(infowindowContent);
 
   const marker = new google.maps.Marker({
