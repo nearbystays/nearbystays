@@ -1,8 +1,9 @@
 let script;
+let autocomplete;
 
 window.addEventListener('DOMContentLoaded', () => {
   addScript();
-  locator()
+  locator();
 });
 
 function locator() {
@@ -38,7 +39,7 @@ function initMap(posit) {
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
 
-  const autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.setFields = ['formatted_address', 'geometry', 'name', 'photos'];
   autocomplete.types = ['lodging'];
   autocomplete.strictBounds = false;
