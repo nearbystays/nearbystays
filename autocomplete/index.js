@@ -34,6 +34,7 @@ function initMap(posit) {
   const map = new google.maps.Map(mapId, mapOpts);
   const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
+  input.value = "New York";
   const opts = {
     fields: ['formatted_address', 'geometry', 'name', 'photos'],
     strictBounds: false,
