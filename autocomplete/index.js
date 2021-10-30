@@ -20,7 +20,7 @@ function locator() {
 
 function addScript() {
   script = document.createElement('script');
-  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&callback=initMap';
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&callback=initMap&libraries=places&v=weekly';
   script.async = true;
   document.head.appendChild(script)
 }
@@ -35,7 +35,6 @@ function initMap(posit) {
   const map = new google.maps.Map(mapId, mapOpts);
   const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
-  console.log(typeof(input));
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
 
