@@ -34,14 +34,14 @@ function initMap(posit) {
   const map = new google.maps.Map(mapId, mapOpts);
   const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
-  const options = {
+  const opts = {
     fields: ['formatted_address', 'geometry', 'name', 'photos'],
     strictBounds: false,
     types: ['lodging'],
   };
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
-  const autocomplete = new google.maps.places.Autocomplete(input, options);
+  const autocomplete = new google.maps.places.Autocomplete(input, opts);
   autocomplete.bindTo('bounds', map);
 
   const infowindow = new google.maps.InfoWindow();
