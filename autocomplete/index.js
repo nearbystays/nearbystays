@@ -32,10 +32,8 @@ function initMap(posit) {
     mapTypeControl: false,
   };
   const map = new google.maps.Map(mapId, mapOpts);
-  const card = document.getElementById("pac-input");
+  const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
-  const biasInputElement = document.getElementById("use-location-bias");
-  const strictBoundsInputElement = document.getElementById("use-strict-bounds");
   const options = {
     fields: ['formatted_address', 'geometry', 'name', 'photos'],
     strictBounds: false,
