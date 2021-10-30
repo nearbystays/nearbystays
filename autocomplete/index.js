@@ -25,7 +25,6 @@ function addScript() {
 }
 
 function initMap(posit) {
-function initMap() {
   const mapId = document.getElementById("map");
   const mapOpts = {
     center: posit,
