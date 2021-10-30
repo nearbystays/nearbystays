@@ -2,20 +2,20 @@ let script;
 
 window.addEventListener('DOMContentLoaded', () => {
   addScript();
-  // locator()
+  locator()
 });
 
-// function locator() {
-//   if(navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition((p) => {
-//       local = {
-//         lat: p.coords.latitude,
-//         lng: p.coords.longitude,
-//       };
-//       initMap(local);
-//     });
-//   }
-// }
+function locator() {
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((p) => {
+      local = {
+        lat: p.coords.latitude,
+        lng: p.coords.longitude,
+      };
+      initMap(local);
+    });
+  }
+}
 
 function addScript() {
   script = document.createElement('script');
@@ -24,12 +24,11 @@ function addScript() {
   document.head.appendChild(script)
 }
 
-// function initMap(posit) {
+function initMap(posit) {
 function initMap() {
   const mapId = document.getElementById("map");
   const mapOpts = {
-    // center: posit,
-    center: new google.maps.LatLng(39.73485487579552, -121.85331089229449),
+    center: posit,
     zoom: 14,
     mapTypeControl: false,
   };
