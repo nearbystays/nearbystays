@@ -30,7 +30,7 @@ function initMap() {
     center = posit,
     zoom: 14,
     mapTypeControl: false,
-  });
+  };
   const map = new google.maps.Map(mapId, mapOptions);
   const card = 
   const input = document.getElementById("pac-input");
