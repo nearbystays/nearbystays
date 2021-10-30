@@ -35,15 +35,13 @@ function initMap(posit) {
   const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
   console.log(typeof(input));
-  const opts = {
-    fields: ['formatted_address', 'geometry', 'name', 'photos'],
-    strictBounds: false,
-    types: ['lodging'],
-  };
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
 
-  const autocomplete = new google.maps.places.Autocomplete(input, opts);
+  const autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.setFields = ['formatted_address', 'geometry', 'name', 'photos'];
+  autocomplete.types = ['lodging'];
+  autocomplete.strictBounds = false;
 
   autocomplete.bindTo('bounds', map);
 
