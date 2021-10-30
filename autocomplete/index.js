@@ -52,8 +52,8 @@ function initMap(posit) {
   const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(1, -30),
-    // title: place.name,
-    icon: photos[0].getUrl({maxWidth: 40, maxHeight: 40})
+    title: place.name,
+    icon: place.photos[0].getUrl({maxWidth: 40, maxHeight: 40})
   });
 
   autocomplete.addListener('place_changed', () => {
