@@ -32,7 +32,7 @@ function initMap() {
     mapTypeControl: false,
   };
   const map = new google.maps.Map(mapId, mapOptions);
-  const card = 
+  const card = document.getElementById("pac-input");
   const input = document.getElementById("pac-input");
   const biasInputElement = document.getElementById("use-location-bias");
   const strictBoundsInputElement = document.getElementById("use-strict-bounds");
