@@ -42,7 +42,12 @@ function initMap(posit) {
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
   debugger;
-  const autocomplete = new google.maps.places.Autocomplete(input, opts);
+  try {
+    const autocomplete = new google.maps.places.Autocomplete(input, opts);
+  }
+  catch (e) {
+    console.log(e);
+  }
   autocomplete.bindTo('bounds', map);
 
   const infowindow = new google.maps.InfoWindow();
