@@ -24,14 +24,14 @@ function addScript() {
   document.head.appendChild(script)
 }
 
-function initMap() {
+function initMap(posit) {
   const mapId = document.getElementById("map");
-  const mapOptions = {
+  const mapOpts = {
     center: posit,
     zoom: 14,
     mapTypeControl: false,
   };
-  const map = new google.maps.Map(mapId, mapOptions);
+  const map = new google.maps.Map(mapId, mapOpts);
   const card = document.getElementById("pac-input");
   const input = document.getElementById("pac-input");
   const biasInputElement = document.getElementById("use-location-bias");
