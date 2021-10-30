@@ -56,7 +56,7 @@ function initMap(posit) {
   autocomplete.addListener('place_changed', () => {
     infowindow.close();
     marker.setVisible(false);
-    const place = autocomplete.getPlace.getPlace();
+    const place = autocomplete.getPlace();
     const geometry = place.geometry;
       
     if (!geometry || !geometry.location) {
