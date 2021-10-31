@@ -60,9 +60,8 @@ function initMap(posit) {
     infowindow.close();
     marker.setVisible(false);
     const place = autocomplete.getPlace();
-    const geometry = place.geometry;
 
-    if (!geometry || !geometry.location) {
+    if (!place.geometry || !place.geometry.location) {
       window.alert("No Deets: '" + place.name + "'");
       return;
     }
