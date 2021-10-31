@@ -71,8 +71,8 @@ function initMap(posit) {
       map.fitBounds(geometry.viewport) :
       map.setCenter(geometry.location)
 
-    function photon(place) {
-      var photos = place.photos;
+    function photon(pl) {
+      var photos = pl.photos;
       if (!photos) {
         return;
       } else {
