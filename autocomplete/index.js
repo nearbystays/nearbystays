@@ -73,7 +73,7 @@ function initMap(posit) {
 
     function photon(place) {
       var photos = place.photos;
-      !photos ? return : infowindowContent.children['place-photos'].textContent =
+      (!photos) ? return : infowindowContent.children['place-photos'].textContent =
         photos[0].getUrl({maxWidth: 35, maxHeight: 35});
     }
 
