@@ -75,7 +75,7 @@ function initMap(posit) {
       if (!photos || photos === 'undefined') {
         return "No Photos Avalialbe Yet";
       } else {
-        return photos[0].getUrl({maxWidth: 35, maxHeight: 35});
+        return photos[0].getUrl({maxWidth: 150, maxHeight: 150});
       }
     }
 
