@@ -49,17 +49,17 @@ function initMap(posit) {
   const infowindowContent = document.getElementById('infowindow-content');
   infowindow.setContent(infowindowContent);
 
+  const place = autocomplete.getPlace();
   const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(1, -30),
-    // title: place.name,
+    title: place.name,
     // icon: place.photos[0].getUrl({maxWidth: 40, maxHeight: 40})
   });
 
   autocomplete.addListener('place_changed', () => {
     infowindow.close();
     marker.setVisible(false);
-    const place = autocomplete.getPlace();
     const geometry = place.geometry;
     console.log(geometry);
 
