@@ -65,9 +65,9 @@ function initMap(posit) {
       window.alert("No Deets: '" + place.name + "'");
       return;
     }
-    geometry.viewport ?
-      map.fitBounds(geometry.viewport) :
-      map.setCenter(geometry.location)
+    place.geometry.viewport ?
+      map.fitBounds(place.geometry.viewport) :
+      map.setCenter(place.geometry.location)
 
     function photon(pl) {
       var photos = pl.photos;
@@ -79,7 +79,7 @@ function initMap(posit) {
       }
     }
 
-    marker.setPosition(geometry.location);
+    marker.setPosition(place.geometry.location);
     marker.setVisible(true);
     infowindowContent.children['place-name'].textContent = place.name;
     infowindowContent.children['place-photos'].textContent = photon(place);
