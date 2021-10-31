@@ -1,5 +1,6 @@
 let script;
 let autocomplete;
+let place = '';
 
 window.addEventListener('DOMContentLoaded', () => {
   addScript();
@@ -49,17 +50,19 @@ function initMap(posit) {
   const infowindowContent = document.getElementById('infowindow-content');
   infowindow.setContent(infowindowContent);
 
+  const place = autocomplete.getPlace();
+  const placeName = place.name;
+  const image = place.photos[0].getUrl({maxWidth: 35, maxHeight: 35});
   const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(1, -30),
-    // title: place.name,
-    // icon: place.photos[0].getUrl({maxWidth: 40, maxHeight: 40})
+    title: placeName,
+    icon: image,
   });
 
   autocomplete.addListener('place_changed', () => {
     infowindow.close();
     marker.setVisible(false);
-    const place = autocomplete.getPlace();
     const geometry = place.geometry;
     console.log(geometry);
 
