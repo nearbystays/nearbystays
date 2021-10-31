@@ -52,7 +52,7 @@ function initMap(posit) {
   const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(1, -30),
-    title: place.name,
+    // title: place.name,
     // icon: place.photos[0].getUrl({maxWidth: 40, maxHeight: 40})
   });
 
