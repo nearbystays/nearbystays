@@ -1,6 +1,6 @@
 let script;
 let autocomplete;
-const place = '';
+let place = '';
 
 window.addEventListener('DOMContentLoaded', () => {
   addScript();
