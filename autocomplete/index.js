@@ -73,14 +73,17 @@ function initMap(posit) {
 
     function photon(place) {
       var photos = place.photos;
-      (!photos) ? return : infowindowContent.children['place-photos'].textContent =
-        photos[0].getUrl({maxWidth: 35, maxHeight: 35});
+      if (!photos) {
+        return;
+      } else {
+        return photos[0].getUrl({maxWidth: 35, maxHeight: 35});
+      }
     }
 
     marker.setPosition(geometry.location);
     marker.setVisible(true);
     infowindowContent.children['place-name'].textContent = place.name;
-    // infowindowContent.children['place-photos'].textContent = photon(place);
+    infowindowContent.children['place-photos'].textContent = photon(place);
     infowindowContent.children['place-address'].textContent = place.formatted_address;
     infowindow.open(map, marker);
   });
