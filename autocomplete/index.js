@@ -72,7 +72,7 @@ function initMap(posit) {
 
     function photon(pl) {
       var photos = pl.photos;
-      console.log("photos url: " + photos);
+      console.log("photos url #1: " + photos[0].getUrl());
       if (!photos || photos === 'undefined') {
         return;
       } else {
