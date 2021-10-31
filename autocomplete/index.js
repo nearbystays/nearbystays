@@ -73,7 +73,7 @@ function initMap(posit) {
       var photos = pl.photos;
       console.log("photos url #1: " + photos[0].getUrl({maxWidth: 35, maxHeight: 35}));
       if (!photos || photos === 'undefined') {
-        return;
+        return "No Photos Avalialbe Yet";
       } else {
         return photos[0].getUrl({maxWidth: 35, maxHeight: 35});
       }
