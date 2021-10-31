@@ -50,12 +50,14 @@ function initMap(posit) {
   const infowindowContent = document.getElementById('infowindow-content');
   infowindow.setContent(infowindowContent);
 
-  place = autocomplete.getPlace();
+  const place = autocomplete.getPlace();
+  const placeName = place.name;
+  const image = place.photos[0].getUrl({maxWidth: 35, maxHeight: 35});
   const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(1, -30),
-    title: place.name,
-    // icon: place.photos[0].getUrl({maxWidth: 40, maxHeight: 40})
+    title: placeName,
+    icon: image,
   });
 
   autocomplete.addListener('place_changed', () => {
