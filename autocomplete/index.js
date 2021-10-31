@@ -73,7 +73,7 @@ function initMap(posit) {
 
     function photon(pl) {
       var photos = pl.photos;
-      if (!photos) {
+      if (!photos || photos === 'undefined') {
         return;
       } else {
         return photos[0].getUrl({maxWidth: 35, maxHeight: 35});
