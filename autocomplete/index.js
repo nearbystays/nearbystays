@@ -82,7 +82,7 @@ function initMap(posit) {
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
     infowindowContent.children['place-name'].textContent = place.name;
-    infowindowContent.children['place-photos'].textContent = photon(place);
+    infowindowContent.children['place-photos'].src = photon(place);
     infowindowContent.children['place-address'].textContent = place.formatted_address;
     infowindow.open(map, marker);
   });
