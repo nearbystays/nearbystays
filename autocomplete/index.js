@@ -1,5 +1,6 @@
 let script;
 let autocomplete;
+const place;
 
 window.addEventListener('DOMContentLoaded', () => {
   addScript();
@@ -49,7 +50,7 @@ function initMap(posit) {
   const infowindowContent = document.getElementById('infowindow-content');
   infowindow.setContent(infowindowContent);
 
-  const place = autocomplete.getPlace();
+  place = autocomplete.getPlace();
   const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(1, -30),
