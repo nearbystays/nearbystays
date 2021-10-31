@@ -61,7 +61,6 @@ function initMap(posit) {
     marker.setVisible(false);
     const place = autocomplete.getPlace();
     const geometry = place.geometry;
-    console.log(geometry);
 
     if (!geometry || !geometry.location) {
       window.alert("No Deets: '" + place.name + "'");
@@ -73,6 +72,7 @@ function initMap(posit) {
 
     function photon(pl) {
       var photos = pl.photos;
+      console.log("photos url: " + photos);
       if (!photos || photos === 'undefined') {
         return;
       } else {
