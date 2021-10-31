@@ -49,12 +49,11 @@ function initMap(posit) {
   const infowindowContent = document.getElementById('infowindow-content');
   infowindow.setContent(infowindowContent);
 
-  const place = autocomplete.getPlace();
   const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(1, -30),
     title: place.name,
-    icon: place.photos[0].getUrl({maxWidth: 40, maxHeight: 40})
+    // icon: place.photos[0].getUrl({maxWidth: 40, maxHeight: 40})
   });
 
   autocomplete.addListener('place_changed', () => {
@@ -76,7 +75,7 @@ function initMap(posit) {
     marker.setVisible(true);
     infowindowContent.children['place-name'].textContent = place.name;
     infowindowContent.children['place-address'].textContent = place.formatted_address;
-    // infowindowContent.children['place-photos'].textContent = place.photos[0].getUrl({maxWidth: 35, maxHeight: 35});
+    infowindowContent.children['place-photos'].textContent = place.photos[0].getUrl({maxWidth: 35, maxHeight: 35});
     infowindow.open(map, marker);
   });
 }
