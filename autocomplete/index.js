@@ -40,7 +40,7 @@ function initMap(posit) {
 
   autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.setFields = ['formatted_address', 'geometry', 'name', 'photos'];
-  autocomplete.types = ['lodging'];
+  autocomplete.setTypes = ['lodging'];
   autocomplete.strictBounds = false;
 
   autocomplete.bindTo('bounds', map);
