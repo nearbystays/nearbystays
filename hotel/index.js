@@ -15,59 +15,22 @@ const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
 const countries = {
-  au: {
-    center: { lat: -25.3, lng: 133.8 },
-    zoom: 4,
-  },
-  br: {
-    center: { lat: -14.2, lng: -51.9 },
-    zoom: 3,
-  },
-  ca: {
-    center: { lat: 62, lng: -110.0 },
-    zoom: 3,
-  },
-  fr: {
-    center: { lat: 46.2, lng: 2.2 },
-    zoom: 5,
-  },
-  de: {
-    center: { lat: 51.2, lng: 10.4 },
-    zoom: 5,
-  },
-  mx: {
-    center: { lat: 23.6, lng: -102.5 },
-    zoom: 4,
-  },
-  nz: {
-    center: { lat: -40.9, lng: 174.9 },
-    zoom: 5,
-  },
-  it: {
-    center: { lat: 41.9, lng: 12.6 },
-    zoom: 5,
-  },
-  za: {
-    center: { lat: -30.6, lng: 22.9 },
-    zoom: 5,
-  },
-  es: {
-    center: { lat: 40.5, lng: -3.7 },
-    zoom: 5,
-  },
-  pt: {
-    center: { lat: 39.4, lng: -8.2 },
-    zoom: 6,
-  },
-  us: {
-    center: { lat: 37.1, lng: -95.7 },
-    zoom: 3,
-  },
-  uk: {
-    center: { lat: 54.8, lng: -4.6 },
-    zoom: 5,
-  },
+  au: { center: { lat: -25.3, lng: 133.8 }, zoom: 4, },
+  br: { center: { lat: -14.2, lng: -51.9 }, zoom: 3, },
+  ca: { center: { lat: 62, lng: -110.0 }, zoom: 3, },
+  fr: { center: { lat: 46.2, lng: 2.2 }, zoom: 5, },
+  de: { center: { lat: 51.2, lng: 10.4 }, zoom: 5, },
+  mx: { center: { lat: 23.6, lng: -102.5 }, zoom: 4, },
+  nz: { center: { lat: -40.9, lng: 174.9 }, zoom: 5, },
+  it: { center: { lat: 41.9, lng: 12.6 }, zoom: 5, },
+  za: { center: { lat: -30.6, lng: 22.9 }, zoom: 5, },
+  es: { center: { lat: 40.5, lng: -3.7 }, zoom: 5, },
+  pt: { center: { lat: 39.4, lng: -8.2 }, zoom: 6, },
+  us: { center: { lat: 37.1, lng: -95.7 }, zoom: 3, },
+  uk: { center: { lat: 54.8, lng: -4.6 }, zoom: 5, },
 };
+
+function 
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -243,17 +206,7 @@ function buildIWContent(place) {
   document.getElementById("iw-url").innerHTML =
     '<b><a href="' + place.url + '">' + place.name + "</a></b>";
   document.getElementById("iw-address").textContent = place.vicinity;
-  if (place.formatted_phone_number) {
-    document.getElementById("iw-phone-row").style.display = "";
-    document.getElementById("iw-phone").textContent =
-      place.formatted_phone_number;
-  } else {
-    document.getElementById("iw-phone-row").style.display = "none";
-  }
 
-  // Assign a five-star rating to the hotel, using a black star ('&#10029;')
-  // to indicate the rating the hotel has earned, and a white star ('&#10025;')
-  // for the rating points not achieved.
   if (place.rating) {
     let ratingHtml = "";
 
