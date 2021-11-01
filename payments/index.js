@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
   script.onload = onGooglePayLoaded();
   script.async = true;
   document.head.appendChild(script);
-}
+});
 
 /**
  * Define the version of the Google Pay API referenced when creating your
