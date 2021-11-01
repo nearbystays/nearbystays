@@ -84,7 +84,7 @@ function initMap(posit) {
     infowindowContent.children['place-name'].textContent = place.name;
     infowindowContent.children['place-photos'].src = photon(place);
     if(document.getElementById('pay')) {
-      infowindowContent.children['pay']textContent = payUS();
+      infowindowContent.children['pay'].innerHTML = payUS();
     }
     infowindowContent.children['place-address'].textContent = place.formatted_address;
     infowindow.open(map, marker);
