@@ -51,6 +51,7 @@ body {
 
 .pac-controls {
   display: inline-block;
+  box-sizing: border-box;
   padding: 5px 11px;
 }
 
@@ -61,6 +62,7 @@ body {
 }
 
 #pac-input {
+  box-sizing: border-box;
   background-color: #fff;
   font-family: Roboto;
   font-size: 15px;
@@ -76,6 +78,7 @@ body {
 }
 
 #title {
+  box-sizing: border-box;
   color: #fff;
   background-color: #4d90fe;
   font-size: 25px;
