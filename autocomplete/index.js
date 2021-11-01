@@ -83,7 +83,18 @@ function initMap(posit) {
     marker.setVisible(true);
     infowindowContent.children['place-name'].textContent = place.name;
     infowindowContent.children['place-photos'].src = photon(place);
+    infowindowContent.children['pay']textContent = payUS();
     infowindowContent.children['place-address'].textContent = place.formatted_address;
     infowindow.open(map, marker);
   });
+
+  function payUS() {
+    const pay = document.getElementById('pay');
+    const button = googlePayClient.createButton({
+      buttonColor: 'default',
+      buttonType: 'book',
+      onclick: () => {},
+    });
+    pay.appendChild(button);
+  }
 }
