@@ -83,7 +83,9 @@ function initMap(posit) {
     marker.setVisible(true);
     infowindowContent.children['place-name'].textContent = place.name;
     infowindowContent.children['place-photos'].src = photon(place);
-    infowindowContent.children['pay']textContent = payUS();
+    if(document.getElementById('pay')) {
+      infowindowContent.children['pay']textContent = payUS();
+    }
     infowindowContent.children['place-address'].textContent = place.formatted_address;
     infowindow.open(map, marker);
   });
