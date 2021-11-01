@@ -1,10 +1,12 @@
-window.addEventListener('DOMContentLoaded', () => {
-  var script = document.createElement('script');
-  script.src = "https://pay.google.com/gp/p/js/pay.js";
-  script.onload = onGooglePayLoaded();
-  script.async = true;
-  document.head.appendChild(script);
-});
+/*
+ * window.addEventListener('DOMContentLoaded', () => {
+ *   var script = document.createElement('script');
+ *   script.src = "https://pay.google.com/gp/p/js/pay.js";
+ *   script.onload = onGooglePayLoaded();
+ *   script.async = true;
+ *   document.head.appendChild(script);
+ * });
+*/
 
 /**
  * Define the version of the Google Pay API referenced when creating your
