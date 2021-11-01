@@ -263,6 +263,6 @@ function processPayment(paymentData) {
                 paymentToken = paymentData.paymentMethodData.tokenizationData.token;
 
         resolve({});
-    }, 3000);
+    }, 500);
   });
 }
