@@ -99,4 +99,8 @@ function initMap(posit) {
     });
     pay.appendChild(button);
   }
+
+  // marker.addListener("click", () => {
+  //   infowindow.open({
+  //     
 }
