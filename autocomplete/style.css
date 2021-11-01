@@ -1,10 +1,7 @@
-/* Always set the map height explicitly to define the size of the div
- * element that contains the map. */
 #map {
   height: 100%;
 }
 
-/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
@@ -78,10 +75,13 @@ body {
 }
 
 #title {
-  box-sizing: border-box;
   color: #fff;
   background-color: #4d90fe;
   font-size: 25px;
   font-weight: 500;
   padding: 6px 12px;
+}
+
+.pac-card #pac-container .pac-controls #pac-input #title {
+  box-sizing: border-box;
 }
