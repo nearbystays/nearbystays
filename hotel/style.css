@@ -80,7 +80,7 @@ table {
 #resultsTable {
   border-collapse: collapse;
   /* width: 100%; */
-  width: inherit !important;
+  width: inherit;
 }
 
 #rating {
