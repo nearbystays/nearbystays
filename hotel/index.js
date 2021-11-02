@@ -10,7 +10,7 @@ const hostnameRegexp = new RegExp("^https?://.+?/");
 window.addEventListener('DOMContentLoaded', () => {
   locator();
   addAPI();
-}
+});
 
 function addAPI() {
   var script = document.createElement('script');
