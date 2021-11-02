@@ -53,10 +53,7 @@ function initMap() {
   );
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
-  // Add a DOM event listener to react when the user selects a country.
-  document
-    .getElementById("country")
-    .addEventListener("change", setAutocompleteCountry);
+  // document.getElementById("country").addEventListener("change", setAutocompleteCountry);
 }
 
 // When the user selects a city, get the place details for the city and
@@ -91,6 +88,7 @@ function search() {
         const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
+        let photos = place.photos
         // Use marker animation to drop the icons incrementally on the map.
         markers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
@@ -116,25 +114,6 @@ function clearMarkers() {
   }
 
   markers = [];
-}
-
-// Set the country restriction based on user input.
-// Also center and zoom the map on the given country.
-function setAutocompleteCountry() {
-  const country = document.getElementById("country").value;
-
-  if (country == "all") {
-    autocomplete.setComponentRestrictions({ country: [] });
-    map.setCenter({ lat: 15, lng: 0 });
-    map.setZoom(2);
-  } else {
-    autocomplete.setComponentRestrictions({ country: country });
-    map.setCenter(countries[country].center);
-    map.setZoom(countries[country].zoom);
-  }
-
-  clearResults();
-  clearMarkers();
 }
 
 function dropMarker(i) {
