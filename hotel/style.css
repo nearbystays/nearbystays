@@ -40,7 +40,7 @@ table {
 #listing {
   position: absolute;
   width: 200px;
-  height: 470px;
+  /* height: 470px; */
   overflow: auto;
   left: 442px;
   top: 0px;
