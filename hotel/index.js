@@ -7,15 +7,39 @@ const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
 
-function initMap() {
+window.addEventListener('DOMContentLoaded', () => {
+  locator();
+  addAPI();
+}
+
+function addAPI() {
+  var script = document.createElement('script');
+  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&callback=initMap&libraries=places&v=3.46";
+  scrip.async = true;
+  document.head.appendChild(script);
+}
+
+function locator() {
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      local = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      initMap(local);
+    });
+  }
+}
+
+function initMap(geography) {
   map = new google.maps.Map(document.getElementById("map"), {
-    zoom: countries["us"].zoom,
-    center: countries["us"].center,
     mapTypeControl: false,
     panControl: false,
     zoomControl: false,
     streetViewControl: false,
   });
+  map.setZoom(14);
+  map.setCenter(geography);
   infoWindow = new google.maps.InfoWindow({
     content: document.getElementById("info-content"),
   });
