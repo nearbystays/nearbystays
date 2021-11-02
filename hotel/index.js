@@ -30,8 +30,6 @@ const countries = {
   uk: { center: { lat: 54.8, lng: -4.6 }, zoom: 5, },
 };
 
-function 
-
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: countries["us"].zoom,
