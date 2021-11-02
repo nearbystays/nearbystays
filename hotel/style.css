@@ -77,8 +77,8 @@ table {
 
 #resultsTable {
   border-collapse: collapse;
-  width: 100%;
-  /* width: 240px; */
+  /* width: 100%; */
+  width: 240px;
 }
 
 #rating {
