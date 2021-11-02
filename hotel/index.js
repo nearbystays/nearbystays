@@ -10,7 +10,7 @@ let places;
 let infoWindow;
 let markers = [];
 let autocomplete;
-const countryRestrict = { country: "us" };
+// const countryRestrict = { country: "us" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
@@ -48,7 +48,7 @@ function initMap() {
     document.getElementById("autocomplete"),
     {
       types: ["(cities)"],
-      componentRestrictions: countryRestrict,
+      // componentRestrictions: countryRestrict,
     }
   );
   places = new google.maps.places.PlacesService(map);
@@ -63,7 +63,7 @@ function onPlaceChanged() {
 
   if (place.geometry && place.geometry.location) {
     map.panTo(place.geometry.location);
-    map.setZoom(15);
+    map.setZoom(14);
     search();
   } else {
     document.getElementById("autocomplete").placeholder = "Enter a city";
