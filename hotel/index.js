@@ -139,7 +139,7 @@ function addResult(result, i) {
   let len = table.length;
   for (let i = 0; i < len; i++) {
     console.log(table[i]);
-    const table[i] = document.createElement(element[i]);
+    let table[i] = document.createElement(element[i]);
   }
 
   // const iconTd = document.createElement("td");
