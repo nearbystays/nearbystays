@@ -143,9 +143,9 @@ function addResult(result, i) {
   }
   
   function constr(t, e, i) {
-    let t[i] = document.getElementById(e[i]);
     console.log(t[i]);
     console.log(e[i]);
+    let t[i] = document.getElementById(e[i]);
   }
 
   // for (let i = 0; i < len; i++) {
