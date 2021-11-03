@@ -45,13 +45,8 @@ function initMap(geography) {
   });
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
-  autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById("autocomplete"),
-    {
-      // types: ["(regions)", "address", "establishment", "(citites)"],
-      // componentRestrictions: countryRestrict,
-    }
-  );
+  var auto = document.getElementById("autocomplete")
+  autocomplete = new google.maps.places.Autocomplete(auto);
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
   // document.getElementById("country").addEventListener("change", setAutocompleteCountry);
