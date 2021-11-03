@@ -26,6 +26,7 @@ function locator() {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
+      localStorage.setItem("local", local);
       initMap(local);
     });
   }
@@ -62,6 +63,7 @@ function onPlaceChanged() {
   const place = autocomplete.getPlace();
 
   if (place.geometry && place.geometry.location) {
+    localStorage.setItem("location", place.geometry.location);
     map.panTo(place.geometry.location);
     search();
   } else {
@@ -75,6 +77,7 @@ function search() {
     bounds: map.getBounds(),
     types: ["lodging"],
   };
+  localStorage.setItem("search", map.getBounds());
 
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
