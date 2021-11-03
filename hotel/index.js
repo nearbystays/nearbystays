@@ -61,6 +61,7 @@ function initMap(geography) {
 // zoom the map in on the city.
 function onPlaceChanged() {
   const place = autocomplete.getPlace();
+  localStorage.setItem("place", autocomplete.getPlace());
 
   if (place.geometry && place.geometry.location) {
     localStorage.setItem("location", place.geometry.location);
