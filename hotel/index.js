@@ -136,8 +136,8 @@ function addResult(result, i) {
 
   const table = ['iconTd', 'nameTd', 'icon'];
   const element = ['td', 'td', 'img'];
-  let len = table.length,
-    i = 0;
+  let len = table.length;
+  let i = 0;
   for (i; i < len; i++) {
     console.log(table[i]);
     const table[i] = document.createElement(element[i]);
