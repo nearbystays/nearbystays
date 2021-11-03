@@ -24,11 +24,10 @@ function locator() {
     navigator.geolocation.getCurrentPosition((position) => {
       localStorage.setItem("InitLat", position.coords.latitude);
       localStorage.setItem("InitLng", position.coords.longitude);
-      local = {
-        localStorage.getItem("InitLat"),
-        localStorage.getItem("InitLng")
-      };
-      initMap(local);
+      const lat = localStorage.getItem("InitLat"),
+      const lng = localStorage.getItem("InitLng"),
+      console.log(lat + ", " + lng);
+      initMap({lat, lng});
     });
   }
 }
