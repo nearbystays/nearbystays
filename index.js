@@ -232,6 +232,29 @@ function buildIWContent(place) {
   }
 }
 
+function fetchPromise() {
+  var pl = localStorage.getItem('name');
+  var myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'image/jpeg');
+
+  var myInit = {
+    method: 'GET',
+    headers: myHeaders,
+    mode: 'cors',
+    cache: 'default'
+  };
+  const fetchResponsePromise = fetch(resource).then(function() {
+    if (!response.ok) {
+      throw new Error("HTTP error! Status: " + response.status);
+    }
+    return response.blob();
+  })
+  .then(function(r) {
+    let objectUrl = URL.createObjectURL(r);
+    myImg.src = objUrl;
+  });
+}
+
 function searchUpdate() {
   const search = {
     bounds: map.getBounds(),
