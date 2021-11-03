@@ -48,7 +48,7 @@ function initMap(geography) {
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById("autocomplete"),
     {
-      types: ["(cities)"],
+      types: ["(regions)", "address", "establishment", "(citites)"],
       // componentRestrictions: countryRestrict,
     }
   );
