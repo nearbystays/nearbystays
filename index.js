@@ -195,6 +195,7 @@ function buildIWContent(place) {
   document.getElementById("iw-url").innerHTML =
     '<b><a href="' + place.url + '">' + place.name + "</a></b>";
   document.getElementById("iw-address").textContent = place.vicinity;
+  localStorage.setItem("name", place.name)
 
   if (place.rating) {
     let ratingHtml = "";
