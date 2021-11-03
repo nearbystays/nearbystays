@@ -134,31 +134,9 @@ function addResult(result, i) {
     google.maps.event.trigger(markers[i], "click");
   };
 
-  let table = ['iconTd', 'nameTd', 'icon'];
-  const element = ['td', 'td', 'img'];
-  let len = table.length;
-  for (let i = 0; i < len; i++) {
-    constr(table[i], element[i], i)
-    console.log(table[i], element[i])
-  }
-  
-  function constr(t, e) {
-    console.log(t);
-    console.log(e);
-    let t = document.getElementById(e);
-  }
-
-  // for (let i = 0; i < len; i++) {
-  //   console.log(table[i]);
-  //   let table[i] = document.createElement(element[i]);
-  // }
-
-  // for (const t of table) {
-  //   let t = document.createElement(element
-
-  // const iconTd = document.createElement("td");
-  // const nameTd = document.createElement("td");
-  // const icon = document.createElement("img");
+  const iconTd = document.createElement("td");
+  const nameTd = document.createElement("td");
+  const icon = document.createElement("img");
 
   icon.src = markerIcon;
   icon.setAttribute("class", "placeIcon");
