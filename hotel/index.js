@@ -47,6 +47,7 @@ function initMap(geography) {
   infoWindow = new google.maps.InfoWindow({
     content: document.getElementById("info-content"),
   });
+  localStorage.setItem("info-content",infoWindow);
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
   var a = document.getElementById("autocomplete")
@@ -100,20 +101,6 @@ function search() {
         setTimeout(dropMarker(i), i * 100);
         addResult(results[i], i);
       }
-    }
-  });
-}
-
-function searchUpdate() {
-  const search = {
-    bounds: map.getBounds(),
-    types: ["lodging"],
-  };
-
-  places.nearbySearch(search, (results, status, pagination) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-      clearResults();
-      clearMarkers();
     }
   });
 }
@@ -230,3 +217,38 @@ function buildIWContent(place) {
     document.getElementById("iw-website-row").style.display = "none";
   }
 }
+
+function searchUpdate() {
+  const search = {
+    bounds: map.getBounds(),
+    types: ["lodging"],
+  };
+
+  places.nearbySearch(search, (results, status, pagination) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+      clearResults();
+      clearMarkers();
+    }
+  });
+}
+
+function name() {
+  for (let i = 0; i < results.length; i++) {
+    const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
+    const markerIcon = MARKER_PATH + markerLetter + ".png";
+        // let photos = place.photos
+        // Use marker animation to drop the icons incrementally on the map.
+        markers[i] = new google.maps.Marker({
+          position: results[i].geometry.location,
+          animation: google.maps.Animation.DROP,
+          icon: markerIcon,
+        });
+        // If the user clicks a hotel marker, show the details of that hotel
+        // in an info window.
+        markers[i].placeResult = results[i];
+        google.maps.event.addListener(markers[i], "click", showInfoWindow);
+        setTimeout(dropMarker(i), i * 100);
+        addResult(results[i], i);
+  }
+}
+
