@@ -81,6 +81,7 @@ function search() {
 
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+      localStorage.setItem("results", results);
       clearResults();
       clearMarkers();
 
