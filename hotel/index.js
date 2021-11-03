@@ -104,7 +104,7 @@ function search() {
   });
 }
 
-function searchGeography() {
+function searchUpdate() {
   const search = {
     bounds: map.getBounds(),
     types: ["lodging"],
@@ -114,6 +114,8 @@ function searchGeography() {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       clearResults();
       clearMarkers();
+    }
+  }
 }
 
 function clearMarkers() {
