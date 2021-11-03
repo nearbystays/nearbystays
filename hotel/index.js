@@ -35,11 +35,15 @@ function initMap(geography) {
   map = new google.maps.Map(document.getElementById("map"), {
     mapTypeControl: false,
     panControl: false,
-    zoomControl: false,
+    // zoomControl: false,
     streetViewControl: false,
   });
   map.setZoom(14);
   map.setCenter(geography);
+  map.setOptions({
+    minZoom: 9,
+    maxZoom: 15,
+  });
   infoWindow = new google.maps.InfoWindow({
     content: document.getElementById("info-content"),
   });
@@ -49,7 +53,6 @@ function initMap(geography) {
   autocomplete = new google.maps.places.Autocomplete(a);
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
-  // document.getElementById("country").addEventListener("change", setAutocompleteCountry);
 }
 
 // When the user selects a city, get the place details for the city and
@@ -59,7 +62,6 @@ function onPlaceChanged() {
 
   if (place.geometry && place.geometry.location) {
     map.panTo(place.geometry.location);
-    map.setZoom(14);
     search();
   } else {
     document.getElementById("autocomplete").placeholder = "Enter a city";
@@ -100,6 +102,18 @@ function search() {
       }
     }
   });
+}
+
+function searchGeography() {
+  const search = {
+    bounds: map.getBounds(),
+    types: ["lodging"],
+  };
+
+  places.nearbySearch(search, (results, status, pagination) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+      clearResults();
+      clearMarkers();
 }
 
 function clearMarkers() {
