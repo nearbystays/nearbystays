@@ -105,7 +105,7 @@ function search() {
         localStorage.setItem("marker-a", results[i]);
         localStorage.setItem("marker-b", markers[i].placeResult);
         localStorage.setItem("marker-c", `${markers[i]}`);
-        localStorage.setItem("marker-c", `${markers[i].placeResult}`);
+        localStorage.setItem("marker-d", `${markers[i].placeResult}`);
         localStorage.setItem(markers[i].placeResult, results[i]);
         localStorage.setItem(`${markers[i]}`, results[i]);
         localStorage.setItem(`${markers[i].placeResult}`, results[i]);
