@@ -136,9 +136,11 @@ function addResult(result, i) {
 
   const table = ['iconTd', 'nameTd', 'icon'];
   const element = ['td', 'td', 'img'];
-  table.map((x, i) => {
-    return `const ${x} \= document.createElement(element[${i}])`;
-  });
+  let len = table.length;
+  for (let i = 0; i < len; i++) {
+    const table[i] = document.createElement(element[i]);
+    console.log(table[i]);
+  }
 
   // const iconTd = document.createElement("td");
   // const nameTd = document.createElement("td");
