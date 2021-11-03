@@ -139,13 +139,13 @@ function addResult(result, i) {
   let len = table.length;
   for (let i = 0; i < len; i++) {
     constr(table[i], element[i], i)
-    console.log(table[i], element[i], i)
+    console.log(table[i], element[i])
   }
   
-  function constr(t, e, i) {
-    console.log(t[i]);
-    console.log(e[i]);
-    let t[i] = document.getElementById(e[i]);
+  function constr(t, e) {
+    console.log(t);
+    console.log(e);
+    let t = document.getElementById(e);
   }
 
   // for (let i = 0; i < len; i++) {
