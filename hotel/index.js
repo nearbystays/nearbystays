@@ -35,7 +35,7 @@ function initMap(geography) {
   map = new google.maps.Map(document.getElementById("map"), {
     mapTypeControl: false,
     panControl: false,
-    // zoomControl: false,
+    zoomControl: false,
     streetViewControl: false,
   });
   map.setZoom(14);
