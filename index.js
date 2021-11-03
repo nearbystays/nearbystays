@@ -102,6 +102,7 @@ function search() {
         // If the user clicks a hotel marker, show the details of that hotel
         // in an info window.
         markers[i].placeResult = results[i];
+        localStorage.setItem(markers[i].placeResult, results[i]);
         localStorage.setItem(`${markers[i]}`, results[i]);
         localStorage.setItem(`${markers[i].placeResult}`, results[i]);
         google.maps.event.addListener(markers[i], "click", showInfoWindow);
