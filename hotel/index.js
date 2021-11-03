@@ -134,7 +134,7 @@ function addResult(result, i) {
     google.maps.event.trigger(markers[i], "click");
   };
 
-  const table = ['iconTd', 'nameTd', 'icon'];
+  let table = ['iconTd', 'nameTd', 'icon'];
   const element = ['td', 'td', 'img'];
   let len = table.length;
   for (let i = 0; i < len; i++) {
