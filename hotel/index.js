@@ -115,7 +115,7 @@ function searchUpdate() {
       clearResults();
       clearMarkers();
     }
-  }
+  });
 }
 
 function clearMarkers() {
