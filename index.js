@@ -22,12 +22,20 @@ function addAPI() {
 function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
+      localStorage.setItem("InitLat", position.coords.latitude);
+      localStorage.setItem("InitLng", position.coords.longitude);
+      initMap({localStorage.getItem("InitLat"), localStorage.getItem("InitLng")});
+    });
+  }
+}
+
+function old_locator() {
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
       local = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
-      localStorage.setItem("InitLat", local.lat);
-      localStorage.setItem("InitLng", local.lng);
       initMap(local);
     });
   }
@@ -83,7 +91,7 @@ function search() {
 
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-      localStorage.setItem("results", results);
+      localStorage.setItem("results", JSON.stringify(results));
       clearResults();
       clearMarkers();
 
@@ -235,6 +243,7 @@ function buildIWContent(place) {
 function fetchPromise() {
   var pl = localStorage.getItem('name');
   var myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'text/xml');
   myHeaders.append('Content-Type', 'image/jpeg');
 
   var myInit = {
