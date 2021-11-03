@@ -26,7 +26,8 @@ function locator() {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
-      localStorage.setItem("local", local);
+      localStorage.setItem("lat", local.lat);
+      localStorage.setItem("lng", local.lng);
       initMap(local);
     });
   }
