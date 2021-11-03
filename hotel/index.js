@@ -138,9 +138,23 @@ function addResult(result, i) {
   const element = ['td', 'td', 'img'];
   let len = table.length;
   for (let i = 0; i < len; i++) {
-    console.log(table[i]);
-    let table[i] = document.createElement(element[i]);
+    constr(table[i], element[i], i)
+    console.log(table[i], element[i], i)
   }
+  
+  function constr(t, e, i) {
+    const t[i] = document.getElementById(e[i]);
+    console.log(t[i]);
+    console.log(e[i]);
+  }
+
+  // for (let i = 0; i < len; i++) {
+  //   console.log(table[i]);
+  //   let table[i] = document.createElement(element[i]);
+  // }
+
+  // for (const t of table) {
+  //   let t = document.createElement(element
 
   // const iconTd = document.createElement("td");
   // const nameTd = document.createElement("td");
