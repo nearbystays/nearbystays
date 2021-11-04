@@ -24,8 +24,8 @@ function locator() {
     navigator.geolocation.getCurrentPosition((position) => {
       localStorage.setItem("InitLat", position.coords.latitude);
       localStorage.setItem("InitLng", position.coords.longitude);
-      const lat = localStorage.getItem("InitLat"),
-      const lng = localStorage.getItem("InitLng"),
+      const lat = localStorage.getItem("InitLat");
+      const lng = localStorage.getItem("InitLng");
       console.log(lat + ", " + lng);
       initMap({lat, lng});
     });
