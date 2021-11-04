@@ -1,16 +1,9 @@
-let map,
-  places,
-  infoWindow,
-  markers = [],
-  autocomplete;
+let map, places, infoWindow, markers = [], autocomplete;
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
 
-window.addEventListener('DOMContentLoaded', () => {
-  locator();
-  addAPI();
-});
+window.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
 
 function addAPI() {
   var script = document.createElement('script');
