@@ -41,7 +41,7 @@ function initMap(geography) {
   map.setZoom(14);
   map.setCenter(geography);
   map.setOptions({
-    minZoom: 9,
+    minZoom: 12,
     maxZoom: 15,
   });
   infoWindow = new google.maps.InfoWindow({
