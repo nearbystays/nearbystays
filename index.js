@@ -1,8 +1,8 @@
-let map;
-let places;
-let infoWindow;
-let markers = [];
-let autocomplete;
+let map,
+  places,
+  infoWindow,
+  markers = [],
+  autocomplete;
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
@@ -26,20 +26,7 @@ function locator() {
       localStorage.setItem("InitLng", position.coords.longitude);
       const lat = parseFloat(localStorage.getItem("InitLat"));
       const lng = parseFloat(localStorage.getItem("InitLng"));
-      console.log(lat + ", " + lng);
       initMap({lat, lng});
-    });
-  }
-}
-
-function old_locator() {
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      local = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-      initMap(local);
     });
   }
 }
