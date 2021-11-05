@@ -56,7 +56,8 @@ function onPlaceChanged() {
   localStorage.setItem("place", autocomplete.getPlace());
 
   if (place.geometry && place.geometry.location) {
-    localStorage.setItem("location", place.geometry.location);
+    localStorage.setItem("curLat", place.geometry.location.latitude);
+    localStorage.setItem("curLng", place.geometry.location.longitude);
     map.panTo(place.geometry.location);
     search();
   } else {
