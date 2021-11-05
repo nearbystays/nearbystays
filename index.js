@@ -40,7 +40,7 @@ function initMap(geography) {
   infoWindow = new google.maps.InfoWindow({
     content: document.getElementById("info-content"),
   });
-  localStorage.setItem("info-content",infoWindow);
+  localStorage.setItem("info-content",JSON.stringify(infoWindow));
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
   var a = document.getElementById("autocomplete")
