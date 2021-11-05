@@ -26,7 +26,6 @@ function locator() {
       localStorage.setItem("InitLng", position.coords.longitude);
       const lat = parseFloat(localStorage.getItem("InitLat"));
       const lng = parseFloat(localStorage.getItem("InitLng"));
-      console.log(lat + ", " + lng);
       initMap({lat, lng});
     });
   }
@@ -95,6 +94,7 @@ function search() {
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       localStorage.setItem("results", JSON.stringify(results));
+      localStorage.setItem("pagination", JSON.stringify(pagination));
       clearResults();
       clearMarkers();
 
