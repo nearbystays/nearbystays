@@ -95,10 +95,10 @@ function search() {
         // If the user clicks a hotel marker, show the details of that hotel
         // in an info window.
         markers[i].placeResult = results[i];
-        localStorage.setItem("marker-a", results[i]);
-        localStorage.setItem("marker-b", markers[i].placeResult);
-        localStorage.setItem("marker-c", `${markers[i]}`);
-        localStorage.setItem("marker-d", `${markers[i].placeResult}`);
+        localStorage.setItem("marker-a", JSON.stringify(results[i]));
+        localStorage.setItem("marker-b", JSON.stringify(markers[i].placeResult));
+        localStorage.setItem("marker-c", JSON.stringify(`${markers[i]}`));
+        localStorage.setItem("marker-d", JSON.stringify(`${markers[i].placeResult}`));
         localStorage.setItem(markers[i].placeResult, results[i]);
         localStorage.setItem(`${markers[i]}`, results[i]);
         localStorage.setItem(`${markers[i].placeResult}`, results[i]);
