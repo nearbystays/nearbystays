@@ -1,16 +1,9 @@
-let map;
-let places;
-let infoWindow;
-let markers = [];
-let autocomplete;
+let map, places, infoWindow, markers = [], autocomplete;
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
 
-window.addEventListener('DOMContentLoaded', () => {
-  locator();
-  addAPI();
-});
+window.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
 
 function addAPI() {
   var script = document.createElement('script');
@@ -31,18 +24,6 @@ function locator() {
   }
 }
 
-function old_locator() {
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      local = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-      initMap(local);
-    });
-  }
-}
-
 function initMap(geography) {
   map = new google.maps.Map(document.getElementById("map"), {
     mapTypeControl: false,
@@ -53,7 +34,7 @@ function initMap(geography) {
   map.setZoom(14);
   map.setCenter(geography);
   map.setOptions({
-    minZoom: 9,
+    minZoom: 12,
     maxZoom: 15,
   });
   infoWindow = new google.maps.InfoWindow({
