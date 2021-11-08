@@ -16,13 +16,13 @@ function addAPI() {
   document.head.appendChild(script);
 }
 
-async function locator() {
+function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       localStorage.setItem("InitLat", parseFloat(position.coords.latitude));
       localStorage.setItem("InitLng", parseFloat(position.coords.longitude));
-      const lat = await localStorage.getItem("InitLat");
-      const lng = await localStorage.getItem("InitLng");
+      const lat = localStorage.getItem("InitLat");
+      const lng = localStorage.getItem("InitLng");
       initMap({lat, lng});
     });
   }
