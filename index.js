@@ -1,4 +1,8 @@
-let map, places, infoWindow, markers = [], autocomplete;
+let map,
+  places,
+  infoWindow,
+  markers = [],
+  autocomplete;
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
@@ -12,13 +16,13 @@ function addAPI() {
   document.head.appendChild(script);
 }
 
-function locator() {
+async function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       localStorage.setItem("InitLat", position.coords.latitude);
       localStorage.setItem("InitLng", position.coords.longitude);
-      const lat = parseFloat(localStorage.getItem("InitLat"));
-      const lng = parseFloat(localStorage.getItem("InitLng"));
+      const lat = await parseFloat(localStorage.getItem("InitLat"));
+      const lng = await parseFloat(localStorage.getItem("InitLng"));
       initMap({lat, lng});
     });
   }
@@ -195,11 +199,12 @@ function buildIWContent(place) {
     let ratingHtml = "";
 
     for (let i = 0; i < 5; i++) {
-      if (place.rating < i + 0.5) {
-        ratingHtml += "&#10025;";
-      } else {
-        ratingHtml += "&#10029;";
-      }
+      place.rating < i + 0.5 ?  ratingHtml += "&#10025;" : ratingHtml += "&#10029;"
+      // if (place.rating < i + 0.5) {
+      //   ratingHtml += "&#10025;";
+      // } else {
+      //   ratingHtml += "&#10029;";
+      // }
 
       document.getElementById("iw-rating-row").style.display = "";
       document.getElementById("iw-rating").innerHTML = ratingHtml;
