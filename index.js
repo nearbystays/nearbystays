@@ -16,13 +16,15 @@ function addAPI() {
   document.head.appendChild(script);
 }
 
+// You're Welcome
 function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      localStorage.setItem("InitLat", parseFloat(position.coords.latitude));
-      localStorage.setItem("InitLng", parseFloat(position.coords.longitude));
-      const lat = localStorage.getItem("InitLat");
-      const lng = localStorage.getItem("InitLng");
+      localStorage.setItem("InitLat", position.coords.latitude);
+      localStorage.setItem("InitLng", position.coords.longitude);
+      const lat = parseFloat(localStorage.getItem("InitLat"));
+      const lng = parseFloat(localStorage.getItem("InitLng"));
+      console.log("welcome.com");
       initMap({lat, lng});
     });
   }
