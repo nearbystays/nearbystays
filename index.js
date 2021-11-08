@@ -19,10 +19,10 @@ function addAPI() {
 async function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      localStorage.setItem("InitLat", position.coords.latitude);
-      localStorage.setItem("InitLng", position.coords.longitude);
-      const lat = await parseFloat(localStorage.getItem("InitLat"));
-      const lng = await parseFloat(localStorage.getItem("InitLng"));
+      localStorage.setItem("InitLat", parseFloat(position.coords.latitude));
+      localStorage.setItem("InitLng", parseFloat(position.coords.longitude));
+      const lat = await localStorage.getItem("InitLat");
+      const lng = await localStorage.getItem("InitLng");
       initMap({lat, lng});
     });
   }
