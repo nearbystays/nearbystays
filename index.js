@@ -1,3 +1,4 @@
+"use strict"
 let map,
   places,
   infoWindow,
