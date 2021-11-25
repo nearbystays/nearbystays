@@ -42,11 +42,13 @@ function initMap(geography) {
   map.setZoom(14);
   try {
     let lastSearch = localStorage.getItem("search")
-    console.log('Last Search' + lastSearch)
-    map.setCenter(lastSearch);
+    lastSearch === 'null'
+    ?  map.setCenter(geography);
+    :  map.setCenter(lastSearch);
+    console.log('Geography: ' + geography)
+    console.log('Last Search: ' + lastSearch)
   } catch (e) {
     console.error(e);
-    map.setCenter(geography);
   }
   map.setOptions({
     minZoom: 12,
