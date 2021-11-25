@@ -1,4 +1,4 @@
-// "use strict"
+"use strict"
 let map,
   places,
   infoWindow,
@@ -9,7 +9,7 @@ const MARKER_PATH =
 const hostnameRegexp = new RegExp("^https?://.+?/");
 
 this.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
-// window.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
+window.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
 
 function addAPI() {
   var script = document.createElement('script');
