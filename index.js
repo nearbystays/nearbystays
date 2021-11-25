@@ -1,4 +1,4 @@
-"use strict"
+// "use strict"
 let map,
   places,
   infoWindow,
@@ -40,7 +40,14 @@ function initMap(geography) {
     streetViewControl: false,
   });
   map.setZoom(14);
-  map.setCenter(geography);
+  try {
+    localStorage.getItem("search");
+      ? map.setCenter(search)
+      : map.setCenter(geography);
+  } catch (e) {
+    console.error(e);
+    map.setCenter(geography);
+  }
   map.setOptions({
     minZoom: 12,
     maxZoom: 15,
