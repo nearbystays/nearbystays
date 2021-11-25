@@ -41,9 +41,9 @@ function initMap(geography) {
   });
   map.setZoom(14);
   try {
-    localStorage.getItem("search")
-      ? console.log('search: ' + search) // map.setCenter(search)
-      : console.log("geography: " + geography) // map.setCenter(geography);
+    let lastSearch = localStorage.getItem("search")
+    console.log('Last Search' + lastSearch)
+    map.setCenter(lastSearch);
   } catch (e) {
     console.error(e);
     map.setCenter(geography);
