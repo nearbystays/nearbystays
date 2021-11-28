@@ -38,15 +38,16 @@ function initMap(geography) {
     zoomControl: false,
     streetViewControl: false,
   });
-  map.setZoom(14);
+  map.setZoom(14)d
+  let lastStay = localStorage.getItem("name")
+  let lastSearch = localStorage.getItem("search")
+  console.table(lastSearch, lastStay);
   try {
-    let lastSearch = localStorage.getItem("search")
     lastSearch === 'null'
     ?  map.setCenter(union(lastSearch))
     :  map.setCenter(geography);
     console.log('Geography: ' + geography)
     console.log('Last Search 0: ' + lastSearch.split(","));
-    console.log('Last Search Type: ' + typeof(lastSearch))
   } catch (e) {
     console.error(e);
   }
@@ -153,6 +154,7 @@ function addResult(result, i) {
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
   tr.onclick = function () {
+    localStorage.setItem('this.tr', this.tr);
     google.maps.event.trigger(markers[i], "click");
   };
 
