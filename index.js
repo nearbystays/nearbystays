@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
 
 function addAPI() {
   var script = document.createElement('script');
-  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&callback=initMap&libraries=places&v=3.46";
+  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&libraries=places&v=3.46";
   script.async = true;
   document.head.appendChild(script);
 }
