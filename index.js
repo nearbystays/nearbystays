@@ -34,6 +34,7 @@ function locator() {
 (async function() {
   let search = await document.querySelector('#autocomplete');
   let lastKnownValue = await localStorage.getItem('name');
+  console.log(lastKnownValue)
   if (lastKnownValue) {
     search.placeholder = lastKnownValue
   }
