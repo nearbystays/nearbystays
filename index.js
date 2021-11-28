@@ -31,14 +31,16 @@ function locator() {
   }
 }
 
-(async function() {
+async function getLastKnownValue() {
   let search = await document.querySelector('#autocomplete');
   let lastKnownValue = await localStorage.getItem('name');
   console.log(lastKnownValue)
   if (lastKnownValue) {
     search.placeholder = lastKnownValue
   }
-})();
+}
+
+setTimeout(getLastKnownValue, 100)
 
 function initMap(geography) {
   map = new google.maps.Map(document.getElementById("map"), {
