@@ -33,7 +33,7 @@ function locator() {
 
 (async function() {
   let search = await document.querySelector('#autocomplete');
-  let lastKnownValue = await localStorage.getItem();
+  let lastKnownValue = localStorage.getItem();
   if (lastKnownValue !== 'null') {
     search.value = lastKnownValue
   }
@@ -76,8 +76,6 @@ function initMap(geography) {
   autocomplete.addListener("place_changed", onPlaceChanged);
 }
 
-// When the user selects a city, get the place details for the city and
-// zoom the map in on the city.
 function onPlaceChanged() {
   const place = autocomplete.getPlace();
   localStorage.setItem("place", autocomplete.getPlace());
@@ -92,44 +90,30 @@ function onPlaceChanged() {
   }
 }
 
-// Search for hotels in the selected city, within the viewport of the map.
 function search() {
   const search = {
     bounds: map.getBounds(),
     types: ["lodging"],
   };
-  localStorage.setItem("search", map.getBounds());
+  localStorage.setItem("bounds", map.getBounds());
 
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       localStorage.setItem("results", JSON.stringify(results));
-      localStorage.setItem("pagination", JSON.stringify(pagination));
       clearResults();
       clearMarkers();
 
-      // Create a marker for each hotel found, and
-      // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
         const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
-        // let photos = place.photos
-        // Use marker animation to drop the icons incrementally on the map.
         markers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
           animation: google.maps.Animation.DROP,
           icon: markerIcon,
         });
-        // If the user clicks a hotel marker, show the details of that hotel
-        // in an info window.
         markers[i].placeResult = results[i];
-        localStorage.setItem("marker-a", JSON.stringify(results[i]));
-        localStorage.setItem("marker-b", JSON.stringify(markers[i].placeResult));
-        localStorage.setItem("marker-c", JSON.stringify(`${markers[i]}`));
-        localStorage.setItem("marker-d", JSON.stringify(`${markers[i].placeResult}`));
-        localStorage.setItem(markers[i].placeResult, results[i]);
-        localStorage.setItem(`${markers[i]}`, results[i]);
-        localStorage.setItem(`${markers[i].placeResult}`, results[i]);
+        localStorage.setItem("marker-i", markers[i].placeResult);
         google.maps.event.addListener(markers[i], "click", showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
         addResult(results[i], i);
@@ -163,6 +147,7 @@ function addResult(result, i) {
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
   tr.onclick = function () {
     localStorage.setItem('this.tr', this.tr)
+    localStorage.setItem('markers[i]', markers[i])
     google.maps.event.trigger(markers[i], "click");
   };
 
