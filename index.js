@@ -31,11 +31,11 @@ function locator() {
   }
 }
 
-(function() {
-  let search = document.querySelector('#autocomplete');
-  let lastKnownValue = localStorage.getItem();
+(async function() {
+  let search = await document.querySelector('#autocomplete');
+  let lastKnownValue = await localStorage.getItem('name');
   if (lastKnownValue !== 'null') {
-    search.value = lastKnownValue
+    search.placeholder = lastKnownValue
   }
 })();
 
