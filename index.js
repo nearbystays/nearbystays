@@ -31,8 +31,8 @@ function locator() {
   }
 }
 
-(async function() {
-  let search = await document.querySelector('#autocomplete');
+(function() {
+  let search = document.querySelector('#autocomplete');
   let lastKnownValue = localStorage.getItem();
   if (lastKnownValue !== 'null') {
     search.value = lastKnownValue
