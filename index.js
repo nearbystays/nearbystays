@@ -46,6 +46,7 @@ function initMap(geography) {
     :  map.setCenter(geography);
     console.log('Geography: ' + geography)
     console.log('Last Search 0: ' + lastSearch[0])
+    console.log('Last Search Type: ' + typeof(lastSearch[0]))
   } catch (e) {
     console.error(e);
   }
