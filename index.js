@@ -31,6 +31,14 @@ function locator() {
   }
 }
 
+(async function() {
+  let search = document.querySelector('#autocomplete');
+  let lastVal = localStorage.getItem();
+  lastVal !== 'null'
+  ? search.value = lastVal
+  : continue;
+})();
+
 function initMap(geography) {
   map = new google.maps.Map(document.getElementById("map"), {
     mapTypeControl: false,
