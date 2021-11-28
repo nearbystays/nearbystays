@@ -32,11 +32,11 @@ function locator() {
 }
 
 (async function() {
-  let search = document.querySelector('#autocomplete');
-  let lastVal = localStorage.getItem();
-  lastVal !== 'null'
-  ? search.value = lastVal
-  : continue;
+  let search = await document.querySelector('#autocomplete');
+  let lastKnownValue = await localStorage.getItem();
+  if (lastKnownValue !== 'null') {
+    search.value = lastKnownValue
+  }
 })();
 
 function initMap(geography) {
