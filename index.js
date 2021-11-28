@@ -38,7 +38,7 @@ function initMap(geography) {
     zoomControl: false,
     streetViewControl: false,
   });
-  map.setZoom(14)d
+  map.setZoom(14);
   let lastStay = localStorage.getItem("name")
   let lastSearch = localStorage.getItem("search")
   console.table(lastSearch, lastStay);
@@ -154,7 +154,7 @@ function addResult(result, i) {
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
   tr.onclick = function () {
-    localStorage.setItem('this.tr', this.tr);
+    localStorage.setItem('this.tr', this.tr)
     google.maps.event.trigger(markers[i], "click");
   };
 
