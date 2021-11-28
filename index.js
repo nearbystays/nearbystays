@@ -8,7 +8,6 @@ const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
 
-// this.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
 window.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
 
 function addAPI() {
@@ -43,8 +42,8 @@ function initMap(geography) {
   try {
     let lastSearch = localStorage.getItem("search")
     lastSearch === 'null'
-    ?  map.setCenter(geography)
-    :  map.setCenter(lastSearch);
+    ?  map.setCenter(lastSearch)
+    :  map.setCenter(geography);
     console.log('Geography: ' + geography)
     console.log('Last Search: ' + lastSearch)
   } catch (e) {
@@ -303,3 +302,56 @@ function name() {
 }
 
 // export default name;
+
+let idx = '.js'
+import idx;
+import * as NearbyStays from idx;
+let Export = import ExportFunction1 from idx
+import {
+  ExportFunction2
+  ExportFunction3
+  ExportFunction4
+} from idx;
+
+const main 
+
+let settings = class Settings { }
+function nearbystaysImports() { }
+
+export function ExportFunction1(arg1, arg2) {
+  let api; // new APIName();
+  api.onload = function () {
+    callback(this.responseText)
+  };
+  api.open(method, ...args);
+  api.send();
+}
+
+const main = document.querySelector('main');
+for (const link of document.querySelectorAll('nav > a')) {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+
+    import('nearbystays.js')
+    .then(module => {
+      module.loadPageInto(main);
+    });
+  });
+}
+
+let co = new NearbyStays();
+
+class NearbyStays {
+  constructor(arg1, ...args) {
+    this.createArg1 = createElement(arg1);
+    this.arg1 = document.querySelector('#arg1');
+  }
+  get arg1() {
+    return this.arg1;
+  }
+  set rg1() {
+    this.arg1 = document.createElement(arg1);
+  }
+}
+
+
