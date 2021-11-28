@@ -42,7 +42,7 @@ function initMap(geography) {
   try {
     let lastSearch = localStorage.getItem("search")
     lastSearch === 'null'
-    ?  map.setCenter(lastSearch)
+    ?  map.setCenter(union(lastSearch))
     :  map.setCenter(geography);
     console.log('Geography: ' + geography)
     console.log('Last Search 0: ' + lastSearch[0])
