@@ -17,7 +17,6 @@ function addAPI() {
   document.head.appendChild(script);
 }
 
-// You're Welcome
 function locator() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -36,7 +35,8 @@ async function getLastKnownValue() {
   let lastKnownValue = await localStorage.getItem('name');
   console.log(lastKnownValue)
   if (lastKnownValue) {
-    search.placeholder = lastKnownValue
+    search.value = lastKnownValue
+    // search.placeholder = lastKnownValue
   }
 }
 
