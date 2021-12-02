@@ -340,8 +340,52 @@ function go() {
     };
   }
 
+  function wrapper(element, event, func) {
+    let name = document.querySelector(element);
+    name.addEventListener(event, func);
+  }
+
+  function Q(element, name = 'name') {
+    let name = document.querySelector(element); 
+    return name;
+  }
+
+function titleBiblioId(evt) {
+   console.log("add ...");
+   var title = $('#pub-title').val();
+   var biblioid = $('#pub-biblioid').val();
+   if (!title || !biblioid) {
+     displayActionFailure("Required field(s) missing");
+     return;
+   }
+   var year = document.querySelector('#pub-year').value;
+   if (year != '') { // Number.isInteger
+     if (isNaN(year))  { return; }
+     year = Number(year);
+   } else {
+     year = null;
+   }
+
+   var file_input = document.querySelector('#pub-file');
+   var selected_file = file_input.get(0).files[0];
+   console.log("selected_file:", selected_file);
+   // Keeping a reference on how to reset the file input in the UI once we // have its value, but instead of doing that we rather use a "reset" type // input in the HTML form. file_input.val(null);
+   var file_url = document.querySelector('#pub-file-url').value;
+   if (selected_file) {
+     addPublication(biblioid, title, year, selected_file);
+   } else if (file_url) {
+     addPublicationFromUrl(biblioid, title, year, file_url);
+   } else {
+     addPublication(biblioid, title, year);
+   }
+}
+
   function addEventListeners() {
-    $('#register-form-reset').click(function(evt) { resetActionStatus(); });
+    wrapper('#register-form-reset', 'click', resetActionStatus());
+    wrapper('#add-button', 'click', title_biblioid());
+
+    let addBtn = document.querySelector('#add-button');
+    addBtn.addEventListener('click', function)
 
     $('#add-button').click(function(evt) {
       console.log("add ...");
@@ -377,10 +421,13 @@ function go() {
 
     });
 
-    $('#delete-button').click(function(evt) {
+    wrapper('#delete-button', 'click', delFunc())
+    function delFunc() {
       console.log("delete ...");
-      var biblioid = $('#pub-biblioid-to-delete').val();
-      var key = $('#key-to-delete').val();
+      Q('#pub-biblioid-to-delete', 'biblioid').value;
+      Q('#key-to-delete', 'key').value;
+      // var biblioid = document.querySelector().value;
+      // var key = document.querySelector().value;
 
       if (biblioid != '') {
         deletePublicationFromBib(biblioid);
@@ -393,12 +440,9 @@ function go() {
         key = Number(key);
         deletePublication(key);
       }
-    });
+    }
 
-    document.querySelector('#clear-store-button')
-    .addEventListener("click",evt => {
-      return clearObjectStore()
-    });
+    wrapper('#clear-store-button', 'click', clearObjectStore());
 
     var search_button = document.querySelector('#search-list-button');
     search_button.addEventListener('click', function(evt) {
