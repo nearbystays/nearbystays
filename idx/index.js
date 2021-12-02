@@ -415,6 +415,6 @@ function go() {
 
 window.onload = function() {
   setTimeout(go(),);
-  setTimeout(go.evtListener(),);
-  setTimeout(go.openDb(),);
+  setTimeout(evtListener(),);
+  setTimeout(openDb(),);
 }
