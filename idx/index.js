@@ -1,9 +1,6 @@
-(function () {
-  var COMPAT_ENVS = [
-    ['Firefox', ">= 16.0"],
-    ['Google Chrome',
-     ">= 24.0 (you may need to get Google Chrome Canary), NO Blob storage support"]
-  ];
+function go() {
+// (function () {
+  var COMPAT_ENVS = [ ['Firefox', ">= 16.0"], ['Google Chrome', ">= 24.0 (you may need to get Google Chrome Canary), NO Blob storage support"] ];
   var compat = $('#compat');
   compat.empty();
   compat.append('<ul id="compat-list"></ul>');
@@ -12,7 +9,7 @@
   });
 
   const DB_NAME = 'mdn-demo-indexeddb-epublications';
-  const DB_VERSION = 1;
+  const DB_VERSION = 1; // Use a long long for this value (don't use a float)
   const DB_STORE_NAME = 'publications';
 
   var db;
@@ -116,11 +113,7 @@
         req = store.get(cursor.key);
         req.onsuccess = function (evt) {
           var value = evt.target.result;
-          var list_item = $('<li>' +
-                            '[' + cursor.key + '] ' +
-                            '(biblioid: ' + value.biblioid + ') ' +
-                            value.title +
-                            '</li>');
+          var list_item = $('<li>' + '[' + cursor.key + '] ' + '(biblioid: ' + value.biblioid + ') ' + value.title + '</li>');
           if (value.year != null)
             list_item.append(' - ' + value.year);
 
@@ -443,5 +436,7 @@
   openDb();
   addEventListeners();
 
-})(); // Immediately-Invoked Function Expression (IIFE)
+  // })(); // Immediately-Invoked Function Expression (IIFE)
+}
 
+window.onload = async function() { setTimeout(go(),); }
