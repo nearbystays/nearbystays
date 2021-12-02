@@ -1,12 +1,14 @@
 function go() {
+
 // (function () {
-  var COMPAT_ENVS = [ ['Firefox', ">= 16.0"], ['Google Chrome', ">= 24.0 (you may need to get Google Chrome Canary), NO Blob storage support"] ];
-  var compat = $('#compat');
-  compat.empty();
-  compat.append('<ul id="compat-list"></ul>');
-  COMPAT_ENVS.forEach(function(val, idx, array) {
-    $('#compat-list').append('<li>' + val[0] + ': ' + val[1] + '</li>');
-  });
+
+//   var COMPAT_ENVS = [ ['Firefox', ">= 16.0"], ['Google Chrome', ">= 24.0 (you may need to get Google Chrome Canary), NO Blob storage support"] ];
+//   var compat = $('#compat');
+//   compat.empty();
+//   compat.append('<ul id="compat-list"></ul>');
+//   COMPAT_ENVS.forEach(function(val, idx, array) {
+//     $('#compat-list').append('<li>' + val[0] + ': ' + val[1] + '</li>');
+//   });
 
   const DB_NAME = 'mdn-demo-indexeddb-epublications';
   const DB_VERSION = 1; // Use a long long for this value (don't use a float)
