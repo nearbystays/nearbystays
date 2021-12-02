@@ -195,9 +195,6 @@ function go() {
   }
 
   /**
-   * @param {string} biblioid
-   * @param {string} title
-   * @param {number} year
    * @param {string} url the URL of the image to download and store in the local
    *   IndexedDB database. The resource behind this URL is subjected to the
    *   "Same origin policy", thus for this method to work, the URL must come from
@@ -345,7 +342,7 @@ function go() {
     name.addEventListener(event, func);
   }
 
-  function Q(element, name = 'name') {
+  function Q(element, name) {
     let name = document.querySelector(element); 
     return name;
   }
@@ -461,4 +458,11 @@ window.onload = function() {
   setTimeout(go(),);
   setTimeout(openDb(),);
   setTimeout(addEventListeners(),);
+}
+
+function inputt() {
+  let in = document.createElement(input);
+  in.setAttribute('type', 'text');
+  in.setAttribute('value', 'Delete Publication');
+  in.setAttribute('id', 'delete-button')
 }
