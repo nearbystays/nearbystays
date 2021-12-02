@@ -19,7 +19,8 @@ function upload(event) {
   reader.onload = function() {
     let image = document.querySelector('#output');
     // image.src = URL.createObjectURL(event.target.files[0]);
-    image.src = reader.result;
+    const uploadedImage = reader.result;
+    document.querySelector('#output').style.backgroundImage = `url(${uploadedImage})`;
   }
-  reader.readAsDataURL(event.target.files[0]);
+  reader.readAsDataURL(this.files[0]);
 }
