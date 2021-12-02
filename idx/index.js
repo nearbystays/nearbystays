@@ -413,10 +413,10 @@ function go() {
   // })(); // Immediately-Invoked Function Expression (IIFE)
 }
 
-window.onload = async function() {
+window.onload = function() {
   setTimeout(go(),);
-  let db = await openDb();
-  let evtListener = await addEventListeners();
+  let db = openDb();
+  let evtListener = addEventListeners();
   db();
   evtListener();
 }
