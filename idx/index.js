@@ -330,11 +330,6 @@ function go() {
     };
   }
 
-  function wrapper(name, element, event, func) {
-    name = document.querySelector(element);
-    name.addEventListener(event, func);
-  }
-
   function Q(element, name) {
     let name = document.querySelector(element); 
     return name;
@@ -369,6 +364,11 @@ function titleBiblioId(evt) {
      addPublication(biblioid, title, year);
    }
 }
+  function wrapper(name, element, event, func) {
+    name = document.querySelector(element);
+    name.addEventListener(event, func);
+  }
+
 
   function addEventListeners() {
     wrapper('register-form-reset', '#register-form-reset', 'click', resetActionStatus());
@@ -376,13 +376,13 @@ function titleBiblioId(evt) {
 
     function title_biblioid(evt) {
       console.log("add ...");
-      var title = $('#pub-title').val();
-      var biblioid = $('#pub-biblioid').val();
+      var title = document.querySelector('#pub-title').value;
+      var biblioid = document.querySelector('#pub-biblioid').value;
       if (!title || !biblioid) {
         displayActionFailure("Required field(s) missing");
         return;
       }
-      var year = $('#pub-year').val();
+      var year = document.querySelector('#pub-year').value;
       if (year != '') { // Number.isInteger
         if (isNaN(year))  { return; }
         year = Number(year);
@@ -390,14 +390,14 @@ function titleBiblioId(evt) {
         year = null;
       }
 
-      var file_input = $('#pub-file');
+      var file_input = document.querySelector('#pub-file');
       var selected_file = file_input.get(0).files[0];
       console.log("selected_file:", selected_file);
       // Keeping a reference on how to reset the file input in the UI once we
       // have its value, but instead of doing that we rather use a "reset" type
       // input in the HTML form.
       //file_input.val(null);
-      var file_url = $('#pub-file-url').val();
+      var file_url = document.querySelector('#pub-file-url').value;
       if (selected_file) {
         addPublication(biblioid, title, year, selected_file);
       } else if (file_url) {
