@@ -415,8 +415,7 @@ function go() {
 
 window.onload = function() {
   setTimeout(go(),);
-  let db = openDb();
-  let evtListener = addEventListeners();
-  db();
-  evtListener();
+  setTimeout(db(),);
+  setTimeout(go.db(),);
+  setTimeout(go.evtListener(),);
 }
