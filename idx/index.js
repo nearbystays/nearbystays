@@ -337,7 +337,7 @@ function go() {
     };
   }
 
-  function wrapper(element, event, func) {
+  function wrapper(name, element, event, func) {
     let name = document.querySelector(element);
     name.addEventListener(event, func);
   }
@@ -378,13 +378,10 @@ function titleBiblioId(evt) {
 }
 
   function addEventListeners() {
-    wrapper('#register-form-reset', 'click', resetActionStatus());
-    wrapper('#add-button', 'click', title_biblioid());
+    wrapper('register-form-reset', '#register-form-reset', 'click', resetActionStatus());
+    wrapper('add-button', '#add-button', 'click', title_biblioid());
 
-    let addBtn = document.querySelector('#add-button');
-    addBtn.addEventListener('click', function)
-
-    $('#add-button').click(function(evt) {
+    function title_biblioid(evt) {
       console.log("add ...");
       var title = $('#pub-title').val();
       var biblioid = $('#pub-biblioid').val();
@@ -416,15 +413,13 @@ function titleBiblioId(evt) {
         addPublication(biblioid, title, year);
       }
 
-    });
+    }
 
-    wrapper('#delete-button', 'click', delFunc())
+    wrapper('delete-button', '#delete-button', 'click', delFunc())
     function delFunc() {
       console.log("delete ...");
       Q('#pub-biblioid-to-delete', 'biblioid').value;
       Q('#key-to-delete', 'key').value;
-      // var biblioid = document.querySelector().value;
-      // var key = document.querySelector().value;
 
       if (biblioid != '') {
         deletePublicationFromBib(biblioid);
@@ -439,13 +434,8 @@ function titleBiblioId(evt) {
       }
     }
 
-    wrapper('#clear-store-button', 'click', clearObjectStore());
-
-    var search_button = document.querySelector('#search-list-button');
-    search_button.addEventListener('click', function(evt) {
-      displayPubList();
-    });
-
+    wrapper('clear-store-button', '#clear-store-button', 'click', clearObjectStore());
+    wrapper('search_button', '#search-list-button', 'click', displayPubList())
   }
 
   // openDb();
