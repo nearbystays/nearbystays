@@ -19,3 +19,5 @@ async function* asyncGenerator() {
     console.log(num);
   }
 })();
+
+

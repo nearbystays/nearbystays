@@ -1,3 +1,55 @@
+let idx = '.js'
+import idx;
+import * as NearbyStays from idx;
+let Export = import ExportFunction1 from idx
+import {
+  ExportFunction2
+  ExportFunction3
+  ExportFunction4
+} from idx;
+
+const main 
+
+let settings = class Settings { }
+function nearbystaysImports() { }
+
+class NearbyStays {
+  constructor(arg1, ...args) {
+    this.createArg1 = createElement(arg1);
+    this.arg1 = document.querySelector('#arg1');
+  }
+  get arg1() {
+    return this.arg1;
+  }
+  set rg1() {
+    this.arg1 = document.createElement(arg1);
+  }
+}
+
+export function ExportFunction1(arg1, arg2) {
+  let api; // new APIName();
+  api.onload = function () {
+    callback(this.responseText)
+  };
+  api.open(method, ...args);
+  api.send();
+}
+
+const main = document.querySelector('main');
+for (const link of document.querySelectorAll('nav > a')) {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+
+    import('nearbystays.js')
+    .then(module => {
+      module.loadPageInto(main);
+    });
+  });
+}
+
+let co = new NearbyStays();
+co.
+
 "use strict"
 let map,
   places,
@@ -8,11 +60,12 @@ const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
 
+// this.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
 window.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
 
 function addAPI() {
   var script = document.createElement('script');
-  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&libraries=places&v=3.46";
+  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&callback=initMap&libraries=places&v=3.46";
   script.async = true;
   document.head.appendChild(script);
 }
@@ -31,22 +84,6 @@ function locator() {
   }
 }
 
-async function getLastKnownValue() {
-  let search = await document.querySelector('#autocomplete');
-  let lastKnownValue = await localStorage.getItem('name');
-  console.log(lastKnownValue)
-  if (lastKnownValue) {
-    search.placeholder = lastKnownValue
-  }
-}
-
-setTimeout(getLastKnownValue, 100)
-
-async function evtListener(...args) {
-  let args = Array.from(arguments)
-  
-}
-
 function initMap(geography) {
   map = new google.maps.Map(document.getElementById("map"), {
     mapTypeControl: false,
@@ -54,17 +91,14 @@ function initMap(geography) {
     zoomControl: false,
     streetViewControl: false,
   });
-  map.setGestureHandling()
   map.setZoom(14);
-  let lastStay = localStorage.getItem("name")
-  let lastSearch = localStorage.getItem("search")
-  console.table(lastSearch, lastStay);
   try {
+    let lastSearch = localStorage.getItem("search")
     lastSearch === 'null'
-    ?  map.setCenter(union(lastSearch))
-    :  map.setCenter(geography);
+    ?  map.setCenter(geography)
+    :  map.setCenter(lastSearch);
     console.log('Geography: ' + geography)
-    console.log('Last Search 0: ' + lastSearch.split(","));
+    console.log('Last Search: ' + lastSearch)
   } catch (e) {
     console.error(e);
   }
@@ -76,12 +110,17 @@ function initMap(geography) {
     content: document.getElementById("info-content"),
   });
   localStorage.setItem("info-content",infoWindow.content);
+  // localStorage.setItem("info-content",JSON.decycle(infoWindow));
+  // Create the autocomplete object and associate it with the UI input control.
+  // Restrict the search to the default country, and to place type "cities".
   var a = document.getElementById("autocomplete")
   autocomplete = new google.maps.places.Autocomplete(a);
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
 }
 
+// When the user selects a city, get the place details for the city and
+// zoom the map in on the city.
 function onPlaceChanged() {
   const place = autocomplete.getPlace();
   localStorage.setItem("place", autocomplete.getPlace());
@@ -96,30 +135,44 @@ function onPlaceChanged() {
   }
 }
 
+// Search for hotels in the selected city, within the viewport of the map.
 function search() {
   const search = {
     bounds: map.getBounds(),
     types: ["lodging"],
   };
-  localStorage.setItem("bounds", map.getBounds());
+  localStorage.setItem("search", map.getBounds());
 
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       localStorage.setItem("results", JSON.stringify(results));
+      localStorage.setItem("pagination", JSON.stringify(pagination));
       clearResults();
       clearMarkers();
 
+      // Create a marker for each hotel found, and
+      // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
         const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
+        // let photos = place.photos
+        // Use marker animation to drop the icons incrementally on the map.
         markers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
           animation: google.maps.Animation.DROP,
           icon: markerIcon,
         });
+        // If the user clicks a hotel marker, show the details of that hotel
+        // in an info window.
         markers[i].placeResult = results[i];
-        localStorage.setItem("marker-i", markers[i].placeResult);
+        localStorage.setItem("marker-a", JSON.stringify(results[i]));
+        localStorage.setItem("marker-b", JSON.stringify(markers[i].placeResult));
+        localStorage.setItem("marker-c", JSON.stringify(`${markers[i]}`));
+        localStorage.setItem("marker-d", JSON.stringify(`${markers[i].placeResult}`));
+        localStorage.setItem(markers[i].placeResult, results[i]);
+        localStorage.setItem(`${markers[i]}`, results[i]);
+        localStorage.setItem(`${markers[i].placeResult}`, results[i]);
         google.maps.event.addListener(markers[i], "click", showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
         addResult(results[i], i);
@@ -144,41 +197,6 @@ function dropMarker(i) {
   };
 }
 
-function addResultBeta(result, i) {
-  const results = document.getElementById("results");
-  const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
-  const markerIcon = MARKER_PATH + markerLetter + ".png";
-  const tr = document.createElement("tr");
-
-  tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
-  tr.onclick = function () {
-    localStorage.setItem('this.tr', this.tr)
-    localStorage.setItem('markers[i]', markers[i])
-    google.maps.event.trigger(markers[i], "click");
-  };
-
-  async function Objects () {
-    let createObjects = { 'td': ['iconTd', 'nameTd'], 'img': 'icon' }
-    create[Symbol.iterator]
-  }
-  createObjects.map(obj)
-  const iconTd = document.createElement("td");
-  const nameTd = document.createElement("td");
-  const icon = document.createElement("img");
-
-  icon.src = markerIcon;
-  icon.setAttribute("class", "placeIcon");
-  icon.setAttribute("className", "placeIcon");
-
-  const name = document.createTextNode(result.name);
-
-  iconTd.appendChild(icon);
-  nameTd.appendChild(name);
-  tr.appendChild(iconTd);
-  tr.appendChild(nameTd);
-  results.appendChild(tr);
-}
-
 function addResult(result, i) {
   const results = document.getElementById("results");
   const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
@@ -187,8 +205,6 @@ function addResult(result, i) {
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
   tr.onclick = function () {
-    localStorage.setItem('this.tr', this.tr)
-    localStorage.setItem('markers[i]', markers[i])
     google.maps.event.trigger(markers[i], "click");
   };
 
@@ -243,8 +259,6 @@ function buildIWContent(place) {
     '<b><a href="' + place.url + '">' + place.name + "</a></b>";
   document.getElementById("iw-address").textContent = place.vicinity;
   localStorage.setItem("name", place.name);
-  localStorage.setItem("address", place.address);
-  localStorage.setItem("vicinity", place.vicinity);
 
   if (place.rating) {
     let ratingHtml = "";
@@ -342,95 +356,3 @@ function name() {
 
 // export default name;
 
-// let idx = '.js'
-// import idx;
-// import * as NearbyStays from idx;
-// let Export = import ExportFunction1 from idx
-// import {
-//   ExportFunction2
-//   ExportFunction3
-//   ExportFunction4
-// } from idx;
-// 
-// const main 
-// 
-// let settings = class Settings { }
-// function nearbystaysImports() { }
-// 
-// export function ExportFunction1(arg1, arg2) {
-//   let api; // new APIName();
-//   api.onload = function () {
-//     callback(this.responseText)
-//   };
-//   api.open(method, ...args);
-//   api.send();
-// }
-// 
-// const main = document.querySelector('main');
-// for (const link of document.querySelectorAll('nav > a')) {
-//   link.addEventListener('click', e => {
-//     e.preventDefault();
-// 
-//     import('nearbystays.js')
-//     .then(module => {
-//       module.loadPageInto(main);
-//     });
-//   });
-// }
-// 
-// let co = new NearbyStays();
-// 
-// class NearbyStays {
-//   constructor(arg1, ...args) {
-//     this.createArg1 = createElement(arg1);
-//     this.arg1 = document.querySelector(arg1);
-// 
-//   }
-//   get arg1() {
-//     return this.arg1;
-//   }
-//   set rg1() {
-//     this.arg1 = document.createElement(arg1);
-//   }
-// }
-
-class NearbyStays {
-  constructor(pk, username, name, email, phone, avatar) {
-    var args = Array.from(arguments);
-    args.forEach(function(arg) {
-      this['arg' + i]  = arg;
-      console.log(`this: ${this}`);
-      console.log(`this.Argument [${i}]: ${this.arg}`);
-      console.log(`Argument [${i}]: ${arg}`);
-    });
-    this.name = localStorage.getItem;
-  }
-}
-
-class Hotel extends NearbyStays { }
-
-class Searches extends NearbyStays {
-  constructor(arg1, ...args) {
-    super(pk);
-    this.arg1 = arg1;
-    this.args = args;
-  }
-}
-
-class Guest extends NearbyStays {
-   constructor(searches, hotels, checkin, checkout) {
-     super(pk);
-     this.name = name;
-     this.email = email;
-     this.phone = phone;
-     this.pk = pk;
-   }
-
-   get primaryKey() {
-     return this.pk;
-   }
-   
-   set primaryKey(pk) {
-     this.primaryKey.push(pk);
-   }
-}

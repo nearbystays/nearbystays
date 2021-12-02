@@ -4,3 +4,7 @@
     await import('index.js');
   }
 })();
+
+import {
+  ExportFunction1()
+}
