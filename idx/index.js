@@ -1,18 +1,10 @@
 function go() {
 
-// (function () {
-
-//   var COMPAT_ENVS = [ ['Firefox', ">= 16.0"], ['Google Chrome', ">= 24.0 (you may need to get Google Chrome Canary), NO Blob storage support"] ];
-//   var compat = $('#compat');
-//   compat.empty();
-//   compat.append('<ul id="compat-list"></ul>');
-//   COMPAT_ENVS.forEach(function(val, idx, array) {
-//     $('#compat-list').append('<li>' + val[0] + ': ' + val[1] + '</li>');
-//   });
-
-  const DB_NAME = 'mdn-demo-indexeddb-epublications';
+  const DB_NAME = 'nearbystays';
   const DB_VERSION = 1; // Use a long long for this value (don't use a float)
-  const DB_STORE_NAME = 'publications';
+  const DB_STORE_NAME_GUEST = 'stays';
+  const DB_STORE_NAME_HOTEL = 'stays';
+  const DB_STORE_NAME_STAYS = 'stays';
 
   var db;
 
@@ -20,7 +12,7 @@ function go() {
   var current_view_pub_key;
 
   function openDb() {
-    console.log("openDb ...");
+    console.log("opening Database ...");
     var req = indexedDB.open(DB_NAME, DB_VERSION);
     req.onsuccess = function (evt) {
       // Equal to: db = req.result;
@@ -34,9 +26,9 @@ function go() {
     req.onupgradeneeded = function (evt) {
       console.log("openDb.onupgradeneeded");
       var store = evt.currentTarget.result.createObjectStore(
-        DB_STORE_NAME, { keyPath: 'id', autoIncrement: true });
+        DB_STORE_NAME_STAYS, { keyPath: 'id', autoIncrement: true });
 
-      store.createIndex('biblioid', 'biblioid', { unique: true });
+      store.createIndex('pk', 'pk', { unique: true });
       store.createIndex('title', 'title', { unique: false });
       store.createIndex('year', 'year', { unique: false });
     };
@@ -52,7 +44,7 @@ function go() {
   }
 
   function clearObjectStore() {
-    var store = getObjectStore(DB_STORE_NAME, 'readwrite');
+    var store = getObjectStore(DB_STORE_NAME_STAYS, 'readwrite');
     var req = store.clear();
     req.onsuccess = function(evt) {
       displayActionSuccess("Store cleared");
@@ -80,7 +72,7 @@ function go() {
     console.log("displayPubList");
 
     if (typeof store == 'undefined')
-      store = getObjectStore(DB_STORE_NAME, 'readonly');
+      store = getObjectStore(DB_STORE_NAME_STAYS, 'readonly');
 
     var pub_msg = $('#pub-msg');
     pub_msg.empty();
@@ -160,7 +152,7 @@ function go() {
 
     current_view_pub_key = key;
 
-    var store = getObjectStore(DB_STORE_NAME, 'readonly');
+    var store = getObjectStore(DB_STORE_NAME_STAYS, 'readonly');
     getBlob(key, store, function(blob) {
       console.log("setInViewer blob:", blob);
       var iframe = newViewerFrame();
@@ -264,7 +256,7 @@ function go() {
     if (typeof blob != 'undefined')
       obj.blob = blob;
 
-    var store = getObjectStore(DB_STORE_NAME, 'readwrite');
+    var store = getObjectStore(DB_STORE_NAME_STAYS, 'readwrite');
     var req;
     try {
       req = store.add(obj);
@@ -290,7 +282,7 @@ function go() {
    */
   function deletePublicationFromBib(biblioid) {
     console.log("deletePublication:", arguments);
-    var store = getObjectStore(DB_STORE_NAME, 'readwrite');
+    var store = getObjectStore(DB_STORE_NAME_STAYS, 'readwrite');
     var req = store.index('biblioid');
     req.get(biblioid).onsuccess = function(evt) {
       if (typeof evt.target.result == 'undefined') {
@@ -312,29 +304,30 @@ function go() {
     console.log("deletePublication:", arguments);
 
     if (typeof store == 'undefined')
-      store = getObjectStore(DB_STORE_NAME, 'readwrite');
+      store = getObjectStore(DB_STORE_NAME_STAYS, 'readwrite');
 
     // As per spec http://www.w3.org/TR/IndexedDB/#object-store-deletion-operation
     // the result of the Object Store Deletion Operation algorithm is
     // undefined, so it's not possible to know if some records were actually
     // deleted by looking at the request result.
     var req = store.get(key);
+    // req.onsuccess = async function(evt) {
     req.onsuccess = function(evt) {
       var record = evt.target.result;
       console.log("record:", record);
-      if (typeof record == 'undefined') {
+      if (typeof record === 'undefined') {
         displayActionFailure("No matching record found");
         return;
       }
       // Warning: The exact same key used for creation needs to be passed for
       // the deletion. If the key was a Number for creation, then it needs to
       // be a Number for deletion.
+      // var deleteReq = await store.delete(key);
+      // await deleteReq.onsuccess = async function(evt) {
+        // await displayActionSuccess("Deletion successful");
+        // await displayPubList(store);
       var deleteReq = store.delete(key);
       deleteReq.onsuccess = function(evt) {
-        console.log("evt:", evt);
-        console.log("evt.target:", evt.target);
-        console.log("evt.target.result:", evt.target.result);
-        console.log("delete successful");
         displayActionSuccess("Deletion successful");
         displayPubList(store);
       };
@@ -347,26 +340,8 @@ function go() {
     };
   }
 
-  function displayActionSuccess(msg) {
-    msg = typeof msg != 'undefined' ? "Success: " + msg : "Success";
-    $('#msg').html('<span class="action-success">' + msg + '</span>');
-  }
-  function displayActionFailure(msg) {
-    msg = typeof msg != 'undefined' ? "Failure: " + msg : "Failure";
-    $('#msg').html('<span class="action-failure">' + msg + '</span>');
-  }
-  function resetActionStatus() {
-    console.log("resetActionStatus ...");
-    $('#msg').empty();
-    console.log("resetActionStatus DONE");
-  }
-
   function addEventListeners() {
-    console.log("addEventListeners");
-
-    $('#register-form-reset').click(function(evt) {
-      resetActionStatus();
-    });
+    $('#register-form-reset').click(function(evt) { resetActionStatus(); });
 
     $('#add-button').click(function(evt) {
       console.log("add ...");
@@ -377,12 +352,8 @@ function go() {
         return;
       }
       var year = $('#pub-year').val();
-      if (year != '') {
-        // Better use Number.isInteger if the engine has EcmaScript 6
-        if (isNaN(year))  {
-          displayActionFailure("Invalid year");
-          return;
-        }
+      if (year != '') { // Number.isInteger
+        if (isNaN(year))  { return; }
         year = Number(year);
       } else {
         year = null;
@@ -424,21 +395,28 @@ function go() {
       }
     });
 
-    $('#clear-store-button').click(function(evt) {
-      clearObjectStore();
+    document.querySelector('#clear-store-button')
+    .addEventListener("click",evt => {
+      return clearObjectStore()
     });
 
-    var search_button = $('#search-list-button');
-    search_button.click(function(evt) {
+    var search_button = document.querySelector('#search-list-button');
+    search_button.addEventListener('click', function(evt) {
       displayPubList();
     });
 
   }
 
-  openDb();
-  addEventListeners();
+  // openDb();
+  // addEventListeners();
 
   // })(); // Immediately-Invoked Function Expression (IIFE)
 }
 
-window.onload = async function() { setTimeout(go(),); }
+window.onload = async function() {
+  setTimeout(go(),);
+  let db = await openDb();
+  let evtListener = await addEventListeners();
+  db();
+  evtListener();
+}
