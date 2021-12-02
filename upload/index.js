@@ -4,6 +4,7 @@ function showPreview(event){
     var preview = document.getElementById("image-upload");
     preview.src = src;
     preview.style.display = "block";
+    upload(event)
   }
 }
 
@@ -13,6 +14,7 @@ function ticker() {
   symbols.forEach(function() { });
 }
 
-function retrieved() { 
-  let image = document.querySelector('#image')
+function upload(event) { 
+  let image = document.querySelector('#output');
+  image.src = URL.createObjectURL(event.target.files[0]);
 }
