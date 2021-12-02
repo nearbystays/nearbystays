@@ -34,10 +34,6 @@ function go() {
     };
   }
 
-  /**
-   * @param {string} store_name
-   * @param {string} mode either "readonly" or "readwrite"
-   */
   function getObjectStore(store_name, mode) {
     var tx = db.transaction(store_name, mode);
     return tx.objectStore(store_name);
@@ -65,20 +61,17 @@ function go() {
     };
   }
 
-  /**
-   * @param {IDBObjectStore=} store
-   */
   function displayPubList(store) {
     console.log("displayPubList");
 
     if (typeof store == 'undefined')
       store = getObjectStore(DB_STORE_NAME_STAYS, 'readonly');
 
-    var pub_msg = $('#pub-msg');
-    pub_msg.empty();
-    var pub_list = $('#pub-list');
-    pub_list.empty();
+    // pub_msg.empty();
+    // pub_list.empty();
     // Resetting the iframe so that it doesn't display previous content
+    var pub_msg = Q('pub-msg', '#pub-msg').empty();
+    var pub_list = Q('pub-list', '#pub-list').empty();
     newViewerFrame();
 
     var req;
