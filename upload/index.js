@@ -15,6 +15,11 @@ function ticker() {
 }
 
 function upload(event) { 
-  let image = document.querySelector('#output');
-  image.src = URL.createObjectURL(event.target.files[0]);
+  let reader = new FileReader();
+  reader.onload = function() {
+    let image = document.querySelector('#output');
+    // image.src = URL.createObjectURL(event.target.files[0]);
+    image.src = reader.result;
+  }
+  reader.readAsDataURL(event.target.files[0]);
 }
