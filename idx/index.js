@@ -338,7 +338,7 @@ function go() {
   }
 
   function wrapper(name, element, event, func) {
-    let name = document.querySelector(element);
+    name = document.querySelector(element);
     name.addEventListener(event, func);
   }
 
