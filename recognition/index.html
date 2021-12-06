@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Image Classifier using ML5 js</title>
+		<script src= "https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+    <script src="./index.js"></script>
+    <script src="./result.js"></script>
+	</head>
+	<body>
+		<center>
+			<h1>Nearby Stays</h1>
+			<b>Image Classification using Javascript</b></br>
+			<img src="" alt="" id="image" width="315px" height="200px" /></br></br>
+			<input type="file" accept="image/*" onchange="loadFile(event)" name="image" id="file" />
+			<button onclick="predict()">Predict</button>
+		</center>
+	</body>
+</html>
