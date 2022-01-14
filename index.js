@@ -1,125 +1,120 @@
-"use strict"
-let map,
-  places,
-  infoWindow,
-  markers = [],
-  autocomplete;
-const MARKER_PATH =
-  "https://developers.google.com/maps/documentation/javascript/images/marker_green";
+// This example uses the autocomplete feature of the Google Places API.
+// It allows the user to find all hotels in a given place, within a given
+// country. It then displays markers for all the hotels returned,
+// with on-click details for each hotel.
+// This example requires the Places library. Include the libraries=places
+// parameter when you first load the API. For example:
+// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&libraries=places">
+
+let map;
+let places;
+let infoWindow;
+let script;
+let markers = [];
+let autocomplete;
+const countryRestrict = { country: "us" };
+const MARKER_PATH = "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
 
-window.addEventListener('DOMContentLoaded', () => { locator(); addAPI(); });
-
-function addAPI() {
-  var script = document.createElement('script');
-  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&libraries=places&v=3.46";
+window.addEventListener('DOMContentLoaded', function(e) {
+  console.log(e);
+  locator();
+  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgwI8A-l0MY0LxZSdUcPJZgsFSYSKG78&callback=initMap&libraries=places&v=weekly"
   script.async = true;
-  document.head.appendChild(script);
-}
+  script.defer = true;
+  document.body.appendChild(sript);
+});
 
-// You're Welcome
 function locator() {
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      localStorage.setItem("InitLat", position.coords.latitude);
-      localStorage.setItem("InitLng", position.coords.longitude);
-      const lat = parseFloat(localStorage.getItem("InitLat"));
-      const lng = parseFloat(localStorage.getItem("InitLng"));
-      console.log("welcome.com");
-      initMap({lat, lng});
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      console.log(pos.coords.latitude + ' ' + pos.coords.longitude);
     });
+  } else {
+    let pos = {
+      coords: {
+        lat: 40.714224,
+        lng: -73.961452
+      }
+    }
+    console.error('unsupported');
   }
+  let center = { lat: pos.coords.lat, lng: pos.coords.lng } 
+  return center
 }
 
-async function getLastKnownValue() {
-  let search = await document.querySelector('#autocomplete');
-  let lastKnownValue = await localStorage.getItem('name');
-  console.log(lastKnownValue)
-  if (lastKnownValue) {
-    search.placeholder = lastKnownValue
-  }
-}
-
-setTimeout(getLastKnownValue, 100)
-
-async function evtListener(...args) {
-  let args = Array.from(arguments)
-  
-}
-
-function initMap(geography) {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 14,
+    center: locator(),// countries["us"].center,
     mapTypeControl: false,
     panControl: false,
     zoomControl: false,
     streetViewControl: false,
   });
-  map.setGestureHandling()
-  map.setZoom(14);
-  let lastStay = localStorage.getItem("name")
-  let lastSearch = localStorage.getItem("search")
-  console.table(lastSearch, lastStay);
-  try {
-    lastSearch === 'null'
-    ?  map.setCenter(union(lastSearch))
-    :  map.setCenter(geography);
-    console.log('Geography: ' + geography)
-    console.log('Last Search 0: ' + lastSearch.split(","));
-  } catch (e) {
-    console.error(e);
-  }
-  map.setOptions({
-    minZoom: 12,
-    maxZoom: 15,
-  });
   infoWindow = new google.maps.InfoWindow({
     content: document.getElementById("info-content"),
   });
-  localStorage.setItem("info-content",infoWindow.content);
-  var a = document.getElementById("autocomplete")
-  autocomplete = new google.maps.places.Autocomplete(a);
+  // Create the autocomplete object and associate it with the UI input control.
+  // Restrict the search to the default country, and to place type "cities".
+  // Restrict the search to the default country, and to place type "cities".
+  autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById("autocomplete"),
+    {
+      // types: ["(cities)"],
+      // componentRestrictions: countryRestrict,
+      fields: ["geometry"],
+    }
+  );
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
+  // Add a DOM event listener to react when the user selects a country.
+  document
+    .getElementById("country")
+    .addEventListener("change", setAutocompleteCountry);
 }
 
+// When the user selects a city, get the place details for the city and
+// zoom the map in on the city.
 function onPlaceChanged() {
   const place = autocomplete.getPlace();
-  localStorage.setItem("place", autocomplete.getPlace());
 
   if (place.geometry && place.geometry.location) {
-    localStorage.setItem("curLat", place.geometry.location.latitude);
-    localStorage.setItem("curLng", place.geometry.location.longitude);
     map.panTo(place.geometry.location);
+    map.setZoom(14);
     search();
   } else {
     document.getElementById("autocomplete").placeholder = "Enter a city";
   }
 }
 
+// Search for hotels in the selected city, within the viewport of the map.
 function search() {
   const search = {
     bounds: map.getBounds(),
     types: ["lodging"],
   };
-  localStorage.setItem("bounds", map.getBounds());
 
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-      localStorage.setItem("results", JSON.stringify(results));
       clearResults();
       clearMarkers();
 
+      // Create a marker for each hotel found, and
+      // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
         const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
 
+        // Use marker animation to drop the icons incrementally on the map.
         markers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
           animation: google.maps.Animation.DROP,
           icon: markerIcon,
         });
+        // If the user clicks a hotel marker, show the details of that hotel
+        // in an info window.
         markers[i].placeResult = results[i];
-        localStorage.setItem("marker-i", markers[i].placeResult);
         google.maps.event.addListener(markers[i], "click", showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
         addResult(results[i], i);
@@ -138,45 +133,29 @@ function clearMarkers() {
   markers = [];
 }
 
+// Set the country restriction based on user input.
+// Also center and zoom the map on the given country.
+function setAutocompleteCountry() {
+  const country = document.getElementById("country").value;
+
+  if (country == "all") {
+    autocomplete.setComponentRestrictions({ country: [] });
+    map.setCenter({ lat: 15, lng: 0 });
+    map.setZoom(2);
+  } else {
+    autocomplete.setComponentRestrictions({ country: country });
+    map.setCenter(countries[country].center);
+    map.setZoom(countries[country].zoom);
+  }
+
+  clearResults();
+  clearMarkers();
+}
+
 function dropMarker(i) {
   return function () {
     markers[i].setMap(map);
   };
-}
-
-function addResultBeta(result, i) {
-  const results = document.getElementById("results");
-  const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
-  const markerIcon = MARKER_PATH + markerLetter + ".png";
-  const tr = document.createElement("tr");
-
-  tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
-  tr.onclick = function () {
-    localStorage.setItem('this.tr', this.tr)
-    localStorage.setItem('markers[i]', markers[i])
-    google.maps.event.trigger(markers[i], "click");
-  };
-
-  async function Objects () {
-    let createObjects = { 'td': ['iconTd', 'nameTd'], 'img': 'icon' }
-    create[Symbol.iterator]
-  }
-  createObjects.map(obj)
-  const iconTd = document.createElement("td");
-  const nameTd = document.createElement("td");
-  const icon = document.createElement("img");
-
-  icon.src = markerIcon;
-  icon.setAttribute("class", "placeIcon");
-  icon.setAttribute("className", "placeIcon");
-
-  const name = document.createTextNode(result.name);
-
-  iconTd.appendChild(icon);
-  nameTd.appendChild(name);
-  tr.appendChild(iconTd);
-  tr.appendChild(nameTd);
-  results.appendChild(tr);
 }
 
 function addResult(result, i) {
@@ -187,8 +166,6 @@ function addResult(result, i) {
 
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
   tr.onclick = function () {
-    localStorage.setItem('this.tr', this.tr)
-    localStorage.setItem('markers[i]', markers[i])
     google.maps.event.trigger(markers[i], "click");
   };
 
@@ -237,25 +214,28 @@ function showInfoWindow() {
 
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
-  document.getElementById("iw-icon").innerHTML =
-    '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';
-  document.getElementById("iw-url").innerHTML =
-    '<b><a href="' + place.url + '">' + place.name + "</a></b>";
+  document.getElementById("iw-icon").innerHTML = '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';
+  document.getElementById("iw-url").innerHTML = '<b><a href="' + place.url + '">' + place.name + "</a></b>";
   document.getElementById("iw-address").textContent = place.vicinity;
-  localStorage.setItem("name", place.name);
-  localStorage.setItem("address", place.address);
-  localStorage.setItem("vicinity", place.vicinity);
+  if (place.formatted_phone_number) {
+    document.getElementById("iw-phone-row").style.display = "";
+    document.getElementById("iw-phone").textContent = place.formatted_phone_number;
+  } else {
+    document.getElementById("iw-phone-row").style.display = "none";
+  }
 
+  // Assign a five-star rating to the hotel, using a black star ('&#10029;')
+  // to indicate the rating the hotel has earned, and a white star ('&#10025;')
+  // for the rating points not achieved.
   if (place.rating) {
     let ratingHtml = "";
 
     for (let i = 0; i < 5; i++) {
-      place.rating < i + 0.5 ?  ratingHtml += "&#10025;" : ratingHtml += "&#10029;"
-      // if (place.rating < i + 0.5) {
-      //   ratingHtml += "&#10025;";
-      // } else {
-      //   ratingHtml += "&#10029;";
-      // }
+      if (place.rating < i + 0.5) {
+        ratingHtml += "&#10025;";
+      } else {
+        ratingHtml += "&#10029;";
+      }
 
       document.getElementById("iw-rating-row").style.display = "";
       document.getElementById("iw-rating").innerHTML = ratingHtml;
@@ -280,112 +260,4 @@ function buildIWContent(place) {
   } else {
     document.getElementById("iw-website-row").style.display = "none";
   }
-}
-
-function fetchPromise() {
-  var pl = localStorage.getItem('name');
-  var myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'text/xml');
-  myHeaders.append('Content-Type', 'image/jpeg');
-
-  var myInit = {
-    method: 'GET',
-    headers: myHeaders,
-    mode: 'cors',
-    cache: 'default'
-  };
-  const fetchResponsePromise = fetch(resource).then(function() {
-    if (!response.ok) {
-      throw new Error("HTTP error! Status: " + response.status);
-    }
-    return response.blob();
-  })
-  .then(function(r) {
-    let objectUrl = URL.createObjectURL(r);
-    myImg.src = objUrl;
-  });
-}
-
-function searchUpdate() {
-  const search = {
-    bounds: map.getBounds(),
-    types: ["lodging"],
-  };
-
-  places.nearbySearch(search, (results, status, pagination) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-      clearResults();
-      clearMarkers();
-    }
-  });
-}
-
-function name() {
-  for (let i = 0; i < results.length; i++) {
-    const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
-    const markerIcon = MARKER_PATH + markerLetter + ".png";
-        // let photos = place.photos
-        // Use marker animation to drop the icons incrementally on the map.
-        markers[i] = new google.maps.Marker({
-          position: results[i].geometry.location,
-          animation: google.maps.Animation.DROP,
-          icon: markerIcon,
-        });
-        // If the user clicks a hotel marker, show the details of that hotel
-        // in an info window.
-        markers[i].placeResult = results[i];
-        google.maps.event.addListener(markers[i], "click", showInfoWindow);
-        setTimeout(dropMarker(i), i * 100);
-        addResult(results[i], i);
-  }
-}
-
-class NearbyStays {
-  constructor(username, avatar, name, email, phone) {
-    this.name = localStorage.getItem('name');
-    this.username = localStorage.getItem('username');
-    this.avatar = localStorage.getItem('avatar');
-    this.name = localStorage.getItem('name');
-    this.email = localStorage.getItem('email');
-    this.phone = localStorage.getItem('phone');
-    this.pk = primary();
-  }
-
-  static #primay() {
-    let i = '0';
-    let arg2;
-    numbers[Symbol.iterator]()
-      
-    }
-  }
-}
-
-class Hotel extends NearbyStays {
-  
-}
-
-class Searches extends NearbyStays {
-  constructor(arg1, ...args) {
-    super(pk);
-    this.arg1 = arg1;
-    this.args = args;
-  }
-}
-
-class Guest extends NearbyStays {
-   constructor(searches, hotels, checkin, checkout) {
-     super(pk);
-     this.name = name;
-     this.email = email;
-     this.phone = phone;
-     this.pk = pk;
-   }
-
-   get primaryKey() {
-     return this.pk;
-   }
-   
-   set primaryKey(pk) {
-     this.primaryKey.push(pk);
-   }
 }
