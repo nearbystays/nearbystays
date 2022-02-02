@@ -1,18 +1,60 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif, Arial, Helvetica}
-</style>
+<head>
+<?php require'head.php'?>
+</head>
 <body class="w3-theme-blue-grey w3-light-grey">
+o<?php
+  
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    IF (empty($_POST['name'])) {
+      $nameErr = "name is required";
+    } else {
+      $name = test_input($_POST['name']);
+      if (!preg_match("/^[a-zA-Z' ]*$/",$name)) {
+        $nameErr = "only letters and white space allowed";
+      }
+    }
+    IF (empty($_POST['email'])) {
+      $emailErr = "email is required";
+    } else {
+      $email = test_input($_POST['email']);
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emailErr = "invalid format";
+      }
+    }
+  }
+
+  function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+?>
+
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Create database
+$sql = "CREATE DATABASE IF NOT EXISTS SEARCHES";
+if ($conn->query($sql) === TRUE) {
+  echo "Database created successfully";
+} else {
+  echo "Error creating database: " . $conn->error;
+}
+
+$conn->close();
+?>
 
 <!-- Navigation Bar -->
 <div class="w3-bar w3-white w3-bottom w3-large">
@@ -39,7 +81,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif, Arial, Helvetica}
         <div class="w3-row-padding" style="margin:0 -16px;">
           <div class="w3-half w3-margin-bottom">
             <label><i class="fa fa-calendar-o"></i> Check In</label>
-            <input class="w3-input w3-border" type="date" style="width:350px" placeholder="DD MM YYYY" name="CheckIn" required>
+            <input class="w3-input w3-border" type="date" style="width:inherit" placeholder="DD MM YYYY" name="CheckIn" required>
           </div>
           <div class="w3-half">
             <label><i class="fa fa-calendar-o"></i> Check Out</label>
@@ -274,3 +316,4 @@ Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
 
 </body>
 </html>
+
